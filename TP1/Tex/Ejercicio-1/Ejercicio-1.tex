@@ -4,4 +4,35 @@
 
 \subsection{Introducción}
 
+Se analizó la conmutación de un MOSFET \href{https://www.vishay.com/docs/91019/91019.pdf}{IRF530} de potencia en un circuito con carga inductiva, utilizando un diodo \href{https://www.onsemi.com/pdf/datasheet/mur420-d.pdf}{MUR460} de potencia para proporcionar un camino a la corriente durante el apagado del MOSFET y no dañar al circuito.
+
+%Aca puede ir la foto del circuito
+
+Para la conmutación del MOSFET se utilizó un periodo de $T_s = 20 \mu s$ y un duty cycle de $D = 50 \%$.
+
+\subsection{Circuito en la Teoría}
+
+En la teoría, se consideró al diodo IRF530 como ideal excepto por la caída de potencial de la juntura en directa, siendo esta extraída de la datasheet, con un valor de $V_{D_{on}} = 1.3V$. Además, se consideró a la bobina como ideal con resistencia serie nula.
+Tenido esto en cuenta, se comenzó el análisis del circuito de manera cualitativa:
+
+\subsubsection{Primer Hemicircuito: MOSFET ON}
+
+Cuando el MOSFET se encuentra encendido, y despreciando la caída $V_{ds_{on}}$ entre drain y source, la bobina posee una tensión de $V_{L_{on}} = V_i$ entre sus bornes, por lo que la corriente $I_L$ que la atraviesa crece con una pendiente de $\frac{V_i}{L}$. Como el diodo se encuentra con su ánodo conectado a tierra, y su cátodo conectado a $V_i$, este se encuentra en inversa por lo que no circula corriente a través de él.
+
+\subsubsection{Segundo Hemicircuito: MOSFET OFF}
+
+Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_L$, por lo que sobre el MOSFET caen $V_{ds_{off}} = V_i - V_{L_{off}}$ (tener en cuenta que ahora $V_{L_{off}} < 0$). En este estado, toda la corriente $I_L$ de la bobina pasan por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina. No se extrae corriente de la fuente de alimentación en este estado si se desprecia la corriente parásita del MOSFET.
+
+\subsubsection{Análisis Cuantitativo}
+
+
+
+\subsection{Circuito en la Simulación}
+
+\subsection{Circuito en la Práctica}
+
+\subsection{Diferencias}
+
+\subsection{Conclusiones}
+
 \end{document}
