@@ -1,0 +1,68 @@
+\input{../../Informe/Header-Circuits.tex}
+\usepackage{siunitx}
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							CIRCUITOS								%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%CIRCUITO COMPLETO EJERCICIO 1
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\node[ground](){};	
+	\ctikzset{diodes/scale=0.6}
+	\draw	
+		(0,0) ++ (0,6) node[](aux1){} to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] (0,0)
+		(aux1.center) -- ++ (6,0) to[R, l_=$\begin{array}{c} R_5 \\ \SI{1}{\kohm}\end{array}$] ++ (0,-4) node[npn, anchor=C](q2){$\begin{array}{c} Q_2 \\ BC547B\end{array}$}
+		(q2.E) -- ++ (0,-0.5) node[ground](){}
+		(q2.B) to[R, l=$\begin{array}{c} R_3 \\ \SI{470}{\ohm}\end{array}$] ++ (-1.5,0) to[R,l=$\begin{array}{c} R_6 \\ \SI{470}{\ohm}\end{array}$] ++ (-2,0) -- ++ (0,-0.25) to[V, l_=$V_1$] ++ (0,-1) node[ground](){}
+		
+		(q2.C) -| ++ (2,1) node[npn, anchor=B](q1){$\begin{array}{c} Q_1 \\ BC547B\end{array}$}
+		(q2.C) ++ (2,0) -- ++ (0,-1) node[pnp, anchor=B](q3){$\begin{array}{c} Q_3 \\ BC557B\end{array}$}
+		(q1.E) -- (q3.E)   
+		(q3.C) -- ++ (0,-0.3) node[ground](){}
+		(q1.C) |- node[pos=0.5](aux2){} (6,6)		
+		
+		($ (q3.E) !.5! (q1.E) $) -- ++(2,0) to[R, l_=$\begin{array}{c} R_1 \\ \SI{100}{\ohm}\end{array}$] ++ (1.5,0) node[nigfete, anchor=G](m1){$M_1$}
+		(m1.S) -- ++ (0,-1.5) node[ground](){}
+		(m1.D) to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3) |- (aux2.center) node[pos=0.5](aux3){}	
+		(m1.D) -- ++ (1,0) to[D, l_=$MUR460$] ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux3.center)		
+	;
+
+\end{circuitikz}
+\end{page}
+
+%HEMICIRCUITO ON
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\node[ground](){};	
+	\ctikzset{diodes/scale=0.6}
+	\draw	
+		(0,0) ++ (0,4) node[](aux1){} to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] (0,0)
+		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3)
+		(aux3.center) -- ++ (1,0) to[D, l_=$MUR460$] ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
+	;
+
+\end{circuitikz}
+\end{page}
+
+%HEMICIRCUITO OFF
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\node[ground](){};	
+	\ctikzset{diodes/scale=0.6}
+	\draw	
+		(0,0) ++ (0,4) node[](aux1){} to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] (0,0)
+		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3)
+		(aux3.center) -- ++ (0,-1) node[ground](){}
+		(aux3.center) -- ++ (1,0) ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
+	;
+
+\end{circuitikz}
+\end{page}
+
+\end{document}
