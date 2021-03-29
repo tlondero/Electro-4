@@ -1,0 +1,69 @@
+\input{../../Informe/Header-Circuits.tex}
+\usepackage{siunitx}
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							COMPONENTES								%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Voltage controlled switch
+\newcommand{\switch}[1] % #1 = name
+{node(#1_origin){}
+	node[dipchip, num pins=6, hide numbers, no topmark, external pins width=0](C3){}
+	
+	%($ (C3.bpin 1) !.5! (C3.bpin 4) $) ++ (0,0.5) node[](){}
+
+	%LEFT NODES
+	node[right, font=\footnotesize] at (C3.bpin 1) {$+$}
+	node[right, font=\footnotesize] at (C3.bpin 3) {$-$}		
+
+	(C3.bpin 1) -- ++ (-0.5,0) node[](#1_plus){}	
+	(C3.bpin 3) -- ++ (-0.5,0) node[](#1_minus){}
+	
+
+	%RIGHT NODES
+	node[left, font=\footnotesize] at (C3.bpin 4) {}	
+	node[left, font=\footnotesize] at (C3.bpin 6) {}
+	
+	(C3.bpin 6) -- ++(-0.5,0) node[](xd){}
+	(C3.bpin 4) -- ++(-0.5,0) to[nos] (xd.center)
+	
+	(C3.bpin 4) -- ++ (0.5,0) node[](#1_s2){}
+	(C3.bpin 6) -- ++ (0.5,0) node[](#1_s1){}			
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							CIRCUITOS								%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%CIRCUITO COMPLETO EJERCICIO 2
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\def\xspace{0.75}
+	
+	\ctikzset{multipoles/thickness=2}				%Ancho de las lineas de las cajas
+	\ctikzset{diodes/scale=0.6}	
+	\ctikzset{multipoles/dipchip/width=1}			%Ancho del swirch
+		
+	\draw
+		(0,0) \switch{sw}
+		(sw_minus.center) -- ++ (0,-1) node[ground](){}
+		(sw_s2.center) -- ++ (0,-1) node[ground](){}
+		(sw_plus.center) -- ++ (-1,0) to[V, l_=$V_1$] ++ (0,-2.1) node[ground](){}
+		
+		(sw_s1.center) -- ++ (0,1) node[](aux1){} to[D, l_=$\begin{array}{c} D_1 \\ MUR460\end{array}$] ++ (3,0) node[](aux2){} to[C, l=$\begin{array}{c} C_1 \\ \SI{10}{\mu f}\end{array}$] ++ (0,-3.25) node[ground](){}
+		(aux2.center) -- ++ (2,0) to[R, l=$\begin{array}{c} R_2 \\ \SI{100}{\ohm}\end{array}$] ++ (0,-3.25) node[ground](){}
+		
+		(aux1.center) to[R, l=$\begin{array}{c} R_4 \\ \SI{2}{\ohm}\end{array}$] ++ (0,2) to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,2) -- ++ (-5,0) to[V, l=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] ++ (0,-7.1) node[ground](){}		
+	;
+	
+%	\draw[color = red]
+%		(aux1.center) node[circ](){1}
+%		(aux2.center) node[circ](){2}
+%	;
+
+\end{circuitikz}
+\end{page}
+
+\end{document}
