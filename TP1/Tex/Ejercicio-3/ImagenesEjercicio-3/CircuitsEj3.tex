@@ -7,7 +7,7 @@
 %							CIRCUITOS								%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%CIRCUITO COMPLETO EJERCICIO 1
+%CIRCUITO COMPLETO EJERCICIO 3
 \begin{page}
 \begin{circuitikz}[american voltages]
 
@@ -27,14 +27,17 @@
 		
 		($ (q3.E) !.5! (q1.E) $) -- ++(2,0) to[R, l_=$\begin{array}{c} R_1 \\ \SI{100}{\ohm}\end{array}$] ++ (1.5,0) node[nigfete, anchor=G](m1){$\begin{array}{c} M_1 \\ IRF53\end{array}$}
 		(m1.S) -- ++ (0,-1.5) node[ground](){}
-		(m1.D) to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3) |- (aux2.center) node[pos=0.5](aux3){}	
-		(m1.D) -- ++ (1,0) to[D, l_=$\begin{array}{c} D_1 \\ MUR460\end{array}$] ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux3.center)		
+		(m1.D) to[R, l_=$\begin{array}{c} R_4 \\ \SI{2}{\ohm}\end{array}$] ++ (0,1.25) to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,1.7) |- (aux2.center) node[pos=0.5](aux3){}	
+		
+		(m1.D) ++ (0,-0.25) -- ++ (1,0) to[D, l_=$\begin{array}{c} D_1 \\ MUR460\end{array}$] ++ (3,0) node[](aux4){} to[C, l=$\begin{array}{c} C_1 \\ \SI{10}{\mu f}\end{array}$] ++ (0,-2.8) node[ground](){}
+		(aux4.center) -- ++ (2,0) to[R, l=$\begin{array}{c} R_2 \\ \SI{100}{\ohm}\end{array}$] ++ (0,-2.8) node[ground](){}	
 	;
 	
 %	\draw[color = red]
 %		(aux1.center) node[circ](){1}
 %		(aux2.center) node[circ](){2}
 %		(aux3.center) node[circ](){3}
+%		(aux4.center) node[circ](){4}
 %	;
 
 \end{circuitikz}
@@ -47,16 +50,11 @@
 	\node[ground](){};	
 	\ctikzset{diodes/scale=0.6}
 	\draw	
-		(0,0) ++ (0,4) node[](aux1){} to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] (0,0)
-		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3)
-		(aux3.center) -- ++ (1,0) to[D, l_=$\begin{array}{c} D_1 \\ MUR460\end{array}$] ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
-	;
 	
-%	\draw[color = red]
-%		(aux1.center) node[circ](){1}
-%		(aux2.center) node[circ](){2}
-%		(aux3.center) node[circ](){3}
-%	;
+		(0,0) node[ground](){} to[R, l_=$\begin{array}{c} R_4 \\ \SI{2}{\ohm}\end{array}$] ++ (0,1.5) to[L, l_=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,1.5) -- ++ (-3,0) to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] ++ (0,-3) node[ground](){}
+		
+		(3,0) node[ground](){} to[C, l_=$\begin{array}{c} C_1 \\ \SI{10}{\mu f}\end{array}$] ++ (0,3) -- ++ (3,0) to[R, l=$\begin{array}{c} R_2 \\ \SI{100}{\ohm}\end{array}$] ++ (0,-3) node[ground](){}	
+		;
 
 \end{circuitikz}
 \end{page}
@@ -65,19 +63,17 @@
 \begin{page}
 \begin{circuitikz}[american voltages]
 
-	\node[ground](){};	
 	\ctikzset{diodes/scale=0.6}
 	\draw	
-		(0,0) ++ (0,4) node[](aux1){} to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] (0,0)
-		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3)
-		(aux3.center) -- ++ (0,-1) node[ground](){}
-		(aux3.center) -- ++ (1,0) ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
-	;
-
+	
+		(0,0) to[R, l_=$\begin{array}{c} R_4 \\ \SI{2}{\ohm}\end{array}$] ++ (0,2) to[L, l_=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,2) -- ++ (-3,0) to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] ++ (0,-6) node[ground](){}
+		
+		(0,0) -- ++(2,0) node[](aux1){} to[C, l=$\begin{array}{c} C_1 \\ \SI{10}{\mu f}\end{array}$] ++ (0,-2) node[ground](){}
+		(aux1.center) -- ++ (3,0) to[R, l=$\begin{array}{c} R_2 \\ \SI{100}{\ohm}\end{array}$] ++ (0,-2) node[ground](){}	
+		;
+		
 %	\draw[color = red]
 %		(aux1.center) node[circ](){1}
-%		(aux2.center) node[circ](){2}
-%		(aux3.center) node[circ](){3}
 %	;
 
 \end{circuitikz}

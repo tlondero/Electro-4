@@ -55,9 +55,13 @@
 		(sw_s1.center) -- ++ (0,1) node[](aux1){} to[D, l_=$\begin{array}{c} D_1 \\ MUR460\end{array}$] ++ (3,0) node[](aux2){} to[C, l=$\begin{array}{c} C_1 \\ \SI{10}{\mu f}\end{array}$] ++ (0,-3.25) node[ground](){}
 		(aux2.center) -- ++ (2,0) to[R, l=$\begin{array}{c} R_2 \\ \SI{100}{\ohm}\end{array}$] ++ (0,-3.25) node[ground](){}
 		
-		(aux1.center) to[R, l=$\begin{array}{c} R_4 \\ \SI{2}{\ohm}\end{array}$] ++ (0,2) to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,2) -- ++ (-5,0) to[V, l=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] ++ (0,-7.1) node[ground](){}
-		
+		(aux1.center) to[R, l=$\begin{array}{c} R_4 \\ \SI{2}{\ohm}\end{array}$] ++ (0,2) to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,2) -- ++ (-5,0) to[V, l=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] ++ (0,-7.1) node[ground](){}		
 	;
+	
+%	\draw[color = red]
+%		(aux1.center) node[circ](){1}
+%		(aux2.center) node[circ](){2}
+%	;
 
 \end{circuitikz}
 \end{page}
