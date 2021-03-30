@@ -4,16 +4,20 @@ import scipy.signal as signal
 import math
 #componentes
 RG=100
-
+L=220E-6
+RL=1
+fsw=60E3
+tauRL=L/RL
+D=0.5
 Cgs_plus_cgd1=750E-12
 Cgs_plus_cgd2=1150E-12
 
 VTH=4
 VGSO=12
-VGSIO=6
-VD0=24
+VGSIO=6#mirar
+VD0=12
 VDSON=0
-deltaQ=7.3E-9
+deltaQ=7.3E-9#fijate que en el spice dice otra cosa
 #Constantes de tiempo
 
 tau1=RG*Cgs_plus_cgd1
@@ -25,11 +29,12 @@ tri=-tau1*np.log((VGSO-VGSIO)/(VGSO)) - ton#5.198e-08-ton
 tvf=deltaQ*RG/(VGSO-VGSIO) #1.7358e-07-tri-ton
 
 tend=5.7358e-07
-
+ION=VGSO
 
 
 IGSO=12/RG
-ION=10
+ION= (VGSO/RL)*((1-np.exp(-(D/fsw)/tauRL))/(np.exp(((1-D)/fsw)/tauRL)-np.exp(-(D/fsw)/tauRL)))
+IOFF=(VGSO/RL)*((1-np.exp(-(D/fsw)/tauRL))*np.exp(((1-D)/fsw)/tauRL)/(np.exp(((1-D)/fsw)/tauRL)-np.exp(-(D/fsw)/tauRL)))
 
 t1= np.linspace(0,ton,100)
 t2= np.linspace(ton,tri+ton,100)
