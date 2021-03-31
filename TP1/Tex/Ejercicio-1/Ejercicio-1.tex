@@ -35,19 +35,20 @@ Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina
 Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y \ref{ej1:eq:VL_on} que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{ds_{on}} = I_{L_{on}}\cdot R_{ds_{on}}$
 
 \begin{equation}
-	 I_{L_{on}}(t) = \frac{V_2}{R_{ds_{on}}+R_2} (1-e^{-\frac{R_{rd_{on}}+R_2}{L}t})
+	 I_{L_{on}}(t) = \left( I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right) -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}}{L}t} + \frac{V_2}{R_{ds_{on}}} \ \ \ \ n \in \mathbb{N}
 \label{ej1:eq:IL_on}
 \end{equation}
 
 \begin{equation}
-	 V_{L_{on}}(t) = V_2 e^{-\frac{R_{rd_{on}}+R_2}{L}t}
+	V_{L_{on}}(t) = \left( V_2 - I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right)\cdot (R_{ds_{on}}+R_2) \right)e^{-\frac{R_{ds_{on}}+R_2}{L}t} \ \ \ \ n \in \mathbb{N}
 \label{ej1:eq:VL_on}
 \end{equation}
 
+Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de apagado a encendido.
 
 \subsubsection{Segundo Hemicircuito: MOSFET OFF}
 
-Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_{L_on}$, por lo que sobre el MOSFET caen $V_{ds_{off}} = V_i - V_{L_{off}} - I_{L_off}\cdot R_2$ (tener en cuenta que ahora $V_{L_{off}} < 0$). En este estado, si se desprecia la corriente parásita del MOSFET, toda la corriente $I_{L_{off}}$ de la bobina pasan por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina y no se extrae corriente de la fuente de alimentación.
+Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_{L_on}$. Sobre el MOSFET caen $V_{ds_{off}} = V_2 + V_D$ circulando la malla formada por el diodo, el MOSFET y la fuente de entrada. En este estado, si se desprecia la corriente parásita del MOSFET, toda la corriente $I_{L_{off}}$ de la bobina pasa por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina y no se extrae corriente de la fuente de alimentación.
 
 \begin{figure}[H]
 	\centering
@@ -59,26 +60,26 @@ Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria e
 Resolviendo el circuito RL que se obtiene en este estado, se observa que la bobina tiene una pérdida de energía almacenada dada por las ecuaciones (\ref{ej1:eq:IL_off}) y (\ref{ej1:eq:VL_off}).
 
 \begin{equation}
-	 I_{L_{off}}(t) = \left( I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right) -\frac{V_d}{R_2}\right) e^{-\frac{R_2}{L}t} + \frac{V_d}{R_2} \ \ \ \ n \in \mathbf{N}
+	 I_{L_{off}}(t) = \left( I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right) -\frac{V_d}{R_2}\right) e^{-\frac{R_2}{L}t} + \frac{V_d}{R_2} \ \ \ \ n \in \mathbb{N}_o
 \label{ej1:eq:IL_off}
 \end{equation}
 
 \begin{equation}
-	 V_{L_{off}}(t) = \left( V_d - I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right)\cdot R_2 \right)e^{-\frac{R_2}{L}t} \ \ \ \ n \in \mathbf{N}
+	 V_{L_{off}}(t) = \left( V_d - I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right)\cdot R_2 \right)e^{-\frac{R_2}{L}t} \ \ \ \ n \in \mathbb{N}_o
 \label{ej1:eq:VL_off}
 \end{equation}
 
 Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de encendido a apagado.
 
 \subsubsection{Análisis en estado Permanente}
- Como la constante de tiempo $\frac{L}{R} = 189.6\mu s$ es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_on = t_off = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333s$ se pueden aproximar la tensión $V_L$ como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$.
+ Como la constante de tiempo $\frac{L}{R} = 189.6\mu s$ es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_on = t_off = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333\mu s$ se pueden aproximar la tensión $V_L$ como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$.
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 
 Al encender el MOSFET con un escalón de tensión de $V_{GG} = 12V$, tomado en el borne izquierdo de $R_1$ y referido a masa, crece la corriente de gate $I_G$ instantáneamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{ej1:eq:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{ej1:eq:vgs_ton}).
 
 \begin{equation}
-I_G(t) = -\frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_1}}
+I_G(t) = \frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_1}}
 \label{ej1:eq:ig_ton}
 \end{equation}
 
@@ -100,7 +101,7 @@ según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de dr
 \label{ej1:eq:trise}
 \end{equation}
 
-A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs}$ y la corriente $I_G$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = I_L R_{ds_{on}} = 827.59mV$ utilizando el valor de $I_L$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
+A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = I_L R_{ds_{on}} = 827.59mV$ utilizando el valor de $I_L$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
 
 \begin{equation}
 	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112.31ns
@@ -115,7 +116,7 @@ V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_2}})
 \end{equation}
 
 \begin{equation}
-I_{G}(t) =  -\frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_2}}
+I_{G}(t) =  \frac{V_{GG}-V_{gs_{io}}}{R_1}e^{-\frac{t}{\tau_2}}
 \label{ej1:eq:ig_ton_2}
 \end{equation}
 
