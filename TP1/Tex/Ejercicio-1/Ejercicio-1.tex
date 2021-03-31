@@ -18,44 +18,146 @@ En la teoría, se consideró al diodo MUR460 como ideal excepto por la caída de
 	\centering
 	\includegraphics[width=0.7\linewidth, page=1]{ImagenesEjercicio-1/CircuitsEj1}
 	\caption{Circuito para el estudio de la conmutación del MOSFET.}
-	\label{fig:ej1:circuito}
+	\label{ej1:fig:circuito}
 \end{figure}
 
 \subsubsection{Primer Hemicircuito: MOSFET ON}
 
-Cuando el MOSFET se encuentra encendido, y despreciando la caída $V_{ds_{on}}$ entre drain y source, la bobina posee una tensión de $V_{L_{on}} = V_i = 12V$ entre sus bornes, por lo que la corriente $I_L$ que la atraviesa crece de manera constante a razón de $\frac{V_i}{L} = \frac{12V}{220\mu H}$. Como el diodo se encuentra con su ánodo conectado a tierra, y su cátodo conectado a $V_i$, este se encuentra en inversa por lo que no circula corriente a través de él.
+Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina y la $R_{ds_{on}}$ del MOSFET. Como el diodo se encuentra con su ánodo conectado a aproximadamente tierra, y su cátodo conectado a $V_i$, este se encuentra en inversa por lo que no circula corriente a través de él.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\linewidth, page=3]{ImagenesEjercicio-1/CircuitsEj1}
 	\caption{Hemicircuito con MOSFET encendido.}
-	\label{fig:ej1:circuito_on}
+	\label{ej1:fig:circuito_on}
 \end{figure}
+
+Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y \ref{ej1:eq:VL_on} que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{ds_{on}} = I_{L_{on}}\cdot R_{ds_{on}}$
+
+\begin{equation}
+	 I_{L_{on}}(t) = \frac{V_2}{R_{ds_{on}}+R_2} (1-e^{-\frac{R_{rd_{on}}+R_2}{L}t})
+\label{ej1:eq:IL_on}
+\end{equation}
+
+\begin{equation}
+	 V_{L_{on}}(t) = V_2 e^{-\frac{R_{rd_{on}}+R_2}{L}t}
+\label{ej1:eq:VL_on}
+\end{equation}
+
 
 \subsubsection{Segundo Hemicircuito: MOSFET OFF}
 
-Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_L$, por lo que sobre el MOSFET caen $V_{ds_{off}} = V_i - V_{L_{off}}$ (tener en cuenta que ahora $V_{L_{off}} < 0$). En este estado, toda la corriente $I_L$ de la bobina pasan por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina. No se extrae corriente de la fuente de alimentación en este estado si se desprecia la corriente parásita del MOSFET.
+Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_{L_on}$, por lo que sobre el MOSFET caen $V_{ds_{off}} = V_i - V_{L_{off}} - I_{L_off}\cdot R_2$ (tener en cuenta que ahora $V_{L_{off}} < 0$). En este estado, si se desprecia la corriente parásita del MOSFET, toda la corriente $I_{L_{off}}$ de la bobina pasan por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina y no se extrae corriente de la fuente de alimentación.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\linewidth, page=2]{ImagenesEjercicio-1/CircuitsEj1}
 	\caption{Hemicircuito con MOSFET encendido.}
-	\label{fig:ej1:circuito_off}
+	\label{ej1:fig:circuito_off}
 \end{figure}
+
+Resolviendo el circuito RL que se obtiene en este estado, se observa que la bobina tiene una pérdida de energía almacenada dada por las ecuaciones (\ref{ej1:eq:IL_off}) y (\ref{ej1:eq:VL_off}).
+
+\begin{equation}
+	 I_{L_{off}}(t) = \left( I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right) -\frac{V_d}{R_2}\right) e^{-\frac{R_2}{L}t} + \frac{V_d}{R_2} \ \ \ \ n \in \mathbf{N}
+\label{ej1:eq:IL_off}
+\end{equation}
+
+\begin{equation}
+	 V_{L_{off}}(t) = \left( V_d - I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right)\cdot R_2 \right)e^{-\frac{R_2}{L}t} \ \ \ \ n \in \mathbf{N}
+\label{ej1:eq:VL_off}
+\end{equation}
+
+Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de encendido a apagado.
+
+\subsubsection{Análisis en estado Permanente}
+ Como la constante de tiempo $\frac{L}{R} = 189.6\mu s$ es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_on = t_off = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333s$ se pueden aproximar la tensión $V_L$ como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$.
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 
-Al encender el MOSFET con un escalón de tensión en $V_{GG}$, tomado en el borne izquierdo de $R_1$, crece la corriente de gate $I_G$ instantáneamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{eq:ej1:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{eq:ej1:vgs_ton}).
+Al encender el MOSFET con un escalón de tensión de $V_{GG} = 12V$, tomado en el borne izquierdo de $R_1$ y referido a masa, crece la corriente de gate $I_G$ instantáneamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{ej1:eq:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{ej1:eq:vgs_ton}).
 
 \begin{equation}
 I_G(t) = -\frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_1}}
-\label{eq:ej1:ig_ton}
+\label{ej1:eq:ig_ton}
 \end{equation}
 
 \begin{equation}
 V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_1}})
-\label{eq:ej1:vgs_ton}
+\label{ej1:eq:vgs_ton}
 \end{equation}
+
+Donde la constante de tiempo $\tau_1 = R_1 (C_{gs}+C_{gd_{1}}) = 75ns$ es regida por la capacitancia de entrada del MOSFET compuesta por la capacitancia entre gate y source y la capacitancia entre gate y drain, con un valor de $C_{gs}+C_{gd_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{gs_{th}} = 5.5V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
+\begin{equation}
+t_{d_{on}} = -\tau_1 ln\left( 1-\frac{V_{th}}{V_2} \right) = 30.41ns
+\label{ej1:eq:tdon}
+\end{equation}
+
+según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de drain $I_{ds}$ con pendiente constante. Una vez que la corriente de drain $I_{ds}$ alcanza el valor medio de la corriente de la bobina $I_L$, se observa en la Figura (\ref{ej1:fig:vgsio}) proporcionada por la datasheet del IRF530 que la tensión $V_{gs}$ será $V_{gs_{io}} = 5.5V$. Utilizando este valor y la Ecuación (\ref{ej1:eq:vgs_ton}) se obtiene que el tiempo de rise de la corriente de drain es
+
+\begin{equation}
+	t_{ri} = -\tau_1 ln\left( 1-\frac{V_{gs_{io}}}{V_2} \right) -t_{d_{on}} = 15.57ns
+\label{ej1:eq:trise}
+\end{equation}
+
+A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs}$ y la corriente $I_G$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = I_L R_{ds_{on}} = 827.59mV$ utilizando el valor de $I_L$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
+
+\begin{equation}
+	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112.31ns
+	\label{ej1:eq:tfv}
+\end{equation}
+
+Finalmente, habiendo transicionado la capacitancia $C_{gd}$ de $C_{gd_1}$ a $C_{gd_2}$, se terminará de cargar la capacitancia de entrada del MOSFET según las Ecuaciones (\ref{ej1:eq:vgs_ton_2}) y (\ref{ej1:eq:ig_ton_2}).
+
+\begin{equation}
+V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_2}})
+\label{ej1:eq:vgs_ton_2}
+\end{equation}
+
+\begin{equation}
+I_{G}(t) =  -\frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_2}}
+\label{ej1:eq:ig_ton_2}
+\end{equation}
+
+siendo $\tau_2 = R_1(C_{gs} + C_{gd_2})$ donde $C_{gs} + C_{gd_2} = 1150pF$ observado en la Figura (\ref{ej1:fig:cgd}). Se puede observar en las Figuras (\ref{ej1:fig:encendido_gate}) y (\ref{ej1:fig:encendido_drain}) el proceso entero de encendido descrito anteriormente.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/encendido_gate}
+	\caption{$V_{gs}$ e $I_G$ en el encendido del MOSFET.}
+	\label{ej1:fig:encendido_gate}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/encendido_drain}
+	\caption{$V_{ds}$ e $I_D$ en el encendido del MOSFET.}
+	\label{ej1:fig:encendido_drain}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ImagenesEjercicio-1/Vgs-Id_LI} % first figure itself
+		\caption{$V_{gs_{io}}$ de la datasheet del IRF530.}
+		\label{ej1:fig:vgsio}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ImagenesEjercicio-1/deltaq} % second figure itself
+		\caption{$\Delta Q$ en la transición de $C_{gd_1}$ a $C_{gs_2}$ de la datasheet del IRF530.}
+		\label{ej1:fig:deltaq}
+	\end{minipage}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/Vds-C}
+	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530.}
+	\label{ej1:fig:cgd}
+\end{figure}
+
 
 \subsection{Circuito en la Simulación}
 
