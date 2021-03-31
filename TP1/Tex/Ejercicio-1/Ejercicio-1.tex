@@ -44,7 +44,7 @@ Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_
 \label{ej1:eq:VL_on}
 \end{equation}
 
-Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de apagado a encendido.
+Donde $t=\frac{n}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de apagado a encendido y $I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right)$ la corriente en la bobina en dicho momento.
 
 \subsubsection{Segundo Hemicircuito: MOSFET OFF}
 
@@ -69,7 +69,7 @@ Resolviendo el circuito RL que se obtiene en este estado, se observa que la bobi
 \label{ej1:eq:VL_off}
 \end{equation}
 
-Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de encendido a apagado.
+Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de encendido a apagado y $I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right)$ la corriente en la bobina en dicho momentos. 
 
 \subsubsection{Análisis en estado Permanente}
  Como la constante de tiempo $\frac{L}{R} = 189.6\mu s$ es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_on = t_off = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333\mu s$ se pueden aproximar la tensión $V_L$ como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$.
@@ -155,10 +155,15 @@ siendo $\tau_2 = R_1(C_{gs} + C_{gd_2})$ donde $C_{gs} + C_{gd_2} = 1150pF$ obse
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/Vds-C}
-	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530.}
+	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530 donde no ingresa carga a $C_{gs}$ debido a la tensión constante $V_{gs}$.}
 	\label{ej1:fig:cgd}
 \end{figure}
 
+\subsubsection{Análisis de los Tiempos de Conmutación: Apagado}
+
+\subsubsection{Corriente en el Diodo}
+
+\subsubsection{Corriente en la Bobina}
 
 \subsection{Circuito en la Simulación}
 
