@@ -48,8 +48,8 @@
 	\ctikzset{diodes/scale=0.6}
 	\draw	
 		(0,0) ++ (0,4) node[](aux1){} to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] (0,0)
-		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3)
-		(aux3.center) -- ++ (1,0) to[D, l_=$\begin{array}{c} D_1 \\ MUR460\end{array}$] ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
+		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$, i<^=$I_L$, v_<=$V_L$] ++ (0,3)
+		(aux3.center) -- ++ (2,0) to[D, l_=$\begin{array}{c} D_1 \\ MUR460\end{array}$, v^<=$V_D$] ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
 	;
 	
 %	\draw[color = red]
@@ -69,9 +69,9 @@
 	\ctikzset{diodes/scale=0.6}
 	\draw	
 		(0,0) ++ (0,5) node[](aux1){} to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] (0,0)
-		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,3)
+		(aux1.center) -- ++ (4,0) node[](aux2){} ++ (0,-3) node[](aux3){} to[L, l=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$, i<^=$I_L$, v_<=$V_L$] ++ (0,3)
 		(aux3.center) to[R, l_=$R_{ds_{on}}$] ++ (0,-2) node[ground](){}
-		(aux3.center) -- ++ (1,0) ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
+		(aux3.center) -- ++ (2,0) ++(0,1) to[R, l_=$\begin{array}{c} R_2 \\ \SI{1}{\ohm}\end{array}$] ++ (0,1.75) |- (aux2.center)		
 	;
 
 %	\draw[color = red]
