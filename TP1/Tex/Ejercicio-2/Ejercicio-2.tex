@@ -36,7 +36,7 @@ Operando algebraicamente se obtienen las matrices:
 \begin{equation}
 \mathbb{A}_{on} =  \begin{pmatrix}
 	-R_4/L & 0 \\
-	0 & -1/\left( C R_2 \right)
+	0 & -1/ C R_2
 \end{pmatrix} \ \ \
 \mathbb{B}_{on} =  \begin{pmatrix}
 	1/L \\
@@ -69,7 +69,7 @@ Operando algebraicamente se obtienen las matrices:
 \begin{equation}
 \mathbb{A}_{off} =  \begin{pmatrix}
 	-R_4/L & -1/L \\
-	1/C & -1/\left( C R_2 \right)
+	1/C & -1/ C R_2
 \end{pmatrix} \ \ \
 \mathbb{B}_{off} =  \begin{pmatrix}
 	1/L \\
@@ -84,7 +84,7 @@ Se definen las matrices $\mathbb{A}$, $\mathbb{B}$ y $\mathbb{C}$ de la forma:
 \begin{equation}
 \mathbb{A} = \mathbb{A}_{on} \cdot d + \mathbb{A}_{off} \cdot (1-d) =  \begin{pmatrix}
 	-R_4/L & (d-1)/L \\
-	(1-d)/C & -1/\left( C R_2 \right)
+	(1-d)/C & -1/ C R_2
 \end{pmatrix}
 \end{equation}
 
@@ -103,7 +103,7 @@ Se definen las matrices $\mathbb{A}$, $\mathbb{B}$ y $\mathbb{C}$ de la forma:
 
 Finalmente, dado que la transferencia en el permanente esta dada por $H = -\mathbb{C} \cdot \mathbb{A}^{-1} \cdot \mathbb{B}$, se obtiene que:
 \begin{equation}
-H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 + 2 d \left( R_4 - R_2 \right) + R_2 - R_4}
+H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 R_2 d + R_2 + R_4}
 \end{equation}
 
 Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtiene que el Duty Cicle puede tomar 2 valores posibles: $d = 0.544$ y $d = 0.956$. Como se sabe que las fuentes switching pierden linelaidad al tomar valores de Duty Cicle elevados, se descarta el segundo valor hallado.
@@ -116,5 +116,8 @@ d &= 0.5
 \end{align*}
 
 Este valor es cercano al obtenido considerando la alinealidad.
+\begin{center}
+\huge{ \textcolor{red}{TIENE SENTIDO??} }
+\end{center}
 
 \end{document}
