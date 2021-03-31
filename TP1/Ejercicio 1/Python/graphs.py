@@ -6,6 +6,7 @@ import math
 RG=100
 L=220E-6
 RL=1
+RDS=0.16
 fsw=60E3
 tauRL=L/RL
 D=0.5
@@ -29,12 +30,11 @@ tri=-tau1*np.log((VGSO-VGSIO)/(VGSO)) - ton#5.198e-08-ton
 tvf=deltaQ*RG/(VGSO-VGSIO) #1.7358e-07-tri-ton
 
 tend=5.7358e-07
-ION=VGSO
 
 
 IGSO=12/RG
-ION= (VGSO/RL)*((1-np.exp(-(D/fsw)/tauRL))/(np.exp(((1-D)/fsw)/tauRL)-np.exp(-(D/fsw)/tauRL)))
-IOFF=(VGSO/RL)*((1-np.exp(-(D/fsw)/tauRL))*np.exp(((1-D)/fsw)/tauRL)/(np.exp(((1-D)/fsw)/tauRL)-np.exp(-(D/fsw)/tauRL)))
+ION= VGSO/(RL+RDS)*D
+IOFF=ION
 
 t1= np.linspace(0,ton,100)
 t2= np.linspace(ton,tri+ton,100)
@@ -93,20 +93,20 @@ plt.grid(which='minor')
 plt.show()
 
 
-IGS=[]
+IDS=[]
 
 IDS1=(0*(np.exp(-t1/tau1)))
 
-IGS2=(ION*(t2-ton)/(5.198e-08-30.41E-9))
+IDS2=(ION*(t2-ton)/(5.198e-08-30.41E-9))
 
-IGS3=ION+t3*0
+IDS3=ION+t3*0
 
-IGS4=ION+t4*0
+IDS4=ION+t4*0
 
 plt.figure(num=3, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-plt.plot(t1,IGS1,color='c')
-plt.plot(t2,IGS2,color='r')
-plt.plot(t3,IGS3,color='g')
+plt.plot(t1,IDS1,color='c')
+plt.plot(t2,IDS2,color='r')
+plt.plot(t3,IDS3,color='g')
 
 plt.ylabel("IDS ")
 plt.xlabel("t")
