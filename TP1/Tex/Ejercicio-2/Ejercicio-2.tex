@@ -15,6 +15,62 @@ Dada una fuente Boost con una tensión de entrada $12 \ V$ y frecuencia de switc
 
 \subsection{Calculo del Duty Cicle}
 
+Para el período de encendido, el hemicircuito es el siguiente. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth, page=2]{ImagenesEjercicio-2/CircuitsEj2}
+	\caption{Circuito de fuente Boost con llave cerrada.}
+	\label{fig:ej2:off}
+\end{figure}
+
+Planteando las mallas 1 y 2 y operando algebraicamente, se obtienen lo coeficientes de la matriz $\mathbb{A}_{on}$.
+\begin{equation}
+\mathbb{A}_{on} =  \begin{bmatrix}
+	-\frac{R_4}{L} & 0 \\
+	0 & -\frac{1}{C R_2}
+\end{bmatrix}
+\end{equation}
+
+Por otro lado, durante el apagado, el hemicircuito resultante es el que se muestra a continuación.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth, page=3]{ImagenesEjercicio-2/CircuitsEj2}
+	\caption{Circuito de fuente Boost con llave cerrada.}
+	\label{fig:ej2:on}
+\end{figure}
+
+Para obtener $\mathbb{A}_{off}$ bastan con plantear la malla externa, la malla 2 planteada previamente (ya que no ha cambiado) y la suma de las corrientes $I_L$, $I_C$ e $I_O$.
+
+\begin{equation}
+\mathbb{A}_{off} =  \begin{bmatrix}
+	-\frac{R_4}{L} & -\frac{1}{L} \\
+	\frac{1}{C} & -\frac{1}{C R_2}
+\end{bmatrix}
+\end{equation}
+
+Para ambos casos se obtiene que las matrices $B$ y $C$ son las mismas, siendo estas:
+\begin{equation}
+\mathbb{B} =  \begin{bmatrix}
+	\frac{1}{L} \\
+	0
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+\mathbb{C} =  \begin{bmatrix}
+	0 & 1
+\end{bmatrix}
+\end{equation}
+
+Finalmente, definiendo la matriz $\mathbb{A}$ de la forma $\mathbb{A} = \mathbb{A}_{on} \cdot d + \mathbb{A}_{off} \cdot \left( 1 - d \right)$, se obtiene que la transferencia en el permanente esta dada por la siguiente formula:
+\begin{equation}
+H = -\mathbb{C} \cdot \mathbb{A}^{-1} \cdot \mathbb{B} = \frac{\left( 1 - d \right) R_2}{R_2 d^2 + 2 d \left( R_4 - R_2 \right) + R_2 - R_4}
+\end{equation}
+
+Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtiene que el Duty Cicle puede tomar 2 valores posibles: $d = 0.5$ y $d = 0.96$.
+
 %Utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener el Duty Cicle deseado:
 %
 %\begin{align*}

@@ -66,4 +66,53 @@
 \end{circuitikz}
 \end{page}
 
+%HEMICIRCUITO OFF
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\node[ground](){};	
+	\ctikzset{diodes/scale=0.6}
+	\draw	
+	
+		(0,0) node[ground](){} to[R, l_=$\begin{array}{c} R_4 \\ \SI{2}{\ohm}\end{array}$] ++ (0,1.5) to[L, l_=$\begin{array}{c} L_1 \\ \SI{220}{\mu H}\end{array}$] ++ (0,1.5) -- ++ (-3,0) to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$, i<=$I_L$] ++ (0,-3) node[ground](){}
+		
+		(3,0) node[ground](){} to[C, l=$\begin{array}{c} C_1 \\ \SI{10}{\mu f}\end{array}$, i<=$I_C$] ++ (0,3) -- ++ (3,0) to[R, l=$\begin{array}{c} R_2 \\ \SI{100}{\ohm}\end{array}$, i<=$I_O$] ++ (0,-3) node[ground](){}	
+		;
+		
+	%MALLA 1
+	\draw[<-,shift={(-1.5,1)},color=red] (0:.7cm) arc (0:180:.7cm) node at(0,0){};
+	\draw[->,shift={(-1.5,1)},color=red] (0:.7cm) arc (0:-180:.7cm) node at(0,0){};
+	\draw[color=red] (-1.5,0.6) node[label=1](){};
+	
+	%MALLA 2
+	\draw[->,shift={(4.5,1)},color=red] (0:.7cm) arc (0:180:.7cm) node at(0,0){};
+	\draw[<-,shift={(4.5,1)},color=red] (0:.7cm) arc (0:-180:.7cm) node at(0,0){};
+	\draw[color=red] (4.5,0.6) node[label=2](){};
+
+\end{circuitikz}
+\end{page}
+
+%HEMICIRCUITO ON
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\ctikzset{diodes/scale=0.6}
+	\draw	
+	
+		(0,0) to[R, l_=$\begin{array}{c} R_4 \\ \SI{2}{\ohm} \\ \\ \end{array}$] ++ (2,0) to[L, l_=$\begin{array}{c} L_1 \\ \SI{220}{\mu H} \\ \\ \end{array}$, i=$I_L$] ++ (3,0) node[](aux1){} to[C, l=$\begin{array}{c} C_1 \\ \SI{10}{\mu f}\end{array}$, i>^=$I_C$] ++ (0,-2) node[ground](){}		
+		(aux1.center) to[short, i=$I_O$] ++(1,0) -- ++ (2,0) to[R, l=$\begin{array}{c} R_2 \\ \SI{100}{\ohm}\end{array}$] ++ (0,-2) node[ground](){}
+		(0,0) to[V, l_=$\begin{array}{c} V_2 \\ \SI{12}{V}\end{array}$] ++ (0,-2) node[ground](){}	
+		;
+	
+%	%MALLA 3
+%	\draw[<-,shift={(4.5,0.75)},color=red] (0:.7cm) arc (20:160:.7cm) node at(0,0){};
+%	\draw[color=red] (4.5,0.35) node[label=3](){};
+		
+%	\draw[color = red]
+%		(aux1.center) node[circ](){1}
+%	;
+
+\end{circuitikz}
+\end{page}
+
 \end{document}
