@@ -14,26 +14,47 @@ Para la conmutación del MOSFET se utilizó un periodo de $T_s = 20 \mu s$ y un 
 
 En la teoría, se consideró al diodo IRF530 como ideal excepto por la caída de potencial de la juntura en directa, siendo esta extraída de la datasheet, con un valor de $V_{D_{on}} = 1.3V$. Además, se consideró a la bobina como ideal con resistencia serie nula.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth, page=1]{ImagenesEjercicio-1/CircuitsEj1}
+	\caption{Circuito para el estudio de la conmutación del MOSFET.}
+	\label{fig:ej1:circuito}
+\end{figure}
+
 \subsubsection{Primer Hemicircuito: MOSFET ON}
 
 Cuando el MOSFET se encuentra encendido, y despreciando la caída $V_{ds_{on}}$ entre drain y source, la bobina posee una tensión de $V_{L_{on}} = V_i = 12V$ entre sus bornes, por lo que la corriente $I_L$ que la atraviesa crece de manera constante a razón de $\frac{V_i}{L} = \frac{12V}{220\mu H}$. Como el diodo se encuentra con su ánodo conectado a tierra, y su cátodo conectado a $V_i$, este se encuentra en inversa por lo que no circula corriente a través de él.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth, page=3]{ImagenesEjercicio-1/CircuitsEj1}
+	\caption{Hemicircuito con MOSFET encendido.}
+	\label{fig:ej1:circuito_on}
+\end{figure}
 
 \subsubsection{Segundo Hemicircuito: MOSFET OFF}
 
 Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_L$, por lo que sobre el MOSFET caen $V_{ds_{off}} = V_i - V_{L_{off}}$ (tener en cuenta que ahora $V_{L_{off}} < 0$). En este estado, toda la corriente $I_L$ de la bobina pasan por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina. No se extrae corriente de la fuente de alimentación en este estado si se desprecia la corriente parásita del MOSFET.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth, page=2]{ImagenesEjercicio-1/CircuitsEj1}
+	\caption{Hemicircuito con MOSFET encendido.}
+	\label{fig:ej1:circuito_off}
+\end{figure}
+
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 
-Al encender el MOSFET con un escalón de tensión en $V_{GG}$, tomado en el borne izquierdo de $R_1$, crece la corriente de gate $I_G$ instantáneamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{eq:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{eq:vgs_ton}).
+Al encender el MOSFET con un escalón de tensión en $V_{GG}$, tomado en el borne izquierdo de $R_1$, crece la corriente de gate $I_G$ instantáneamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{eq:ej1:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{eq:ej1:vgs_ton}).
 
 \begin{equation}
 I_G(t) = -\frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_1}}
-\label{eq:ig_ton}
+\label{eq:ej1:ig_ton}
 \end{equation}
 
 \begin{equation}
 V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_1}})
-\label{eq:vgs_ton}
+\label{eq:ej1:vgs_ton}
 \end{equation}
 
 \subsection{Circuito en la Simulación}
