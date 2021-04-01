@@ -32,10 +32,10 @@ Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina
 	\label{ej1:fig:circuito_on}
 \end{figure}
 
-Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y \ref{ej1:eq:VL_on} que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{ds_{on}} = I_{L_{on}}\cdot R_{ds_{on}}$
+Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:VL_on}) que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{ds_{on}} = I_{L_{on}}\cdot R_{ds_{on}}$
 
 \begin{equation}
-	 I_{L_{on}}(t) = \left( I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right) -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}}{L}t} + \frac{V_2}{R_{ds_{on}}} \ \ \ \ n \in \mathbb{N}
+	 I_{L_{on}}(t) = \left( I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right) -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}+R_2}{L}t} + \frac{V_2}{R_{ds_{on}}+R_2} \ \ \ \ n \in \mathbb{N}
 \label{ej1:eq:IL_on}
 \end{equation}
 
@@ -48,12 +48,12 @@ Donde $t=\frac{n}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de apag
 
 \subsubsection{Segundo Hemicircuito: MOSFET OFF}
 
-Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_{L_on}$. Sobre el MOSFET caen $V_{ds_{off}} = V_2 + V_D$ circulando la malla formada por el diodo, el MOSFET y la fuente de entrada. En este estado, si se desprecia la corriente parásita del MOSFET, toda la corriente $I_{L_{off}}$ de la bobina pasa por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina y no se extrae corriente de la fuente de alimentación.
+Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_{L_on}$. Sobre el MOSFET caen $V_{ds_{off}} = V_2 + V_D = 13.3V$ circulando la malla formada por el diodo, el MOSFET y la fuente de entrada. En este estado, si se desprecia la corriente parásita del MOSFET, toda la corriente $I_{L_{off}}$ de la bobina pasa por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina y no se extrae corriente de la fuente de alimentación.
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\linewidth, page=2]{ImagenesEjercicio-1/CircuitsEj1}
-	\caption{Hemicircuito con MOSFET encendido.}
+	\caption{Hemicircuito con MOSFET apagado.}
 	\label{ej1:fig:circuito_off}
 \end{figure}
 
@@ -71,8 +71,38 @@ Resolviendo el circuito RL que se obtiene en este estado, se observa que la bobi
 
 Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de encendido a apagado y $I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right)$ la corriente en la bobina en dicho momentos. 
 
-\subsubsection{Análisis en estado Permanente}
- Como la constante de tiempo $\frac{L}{R} = 189.6\mu s$ es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_on = t_off = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333\mu s$ se pueden aproximar la tensión $V_L$ como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$.
+\subsubsection{Análisis en Estado Permanente}
+
+En electrónica, se define el estado permanente de un circuito como la condición en la cual los efectos transitorios ya no son importantes. Para el circuito en cuestión, tiempo variante con dos estados específicos, se llega al estado permanente cuando las señales del circuito se tornan completamente periódicas según el periodo de conmutación. 
+
+Analizando la constante de tiempo $\frac{L}{R} = 189.6\mu s$ de los hemicircuitos conformados por la carga inductiva, se observa que ésta es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_{on} = t_{off} = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333\mu s$ por lo que se pueden aproximar la tensión $V_L$ como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$. Para hallar la corriente media $\bar{I_L}$ de la bobina se realiza el promedio ponderado por el duty cycle de conmutado de los estados permanentes de ambos hemicircuitos, quedando
+
+\begin{equation}
+	\bar{I_L} = I_{L_{on}}(t \rightarrow \infty) \cdot D + I_{L_{off}}(t \rightarrow \infty) \cdot (1-D) = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
+\end{equation}
+
+Esto puede también resolverse de manera gráfica considerando las Ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:IL_off}) de las corrientes de la bobina para cada hemicircuito. En la Figura (\ref{ej1:fig:ILmediagrafico}) se observa que el cruce de ambas envolventes será la solución para la corriente media en la bobina en régimen permanente de conmutación.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5\linewidth]{ImagenesEjercicio-1/solgraficaIL}
+	\caption{Solución gráfica de la corriente media en la bobina en régimen permanente.}
+	\label{ej1:fig:ILmediagrafico}
+\end{figure}
+
+Conociendo la corriente media de la bobina, aproximando la tensión en cada estado como constante y teniendo en cuenta que la tensión media en los bornes de una inductancia debe ser nula en régimen permanente, se deduce que la forma de onda de $V_L$ será aproximadamente cuadrada, con una amplitud de $V_{max} = -V_{min} \approx V_D + \bar{I_L}R_2 = 6.47V$ observando la malla formada en la Figura (\ref{ej1:fig:circuito_off}). El ripple en la corriente $I_L$ será 
+
+\begin{equation}
+\Delta I_L = \frac{V_{max}}{L}\frac{D}{f_{sw}} = 245.1mA
+\end{equation}
+
+y el ripple en la tensión $V_L$ puede hallarse según la Ecuación (\ref{ej1:eq:VL_on}) como
+
+\begin{equation}
+\Delta V_L = \left( V_2 - \bar{I_L} (R_{ds_{on}}+R_2) \right) \cdot (1-e^{-\frac{R_{ds_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
+\end{equation}
+
+Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido. La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t)R_{ds_{on}} \approx \bar{I_L}R_{ds_{on}} = 827.2mV$ durante el estado encendido.
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 
@@ -88,20 +118,20 @@ V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_1}})
 \label{ej1:eq:vgs_ton}
 \end{equation}
 
-Donde la constante de tiempo $\tau_1 = R_1 (C_{gs}+C_{gd_{1}}) = 75ns$ es regida por la capacitancia de entrada del MOSFET compuesta por la capacitancia entre gate y source y la capacitancia entre gate y drain, con un valor de $C_{gs}+C_{gd_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{gs_{th}} = 5.5V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
+Donde la constante de tiempo $\tau_1 = R_1 (C_{gs}+C_{gd_{1}}) = 75ns$ es regida por la capacitancia de entrada del MOSFET compuesta por la capacitancia entre gate y source y la capacitancia entre gate y drain, con un valor de $C_{gs}+C_{gd_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{gs_{th}} = 4V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
 \begin{equation}
 t_{d_{on}} = -\tau_1 ln\left( 1-\frac{V_{th}}{V_2} \right) = 30.41ns
 \label{ej1:eq:tdon}
 \end{equation}
 
-según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de drain $I_{ds}$ con pendiente constante. Una vez que la corriente de drain $I_{ds}$ alcanza el valor medio de la corriente de la bobina $I_L$, se observa en la Figura (\ref{ej1:fig:vgsio}) proporcionada por la datasheet del IRF530 que la tensión $V_{gs}$ será $V_{gs_{io}} = 5.5V$. Utilizando este valor y la Ecuación (\ref{ej1:eq:vgs_ton}) se obtiene que el tiempo de rise de la corriente de drain es
+según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de drain $I_{ds}$ con pendiente constante. Una vez que la corriente de drain $I_{ds}$ alcanza el valor medio de la corriente de la bobina $\bar{I_L}$, se observa en la Figura (\ref{ej1:fig:vgsio}) proporcionada por la datasheet del IRF530 que la tensión $V_{gs}$ será $V_{gs_{io}} = 5.5V$. Utilizando este valor y la Ecuación (\ref{ej1:eq:vgs_ton}) se obtiene que el tiempo de rise de la corriente de drain es
 
 \begin{equation}
 	t_{ri} = -\tau_1 ln\left( 1-\frac{V_{gs_{io}}}{V_2} \right) -t_{d_{on}} = 15.57ns
 \label{ej1:eq:trise}
 \end{equation}
 
-A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = I_L R_{ds_{on}} = 827.59mV$ utilizando el valor de $I_L$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
+A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 827.59mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
 
 \begin{equation}
 	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112.31ns
