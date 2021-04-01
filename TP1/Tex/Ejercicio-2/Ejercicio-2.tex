@@ -103,20 +103,21 @@ Se definen las matrices $\mathbb{A}$, $\mathbb{B}$ y $\mathbb{C}$ de la forma:
 
 Finalmente, dado que la transferencia en el permanente esta dada por $H = -\mathbb{C} \cdot \mathbb{A}^{-1} \cdot \mathbb{B}$, se obtiene que:
 \begin{equation}
-H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 R_2 d + R_2 + R_4}
+H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d R_2 + R_2 + R_4}
 \end{equation}
+%H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d \left( R_2 + R_4 \right) + R_2 + R_4}
 
-Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtiene que el Duty Cicle puede tomar 2 valores posibles: $d = 0.544$ y $d = 0.956$. Como se sabe que las fuentes switching pierden linelaidad al tomar valores de Duty Cicle elevados, se descarta el segundo valor hallado.
+Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtienen dos resultados matemáticamente posibles, siendo estos $d = 0.544$ y $d = 0.956$. Dado que las fuentes switching pierden linealidad con altos valores de Duty Cicle, se toma el primer valor como valido.
 
-Por otro lado, utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener el Duty Cicle deseado:
-\begin{align*}
-V_o &= \frac{V_2}{1 - d}	\\
-1 - d &= \frac{V_2}{V_o} = \frac{12 \ V}{24 \ V} \\
-d &= 0.5
-\end{align*}
-
-Este valor es cercano al obtenido considerando la alinealidad.
-\note{TIENE SENTIDO??}
+%Por otro lado, utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener el Duty Cicle deseado:
+%\begin{align*}
+%V_o &= \frac{V_2}{1 - d}	\\
+%1 - d &= \frac{V_2}{V_o} = \frac{12 \ V}{24 \ V} \\
+%d &= 0.5
+%\end{align*}
+%
+%Este valor es cercano al obtenido considerando la alinealidad.
+%\note{TIENE SENTIDO??}
 \note{Falta ver el real obtenido.}
 
 \end{document}
