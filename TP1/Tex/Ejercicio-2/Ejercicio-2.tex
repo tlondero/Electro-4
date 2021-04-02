@@ -109,15 +109,42 @@ H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d R_2 + R_2 + R_4}
 
 Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtienen dos resultados matemáticamente posibles, siendo estos $d = 0.544$ y $d = 0.956$. Dado que las fuentes switching pierden linealidad con altos valores de Duty Cicle, se toma el primer valor como valido.
 
-%Por otro lado, utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener el Duty Cicle deseado:
-%\begin{align*}
-%V_o &= \frac{V_2}{1 - d}	\\
-%1 - d &= \frac{V_2}{V_o} = \frac{12 \ V}{24 \ V} \\
-%d &= 0.5
-%\end{align*}
-%
-%Este valor es cercano al obtenido considerando la alinealidad.
-%\note{TIENE SENTIDO??}
+Por otro lado, utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener que el Duty Cicle deseado es:
+\begin{align*}
+V_o &= \frac{V_2}{1 - d}	\\
+1 - d &= \frac{V_2}{V_o} = \frac{12 \ V}{24 \ V} \\
+d &= 0.5
+\end{align*}
+
+Este valor es cercano al obtenido considerando la alinealidad.
+
+\note{TIENE SENTIDO??}
 \note{Falta ver el real obtenido.}
+
+
+%I y V en L = boost sin r4
+%I en diodo = es no ideal, hay un Irr cada vez que deja de conducir (Estoy con sw abierto y lo cierro) se va a masa
+%Como Vo es Idc * R2 e Idc tiene ripple -> hay ripple
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{ImagenesEjercicio-2/il-vl-spice.png}
+%	\caption{Corriente y tensión sobre la bobina en dos períodos.}
+%	\label{fig:ej2:il-vl-spice}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{ImagenesEjercicio-2/il-id-spice.png}
+%	\caption{Corriente sobre el diodo y la bobina en dos períodos.}
+%	\label{fig:ej2:il-id-spice}
+%\end{figure}
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.7\linewidth]{ImagenesEjercicio-2/id-spice.png}
+%	\caption{Corriente sobre el diodo períodos.}
+%	\label{fig:ej2:id-spice}
+%\end{figure}
 
 \end{document}
