@@ -1,24 +1,26 @@
-from PyLTSpice.LTSpice_RawRead import LTSpiceRawRead
+import scipy.io as sio
+#import h5py
 import matplotlib.pyplot as plt
 import numpy as np
 
-LTR = LTSpiceRawRead("../Spice/Draft3.raw")
 
-time = LTR.get_trace(0)
-t = np.abs(np.asarray(time.data))*1000*1000
+def getData(path):
 
-IL_trace = LTR.get_trace("I(L1)")
-VL_trace1 = LTR.get_trace("V(vl+)")
-VL_trace2 = LTR.get_trace("V(vl-)")
-ID_trace = LTR.get_trace("I(D1)")
-Vout_trace = LTR.get_trace("V(vout)")
-Vtrig_trace = LTR.get_trace("V(vtrig)")
+    data = sio.loadmat(path)
+    dataxd = np.asarray(data['d'])
+    data = []
+    time = []
+    for i in range(len(dataxd)):
+        data.append(dataxd[i][1])
+        time.append(dataxd[i][0])
 
-IL = np.asarray(IL_trace.data)*1000
-VL = np.asarray(VL_trace1.data) - np.asarray(VL_trace2.data)
-ID = np.asarray(ID_trace.data)
-Vout = np.asarray(Vout_trace.data)
-Vtrig = np.asarray(Vtrig_trace.data)
+    return time, data
+
+t, VL = getData('../Matlab/vl.mat')
+t, IL = getData('../Matlab/il.mat')
+t, ID = getData('../Matlab/id.mat')
+t, Vout = getData('../Matlab/vo.mat')
+t, Vtrig = getData('../Matlab/vtrig.mat')
 
 plt.figure(num=1, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 plt.ylabel("$I_L \ [mA]$")
