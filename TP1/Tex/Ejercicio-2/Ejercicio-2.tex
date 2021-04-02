@@ -122,29 +122,60 @@ Este valor es cercano al obtenido considerando la alinealidad.
 \note{Falta ver el real obtenido.}
 
 
-%I y V en L = boost sin r4
-%I en diodo = es no ideal, hay un Irr cada vez que deja de conducir (Estoy con sw abierto y lo cierro) se va a masa
+\subsection{Calculos y simulaciones}
+
+Se analizaron las señales propias del circuito. Considerando la fuente Boost ideal, se puede notar que la corriente en la bobina sigue siendo la misma, ya que agregar una resistencia en serie no cambia dicha variable. Es por ello que tanto al corriente como la tensión en el inductor se calculan de la misma forma, siendo así la corriente media en la bobina y su ripple:
+\begin{equation*}
+	I_{DC} = \frac{I_O}{1 - d} = \frac{V_O}{R_2 (1 - d)}
+\end{equation*}		% = 526.137 \ mA
+\begin{equation*}
+	\Delta I_L = \frac{V_L}{L}\Delta t
+\end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/il.png}
+	\caption{Corriente sobre la bobina en el permanente.}
+	\label{fig:ej2:il}
+\end{figure}
+
+Para la tensión, mientras la llave se mantenga cerrada
+\begin{equation*}
+	V_L = V_S = 12 \ V
+\end{equation*}
+
+y mientras se mantenga abierta
+\begin{equation*}
+	V_L = V_S - V_O = 12 \ V - 24 \ V = -12 \ V
+\end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vl.png}
+	\caption{Tensión sobre la bobina en el permanente.}
+	\label{fig:ej2:vl}
+\end{figure}
+
+Para el diodo, al no ser ideal, se debe considerar la corriente en reversa. Esta se hace presente al llevar al estado de no conducción al diodo, es decir, esta se da unos instantes al cerrar la llave cuando se pone el ánodo a tierra.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/id.png}
+	\caption{Corriente sobre el diodo en el permanente.}
+	\label{fig:ej2:id}
+\end{figure}
+
+Finalmente, se calcula la tensión de salida. Si bien esta debería ser constante (ya que se asumió que la corriente lo es) se sabe que no es así. Se puede calcular el ripple existente mediante la corriente, la cual proporcional a la de la bobina pero con offset.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vout.png}
+	\caption{Tensión sobre la salida en el permanente.}
+	\label{fig:ej2:vout}
+\end{figure}
+
 %Como Vo es Idc * R2 e Idc tiene ripple -> hay ripple
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.7\linewidth]{ImagenesEjercicio-2/il-vl-spice.png}
-%	\caption{Corriente y tensión sobre la bobina en dos períodos.}
-%	\label{fig:ej2:il-vl-spice}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.7\linewidth]{ImagenesEjercicio-2/il-id-spice.png}
-%	\caption{Corriente sobre el diodo y la bobina en dos períodos.}
-%	\label{fig:ej2:il-id-spice}
-%\end{figure}
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.7\linewidth]{ImagenesEjercicio-2/id-spice.png}
-%	\caption{Corriente sobre el diodo períodos.}
-%	\label{fig:ej2:id-spice}
-%\end{figure}
+
+
 
 \end{document}
