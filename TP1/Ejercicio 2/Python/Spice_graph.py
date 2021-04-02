@@ -5,7 +5,7 @@ import numpy as np
 LTR = LTSpiceRawRead("../Spice/Draft3.raw")
 
 time = LTR.get_trace(0)
-t = np.abs(np.asarray(time.data))*1000*1000
+t = np.abs(np.asarray(time.data))*1e6
 
 IL_trace = LTR.get_trace("I(L1)")
 VL_trace1 = LTR.get_trace("V(vl+)")

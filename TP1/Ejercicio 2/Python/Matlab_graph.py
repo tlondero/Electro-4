@@ -1,5 +1,4 @@
 import scipy.io as sio
-#import h5py
 import matplotlib.pyplot as plt
 import numpy as np
 
@@ -10,9 +9,12 @@ def getData(path):
     dataxd = np.asarray(data['d'])
     data = []
     time = []
+
+    timeInit = 2e-3
     for i in range(len(dataxd)):
-        data.append(dataxd[i][1])
-        time.append(dataxd[i][0])
+        if (dataxd[i][0] >= timeInit):
+            data.append(dataxd[i][1])
+            time.append(dataxd[i][0] - timeInit)
 
     return time, data
 
@@ -21,6 +23,8 @@ t, IL = getData('../Matlab/il.mat')
 t, ID = getData('../Matlab/id.mat')
 t, Vout = getData('../Matlab/vo.mat')
 t, Vtrig = getData('../Matlab/vtrig.mat')
+
+t = np.asarray(t)*1e6
 
 plt.figure(num=1, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 plt.ylabel("$I_L \ [mA]$")
@@ -93,7 +97,7 @@ plt.xlabel("Tiempo $[\mu s]$")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,IL,color='c', label="$I_L$")
-plt.plot(t,ID*1000,color='b', label="$I_D$")
+plt.plot(t,IL, color='c', label="$I_L$")
+plt.plot(t,np.asarray(ID)*1000, color='b', label="$I_D$")
 plt.legend()
 plt.show()
