@@ -75,17 +75,17 @@ Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de enc
 
 En electrónica, se define el estado permanente de un circuito como la condición en la cual los efectos transitorios ya no son importantes. Para el circuito en cuestión, tiempo variante con dos estados específicos, se llega al estado permanente cuando las señales del circuito se tornan completamente periódicas según el periodo de conmutación. 
 
-Analizando la constante de tiempo $\frac{L}{R} = 189.6\mu s$ de los hemicircuitos conformados por la carga inductiva, se observa que ésta es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_{on} = t_{off} = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333\mu s$ por lo que se pueden aproximar la tensión $V_L$ como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$. Para hallar la corriente media $\bar{I_L}$ de la bobina se realiza el promedio ponderado por el duty cycle de conmutado de los estados permanentes de ambos hemicircuitos, quedando
+Analizando la constante de tiempo $\frac{L}{R} = 189.6\mu s$ de los hemicircuitos conformados por la carga inductiva, se observa que ésta es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_{on} = t_{off} = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333\mu s$ por lo que se puede aproximar la tensión $V_L$ en cada estado como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$. Para hallar la corriente media $\bar{I_L}$ de la bobina se realiza el promedio ponderado por el duty cycle de conmutación de los estados permanentes de ambos hemicircuitos, quedando
 
 \begin{equation}
 	\bar{I_L} = I_{L_{on}}(t \rightarrow \infty) \cdot D + I_{L_{off}}(t \rightarrow \infty) \cdot (1-D) = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
 \end{equation}
 
-Esto puede también resolverse de manera gráfica considerando las Ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:IL_off}) de las corrientes de la bobina para cada hemicircuito. En la Figura (\ref{ej1:fig:ILmediagrafico}) se observa que el cruce de ambas envolventes será la solución para la corriente media en la bobina en régimen permanente de conmutación.
+Esto puede también resolverse de manera gráfica considerando las Ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:IL_off}) de las corrientes de la bobina para cada hemicircuito. En la Figura (\ref{ej1:fig:ILmediagrafico}) se observa que el cruce de ambas envolventes será la solución para la corriente media en la bobina en régimen permanente de conmutación. Tener en cuenta que la Ecuación (\ref{ej1:eq:IL_off}) supone al diodo como una fuente de tensión constante que no se apaga aunque la corriente sea cero. Debido a esto, no se tuvo en cuenta de la Ecuación (\ref{ej1:eq:IL_off}) la solución particular de la ecuación diferencial para el gráfico de la Figura (\ref{ej1:fig:ILmediagrafico}).
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\linewidth]{ImagenesEjercicio-1/solgraficaIL}
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/solgraficaIL}
 	\caption{Solución gráfica de la corriente media en la bobina en régimen permanente.}
 	\label{ej1:fig:ILmediagrafico}
 \end{figure}
