@@ -103,12 +103,13 @@ Se definen las matrices $\mathbb{A}$, $\mathbb{B}$ y $\mathbb{C}$ de la forma:
 
 Finalmente, dado que la transferencia en el permanente esta dada por $H = -\mathbb{C} \cdot \mathbb{A}^{-1} \cdot \mathbb{B}$, se obtiene que:
 \begin{equation}
-H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 R_2 d + R_2 + R_4}
+H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d R_2 + R_2 + R_4}
 \end{equation}
+%H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d \left( R_2 + R_4 \right) + R_2 + R_4}
 
-Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtiene que el Duty Cicle puede tomar 2 valores posibles: $d = 0.544$ y $d = 0.956$. Como se sabe que las fuentes switching pierden linelaidad al tomar valores de Duty Cicle elevados, se descarta el segundo valor hallado.
+Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtienen dos resultados matemáticamente posibles, siendo estos $d = 0.544$ y $d = 0.956$. Dado que las fuentes switching pierden linealidad con altos valores de Duty Cicle, se toma el primer valor como valido.
 
-Por otro lado, utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener el Duty Cicle deseado:
+Por otro lado, utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener que el Duty Cicle deseado es:
 \begin{align*}
 V_o &= \frac{V_2}{1 - d}	\\
 1 - d &= \frac{V_2}{V_o} = \frac{12 \ V}{24 \ V} \\
@@ -116,6 +117,65 @@ d &= 0.5
 \end{align*}
 
 Este valor es cercano al obtenido considerando la alinealidad.
+
 \note{TIENE SENTIDO??}
+\note{Falta ver el real obtenido.}
+
+
+\subsection{Calculos y simulaciones}
+
+Se analizaron las señales propias del circuito. Considerando la fuente Boost ideal, se puede notar que la corriente en la bobina sigue siendo la misma, ya que agregar una resistencia en serie no cambia dicha variable. Es por ello que tanto al corriente como la tensión en el inductor se calculan de la misma forma, siendo así la corriente media en la bobina y su ripple:
+\begin{equation*}
+	I_{DC} = \frac{I_O}{1 - d} = \frac{V_O}{R_2 (1 - d)}
+\end{equation*}		% = 526.137 \ mA
+\begin{equation*}
+	\Delta I_L = \frac{V_L}{L}\Delta t
+\end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/il.png}
+	\caption{Corriente sobre la bobina en el permanente.}
+	\label{fig:ej2:il}
+\end{figure}
+
+Para la tensión, mientras la llave se mantenga cerrada
+\begin{equation*}
+	V_L = V_S = 12 \ V
+\end{equation*}
+
+y mientras se mantenga abierta
+\begin{equation*}
+	V_L = V_S - V_O = 12 \ V - 24 \ V = -12 \ V
+\end{equation*}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vl.png}
+	\caption{Tensión sobre la bobina en el permanente.}
+	\label{fig:ej2:vl}
+\end{figure}
+
+Para el diodo, al no ser ideal, se debe considerar la corriente en reversa. Esta se hace presente al llevar al estado de no conducción al diodo, es decir, esta se da unos instantes al cerrar la llave cuando se pone el ánodo a tierra.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/id.png}
+	\caption{Corriente sobre el diodo en el permanente.}
+	\label{fig:ej2:id}
+\end{figure}
+
+Finalmente, se calcula la tensión de salida. Si bien esta debería ser constante (ya que se asumió que la corriente lo es) se sabe que no es así. Se puede calcular el ripple existente mediante la corriente, la cual proporcional a la de la bobina pero con offset.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vout.png}
+	\caption{Tensión sobre la salida en el permanente.}
+	\label{fig:ej2:vout}
+\end{figure}
+
+%Como Vo es Idc * R2 e Idc tiene ripple -> hay ripple
+
+
 
 \end{document}
