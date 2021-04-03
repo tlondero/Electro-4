@@ -1,13 +1,9 @@
 from PyLTSpice.LTSpice_RawRead import LTSpiceRawRead
-import scipy.signal
-import matplotlib.pyplot as plt
-import numpy as np
-
-
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.signal as signal
 import math
+
 #componentes
 RG=100
 L=220E-6
@@ -18,17 +14,18 @@ tauRL=L/RL
 D=0.5
 Cgs_plus_cgd1=750E-12
 Cgs_plus_cgd2=1150E-12
-
+off=5.8e-7
 
 
 VTH=4
 VGSO=12
+VDSO=13.3
 VGSIO=5.5
-VD0=13
 
 IGSO=12/RG
 ION= VGSO/(RL+RDS)*D
 IOFF=ION
+IGSIO=55E-3
 
 VDSON=RDS*ION
 deltaQ=7.3E-9#fijate que en el spice dice otra cosa
@@ -38,84 +35,85 @@ deltaQ=7.3E-9#fijate que en el spice dice otra cosa
 tau1=RG*Cgs_plus_cgd1
 tau2=RG*Cgs_plus_cgd2
 
-ton=-tau1*np.log(1-VTH/VGSO)#30.41E-9
+toff=-tau2*np.log(VGSIO/VGSO)
 
-tri=-tau1*np.log((VGSO-VGSIO)/(VGSO)) - ton#5.198e-08-ton
-tvf=deltaQ*RG/(VGSO-VGSIO) #1.7358e-07-tri-ton
+
+trv=deltaQ*RG/(VGSIO) #
+
+tfi=-tau1*np.log((VTH)/(VGSIO)) #
 
 tend=9.7358e-07
 
 
 
+t0=np.linspace(0,off,100)
+t1= np.linspace(0,toff,100)
+t2= np.linspace(toff,toff+trv,100)
+t3= np.linspace(toff+trv,toff+trv+tfi,100)
+t4= np.linspace(toff+trv+tfi,tend,100)
 
-t1= np.linspace(0,ton,100)
-t2= np.linspace(ton,tri+ton,100)
-t3= np.linspace(ton+tri,tvf+tri+ton,100)
-t4= np.linspace(tvf+tri+ton,tend,100)
-tvf1=np.linspace(tri+ton,tvf*1+tri+ton,int(100*1))
-#tvf2=np.linspace(tvf*0.5+tri+ton,tvf+tri+ton,int(100*0.5))
 VGS=[]
+VGS0=VGSO+t0*0
+VGS1=(VGSO*(np.exp(-t1/tau2)))
 
-VGS1=(VGSO*(1-np.exp(-t1/tau1)))
+VGS2=VGSIO+0*t2
 
-VGS2=(VGSO*(1-np.exp(-t2/tau1)))
+delta=trv+toff
 
-VGS3= VGSIO+0*t3
 
-delta=tvf+tri+ton
-VGS4=((VGSO-VGSIO)*(1-np.exp(-(t4-delta)/tau2)))+VGSIO
+VGS3= (VGSIO*(np.exp(-(t3-delta)/tau1)))
 
-off=0.74E-7
+
+VGS4=(VGSIO*(np.exp(-(t4-delta)/tau1)))
+
+
+
 plt.figure(num=1, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-plt.plot(t1+off,VGS1,color='c')
-plt.plot(t2+off,VGS2,color='r')
+plt.plot(t0,VGS0,color='g')
+plt.plot(t1+off,VGS1,color='g')
+plt.plot(t2+off,VGS2,color='g')
 plt.plot(t3+off,VGS3,color='g')
-plt.plot(t4+off,VGS4,color='b')
+plt.plot(t4+off,VGS4,color='g',label='Teórico')
 
 
 
 IGS=[]
+IGS0=0+t0*0
+IGS1=-(IGSO*(np.exp(-t1/tau2)))
 
-IGS1=(IGSO*(np.exp(-t1/tau1)))
+IGS2=-IGSIO+0*t2
 
-IGS2=(IGSO*(np.exp(-t2/tau1)))
+IGS3= -(IGSIO*(np.exp(-(t3-delta)/tau1)))
 
-IGS3= 60e-3+0*t3
-
-
-IGS4=(60e-3*(np.exp(-(t4-delta)/tau2)))
-
+IGS4=-(IGSIO*(np.exp(-(t4-delta)/tau1)))
 
 VDS=[]
 
+VDS0=VDSON+0*t0
+VDS1=(VDSON+0*(np.exp(-t1/tau1)))
 
-VDS1=(VD0+0*(np.exp(-t1/tau1)))
+VDS2=(((VDSO-VDSON)*(t2-(toff))/(trv)))+VDSON
 
-VDS2=VDS1
+VDS3=VDSO+t3*0
 
-VDS3=((VD0)-((VD0-VDSON)*(tvf1-(ton+tri))/(tvf)))
-
-#VDS4=tvf2*VDSON
-VDS5=t4*0+VDSON
+VDS5=t4*0+VDSO
 
 
 
 IDS=[]
+IDS0=ION+t0*0
+IDS1=ION+t1*0
 
-IDS1=(0*(np.exp(-t1/tau1)))
+IDS2=ION+t2*0
 
-IDS2=(ION*(t2-ton)/(tri))
+IDS3=(ION*(1-(t3-toff-trv)/(tfi)))
 
-IDS3=ION+t3*0
-
-IDS4=ION+t4*0
+IDS4=t4*0
 
 
 ##################spice
-LTR = LTSpiceRawRead("ON_commute.raw")
 
-
-#LTR = LTSpiceRawRead("Off_commute.raw")
+LTR = LTSpiceRawRead("Off_commute.raw")
 
 
 time = LTR.get_trace(0)
@@ -144,7 +142,8 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Vgs,'--',color='c')
+plt.plot(t,Vgs,'--',color='c',label='Simulado')
+plt.legend()
 plt.show()
 
 plt.figure(num=2, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -153,13 +152,15 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Vds,'--',color='c')
-plt.plot(t1+off,VDS1,color='c')
-plt.plot(t2+off,VDS2,color='r')
+plt.plot(t,Vds,'--',color='c',label='Simulado')
+plt.plot(t0,VDS0,color='g',label='Teórico')
+plt.plot(t1+off,VDS1,color='g')
+plt.plot(t2+off,VDS2,color='g')
 
-plt.plot(tvf1+off,VDS3,color='g')
+plt.plot(t3+off,VDS3,color='g')
 
 plt.plot(t4+off,VDS5,color='g')
+plt.legend()
 plt.show()
 
 plt.figure(num=3, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -168,12 +169,13 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Ig,'--',color='c')
-plt.plot(t1+off,IGS1,color='c')
-plt.plot(t2+off,IGS2,color='r')
+plt.plot(t,Ig,'--',color='c',label='Simulado')
+plt.plot(t0,IGS0,color='g',label='Teórico')
+plt.plot(t1+off,IGS1,color='g')
+plt.plot(t2+off,IGS2,color='g')
 plt.plot(t3+off,IGS3,color='g')
-plt.plot(t4+off,IGS4,color='b')#, label='')
-
+plt.plot(t4+off,IGS4,color='g')#, label='')
+plt.legend()
 plt.show()
 
 plt.figure(num=4, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -182,10 +184,13 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Ids,'--',color='c')
-plt.plot(t1+off,IDS1,color='c')
-plt.plot(t2+off,IDS2,color='r')
+plt.plot(t,Ids,'--',color='c',label='Simulado')
+plt.plot(t0,IDS0,color='g',label='Teórico')
+plt.plot(t1+off,IDS1,color='g')
+plt.plot(t2+off,IDS2,color='g')
 plt.plot(t3+off,IDS3,color='g')
+plt.plot(t4+off,IDS4,color='g')
+plt.legend()
 
 plt.show()
 

@@ -18,7 +18,7 @@ tauRL=L/RL
 D=0.5
 Cgs_plus_cgd1=750E-12
 Cgs_plus_cgd2=1150E-12
-
+IGSIO=65E-3
 
 
 VTH=4
@@ -74,16 +74,18 @@ plt.plot(t4+off,VGS4,color='b')
 
 
 
+
 IGS=[]
 
 IGS1=(IGSO*(np.exp(-t1/tau1)))
 
 IGS2=(IGSO*(np.exp(-t2/tau1)))
 
-IGS3= 60e-3+0*t3
+IGS3= IGSIO+0*t3
 
 
-IGS4=(60e-3*(np.exp(-(t4-delta)/tau2)))
+IGS4=(IGSIO*(np.exp(-(t4-delta)/tau2)))
+
 
 
 VDS=[]
