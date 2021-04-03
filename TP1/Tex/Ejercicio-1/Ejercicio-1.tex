@@ -75,7 +75,7 @@ Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de enc
 
 En electrónica, se define el estado permanente de un circuito como la condición en la cual los efectos transitorios ya no son importantes. Para el circuito en cuestión, tiempo variante con dos estados específicos, se llega al estado permanente cuando las señales del circuito se tornan completamente periódicas según el periodo de conmutación. 
 
-Analizando la constante de tiempo $\frac{L}{R} = 189.6\mu s$ de los hemicircuitos conformados por la carga inductiva, se observa que ésta es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_{on} = t_{off} = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.333\mu s$ por lo que se puede aproximar la tensión $V_L$ en cada estado como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$. Para hallar la corriente media $\bar{I_L}$ de la bobina se realiza el promedio ponderado por el duty cycle de conmutación de los estados permanentes de ambos hemicircuitos, quedando
+Analizando la constante de tiempo $\frac{L}{R} = 189.65\mu s$ de los hemicircuitos conformados por la carga inductiva, se observa que ésta es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_{on} = t_{off} = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.33\mu s$ por lo que se puede aproximar la tensión $V_L$ en cada estado como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$. Para hallar la corriente media $\bar{I_L}$ de la bobina se realiza el promedio ponderado por el duty cycle de conmutación de los estados permanentes de ambos hemicircuitos, quedando
 
 \begin{equation}
 	\bar{I_L} = I_{L_{on}}(t \rightarrow \infty) \cdot D + I_{L_{off}}(t \rightarrow \infty) \cdot (1-D) = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
@@ -102,7 +102,28 @@ y el ripple en la tensión $V_L$ puede hallarse según la Ecuación (\ref{ej1:eq
 \Delta V_L = \left( V_2 - \bar{I_L} (R_{ds_{on}}+R_2) \right) \cdot (1-e^{-\frac{R_{ds_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
 \end{equation}
 
-Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido. La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t)R_{ds_{on}} \approx \bar{I_L}R_{ds_{on}} = 827.2mV$ durante el estado encendido.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}
+	\caption{Corriente de la bobina en régimen permanente.}
+	\label{ej1:fig:corriente_bobina}
+\end{figure}
+
+Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:corriente_diodo}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t)R_{ds_{on}} \approx \bar{I_L}R_{ds_{on}} = 827mV$ durante el estado encendido.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}
+	\caption{Corriente del diodo en régimen permanente.}
+	\label{ej1:fig:corriente_diodo}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}
+	\caption{$V_{ds}$ en régimen permanente.}
+	\label{ej1:fig:vds_permanente}
+\end{figure}
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 
@@ -120,25 +141,25 @@ V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_1}})
 
 Donde la constante de tiempo $\tau_1 = R_1 (C_{gs}+C_{gd_{1}}) = 75ns$ es regida por la capacitancia de entrada del MOSFET compuesta por la capacitancia entre gate y source y la capacitancia entre gate y drain, con un valor de $C_{gs}+C_{gd_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{gs_{th}} = 4V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
 \begin{equation}
-t_{d_{on}} = -\tau_1 ln\left( 1-\frac{V_{th}}{V_2} \right) = 30.41ns
+t_{d_{on}} = -\tau_1 ln\left( 1-\frac{V_{th}}{V_2} \right) = 30ns
 \label{ej1:eq:tdon}
 \end{equation}
 
 según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de drain $I_{ds}$ con pendiente constante. Una vez que la corriente de drain $I_{ds}$ alcanza el valor medio de la corriente de la bobina $\bar{I_L}$, se observa en la Figura (\ref{ej1:fig:vgsio}) proporcionada por la datasheet del IRF530 que la tensión $V_{gs}$ será $V_{gs_{io}} = 5.5V$. Utilizando este valor y la Ecuación (\ref{ej1:eq:vgs_ton}) se obtiene que el tiempo de rise de la corriente de drain es
 
 \begin{equation}
-	t_{ri} = -\tau_1 ln\left( 1-\frac{V_{gs_{io}}}{V_2} \right) -t_{d_{on}} = 15.57ns
+	t_{ri} = -\tau_1 ln\left( 1-\frac{V_{gs_{io}}}{V_2} \right) -t_{d_{on}} = 16ns
 \label{ej1:eq:trise}
 \end{equation}
 
-A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 827.59mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
+A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
 
 \begin{equation}
-	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112.31ns
+	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112ns
 	\label{ej1:eq:tfv}
 \end{equation}
 
-Finalmente, habiendo transicionado la capacitancia $C_{gd}$ de $C_{gd_1}$ a $C_{gd_2}$, se terminará de cargar la capacitancia de entrada del MOSFET según las Ecuaciones (\ref{ej1:eq:vgs_ton_2}) y (\ref{ej1:eq:ig_ton_2}).
+Finalmente, habiendo transicionado la capacitancia $C_{gd}$ de $C_{gd_1}$ a $C_{gd_2}$, se terminará de cargar el capacitor parásito de entrada del MOSFET según las Ecuaciones (\ref{ej1:eq:vgs_ton_2}) y (\ref{ej1:eq:ig_ton_2}).
 
 \begin{equation}
 V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_2}})
@@ -150,7 +171,7 @@ I_{G}(t) =  \frac{V_{GG}-V_{gs_{io}}}{R_1}e^{-\frac{t}{\tau_2}}
 \label{ej1:eq:ig_ton_2}
 \end{equation}
 
-siendo $\tau_2 = R_1(C_{gs} + C_{gd_2})$ donde $C_{gs} + C_{gd_2} = 1150pF$ observado en la Figura (\ref{ej1:fig:cgd}). Se puede observar en las Figuras (\ref{ej1:fig:encendido_gate}) y (\ref{ej1:fig:encendido_drain}) el proceso entero de encendido descrito anteriormente.
+siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150pF$ observado en la Figura (\ref{ej1:fig:cgd}). Se puede observar en las Figuras (\ref{ej1:fig:encendido_gate}) y (\ref{ej1:fig:encendido_drain}) el proceso entero de encendido descrito anteriormente.
 
 \begin{figure}[H]
 	\centering
@@ -185,21 +206,66 @@ siendo $\tau_2 = R_1(C_{gs} + C_{gd_2})$ donde $C_{gs} + C_{gd_2} = 1150pF$ obse
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/Vds-C}
-	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530 donde no ingresa carga a $C_{gs}$ debido a la tensión constante $V_{gs}$.}
+	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530 donde no ingresa carga al capacitor parásito $C_{gs}$ debido a la tensión constante $V_{gs}$.}
 	\label{ej1:fig:cgd}
 \end{figure}
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Apagado}
 
-\subsubsection{Corriente en el Diodo}
+Al hacer nula la tensión $V_{GG}$ tomada a la izquierda del resistor $R_1$, comienza el apagado del MOSFET. La corriente $I_G$, medida como entrante al gate, se torna instantáneamente negativa con un valor de $I_G = \frac{0V-12V}{R_1} = 120mA$ a causa del descargado del capacitor parásito de entrada del MOSFET, compuesta por las capacitancias $C_{gs} + C_{ds}$. Este capacitor parásito se encontraba cargado debido al previo encendido del transistor, donde se asume que la tensión $V_{gs}$ alcanzó una tensión igual a $V_2 = 12V$.
 
-\subsubsection{Corriente en la Bobina}
+Como tanto el apagado como el encendido del transistor poseen el mismo circuito, las constantes de tiempo $\tau_1$ y $\tau_2$ serán las mismas. Sin embargo, ahora estudiaremos la descarga del capacitor parásito de entrada.
 
-\subsection{Circuito en la Simulación}
+En primer lugar, la tensión $V_{gs}$ cae según (\ref{ej1:eq:vgs_off_1}) hasta el valor $V_{gs_{io}} = 5.5V$ mientras que la corriente $I_G$ disminuye su valor en módulo según (\ref{ej1:eq:ig_off_1}) hasta $I_G = \frac{0V - V_{gs_{io}}}{R_1} = -55mA$ en un proceso que dura
+
+\begin{equation}
+t_{off} = -\tau_2 ln(\frac{V_{gs_{io}}}{V_2}) = 89.72ns
+\label{ej1:eq:toff}
+\end{equation}
+
+\begin{equation}
+V_{gs}(t) = V_2e^{-\frac{t}{\tau_2}}
+\label{ej1:eq:vgs_off_1}
+\end{equation}
+
+\begin{equation}
+I_{g}(t) = \frac{0V-V_2}{R_1} e^{-\frac{t}{\tau_2}}
+\label{ej1:eq:ig_off_1}
+\end{equation}
+
+Luego, tanto la tensión $V_{gs}$ como la corriente $I_G$ se mantienen constantes por un tiempo igual a 
+
+\begin{equation}
+t_{rv} = \frac{R_1 \Delta Q}{V_{gs_{io}}} = 133ns
+\label{ej1:eq:trv}
+\end{equation}
+
+con valores $5.5V$ y $\frac{0V-5.5V}{R_1} = -55mA$ respectivamente. Durante este tiempo la carga total egresada del gate del MOSFET será provista por el capacitor parasítico $C_{gd}$ el cual transicionará en este proceso de $C_{gd_2}$ a $C_{gd_1}$. Además, a lo largo de este tiempo $t_{rv}$, comenzará a crecer la tensión $V_{ds}$ hasta el valor de $V_{ds} = V_{ds_off} = 13.3V$ deducido anteriormente.
+
+A partir de este momento, la corriente de drain disminuirá hasta cero en un tiempo
+
+\begin{equation}
+t_{fi} = -\tau_1 ln\left( \frac{V_{gs_{th}}}{V_{gs_{io}}} \right) = 24ns
+\label{ej1:eq:tfi}
+\end{equation}
+
+mientras que la tensión $V_{gs}$ y corriente $I_G$ disminuirán exponencialmente hasta $V_{gs_{th}}$ y $\frac{0V-V_{gs_{th}}}{R_1}$ según (\ref{ej1:eq:vgs_off_2}) y (\ref{ej1:eq:ig_off_2}) para finalmente tender a cero.
+
+\begin{equation}
+V_{gs}(t) = V_{gs_{io}} e^{-\frac{t}{\tau_1}}
+\label{ej1:eq:vgs_off_2}
+\end{equation}
+
+\begin{equation}
+I_{G}(t) = \frac{0V-V_{gs_{io}}}{R_1} e^{-\frac{t}{\tau_1}}
+\label{ej1:eq:ig_off_2}
+\end{equation}
+
+\subsection{Circuito en la Simulación y Diferencias con los Cálculos Teóricos}
+
+
 
 \subsection{Circuito en la Práctica}
-
-\subsection{Diferencias}
 
 \subsection{Conclusiones}
 
