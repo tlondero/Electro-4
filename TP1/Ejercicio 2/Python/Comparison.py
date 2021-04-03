@@ -3,7 +3,6 @@ from PyLTSpice.LTSpice_RawRead import LTSpiceRawRead
 import matplotlib.pyplot as plt
 import numpy as np
 
-
 def getData(path):
     data = sio.loadmat(path)
     dataxd = np.asarray(data['d'])
@@ -45,7 +44,6 @@ ID_s = np.asarray(ID_trace.data)
 Vout_s = np.asarray(Vout_trace.data)
 Vtrig_s = np.asarray(Vtrig_trace.data)
 
-
 plt.figure(num=1, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 plt.ylabel("$I_L \ [mA]$")
 plt.xlabel("Tiempo $[\mu s]$")
@@ -56,6 +54,7 @@ plt.plot(t_m,IL_m*1e3,color='r', label="Simulink")
 plt.plot(t_s,IL_s*1e3,color='b', label="LTSpice")
 plt.legend()
 plt.xlim(0, 50)
+plt.ylim(200, 800)
 plt.show()
 
 plt.figure(num=2, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
