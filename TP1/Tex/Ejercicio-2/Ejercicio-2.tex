@@ -21,19 +21,20 @@ Para el período de encendido, el hemicircuito es el siguiente.
 	\centering
 	\includegraphics[width=0.8\linewidth, page=2]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave cerrada.}
-	\label{fig:ej2:off}
+	\label{fig:ej2:circuito_off}
 \end{figure}
 
 Planteando las mallas 1 y 2 se obtienen las siguientes ecuaciones:
-\begin{equation*}
+\begin{equation}
 \begin{cases}
 V_2 - L \dot{I_L} - R_4 I_L = 0 \\
 C \dot{V_C} = -\frac{V_O}{R_2}
 \end{cases}
-\end{equation*}
+\label{ej2:eq:on}
+\end{equation}
 
 Operando algebraicamente se obtienen las matrices: 
-\begin{equation}
+\begin{equation*}
 \mathbb{A}_{on} =  \begin{pmatrix}
 	-R_4/L & 0 \\
 	0 & -1/ C R_2
@@ -45,7 +46,7 @@ Operando algebraicamente se obtienen las matrices:
 \mathbb{C}_{on} =  \begin{pmatrix}
 	0 & 1 \\
 \end{pmatrix}
-\end{equation}
+\end{equation*}
 
 Por otro lado, durante el apagado, el hemicircuito resultante es el que se muestra a continuación.
 
@@ -53,20 +54,21 @@ Por otro lado, durante el apagado, el hemicircuito resultante es el que se muest
 	\centering
 	\includegraphics[width=0.8\linewidth, page=3]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave cerrada.}
-	\label{fig:ej2:on}
+	\label{fig:ej2:circuito_on}
 \end{figure}
 
 De forma similar al caso anterior, planteando la malla externa y la suma de corrientes en el nodo $A$, se obtienen las ecuaciones siguientes:
 
-\begin{equation*}
+\begin{equation}
 \begin{cases}
 V_2 - L \dot{I_L} - R_4 I_L - V_O = 0 \\
 I_L = I_C + I_O = C\dot{V_C} + \frac{V_O}{R_2}
 \end{cases}
-\end{equation*}
+\label{ej2:eq:off}
+\end{equation}
 
 Operando algebraicamente se obtienen las matrices: 
-\begin{equation}
+\begin{equation*}
 \mathbb{A}_{off} =  \begin{pmatrix}
 	-R_4/L & -1/L \\
 	1/C & -1/ C R_2
@@ -78,33 +80,33 @@ Operando algebraicamente se obtienen las matrices:
 \mathbb{C}_{off} =  \begin{pmatrix}
 	0 & 1 \\
 \end{pmatrix}
-\end{equation}
+\end{equation*}
 
 Se definen las matrices $\mathbb{A}$, $\mathbb{B}$ y $\mathbb{C}$ de la forma:
-\begin{equation}
+\begin{equation*}
 \mathbb{A} = \mathbb{A}_{on} \cdot d + \mathbb{A}_{off} \cdot (1-d) =  \begin{pmatrix}
 	-R_4/L & (d-1)/L \\
 	(1-d)/C & -1/ C R_2
 \end{pmatrix}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
 \mathbb{B} = \mathbb{B}_{on} \cdot d + \mathbb{B}_{off} \cdot (1-d) = \begin{pmatrix}
 	1/L \\
 	0
 \end{pmatrix}
-\end{equation}
+\end{equation*}
 
-\begin{equation}
+\begin{equation*}
 \mathbb{C} = \mathbb{C}_{on} \cdot d + \mathbb{C}_{off} \cdot (1-d) = \begin{pmatrix}
 	0 & 1
 \end{pmatrix}
-\end{equation}
+\end{equation*}
 
 Finalmente, dado que la transferencia en el permanente esta dada por $H = -\mathbb{C} \cdot \mathbb{A}^{-1} \cdot \mathbb{B}$, se obtiene que:
-\begin{equation}
+\begin{equation*}
 H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d R_2 + R_2 + R_4}
-\end{equation}
+\end{equation*}
 %H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d \left( R_2 + R_4 \right) + R_2 + R_4}
 
 Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtienen dos resultados matemáticamente posibles, siendo estos $d = 0.544$ y $d = 0.956$. Dado que las fuentes switching pierden linealidad con altos valores de Duty Cicle, se toma el primer valor como valido.
@@ -121,16 +123,15 @@ Este valor es cercano al obtenido considerando la alinealidad.
 \note{TIENE SENTIDO??}
 \note{Falta ver el real obtenido.}
 
-
 \subsection{Calculos y simulaciones}
 
 Se analizaron las señales propias del circuito. Considerando la fuente Boost ideal, se puede notar que la corriente en la bobina sigue siendo la misma, ya que agregar una resistencia en serie no cambia dicha variable. Es por ello que tanto al corriente como la tensión en el inductor se calculan de la misma forma, siendo así la corriente media en la bobina y su ripple:
 \begin{equation*}
-	I_{DC} = \frac{I_O}{1 - d} = \frac{V_O}{R_2 (1 - d)}
-\end{equation*}		% = 526.137 \ mA
-\begin{equation*}
-	\Delta I_L = \frac{V_L}{L}\Delta t
+	I_{DC} = \frac{I_O}{1 - d} = \frac{V_O}{R_2 (1 - d)} = 526.137 \ mA
 \end{equation*}
+\begin{equation*}
+	\Delta I_L = \frac{V_L}{L}\Delta t =  \frac{V_L}{L}  \frac{d}{f} = 494.404 \ mA  
+\end{equation*}	% o 414.687 \ mA si usas (1 - d)
 
 \begin{figure}[H]
 	\centering
@@ -165,7 +166,12 @@ Para el diodo, al no ser ideal, se debe considerar la corriente en reversa. Esta
 	\label{fig:ej2:id}
 \end{figure}
 
-Finalmente, se calcula la tensión de salida. Si bien esta debería ser constante (ya que se asumió que la corriente lo es) se sabe que no es así. Se puede calcular el ripple existente mediante la corriente, la cual proporcional a la de la bobina pero con offset.
+Finalmente, se calcula la tensión de salida. Si bien esta debería ser constante (ya que se asumió que la corriente lo es) no es así. Dado que la corriente media en el capacitor es nula, la corriente media en la carga es la misma que la de la bobina. Como esta última posee un ripple, también existirá una variación en la carga. Observando la corriente del capacitor, se puede calcular la variación de tensión de la forma:
+
+\begin{align*}
+I_O \ d \ T_S &= C \Delta V_O	\\
+\Delta V_O &= \frac{I_O d}{C f} = 0.747 \ V
+\end{align*}
 
 \begin{figure}[H]
 	\centering
@@ -174,8 +180,14 @@ Finalmente, se calcula la tensión de salida. Si bien esta debería ser constant
 	\label{fig:ej2:vout}
 \end{figure}
 
-%Como Vo es Idc * R2 e Idc tiene ripple -> hay ripple
+Además es posible observar que:
 
+\begin{equation*}
+\frac{\Delta V_O}{V_O} \% = \frac{0.747 \ V}{24 \ V} \cdot 100 \% = 1.987 \%
+\end{equation*}
 
+\subsection{Conclusión de los datos obtenidos}
+
+Se simuló el circuito tanto en Simulink como en LTSpice. Cabe aclarar que el modelo del diodo existente en Simulink no considera la corriente en inversa $I_{RR}$. Salvo dicha aclaración, se observa que la tensión media a la salida es menor a la que se requería. Esto se debe a que en los cálculos planteados en las Ecuaciones (\ref{ej2:eq:on}) y (\ref{ej2:eq:off}) se considera al diodo como uno ideal. 
 
 \end{document}
