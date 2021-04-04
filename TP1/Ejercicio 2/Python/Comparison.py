@@ -9,11 +9,10 @@ def getData(path):
     data = []
     time = []
 
-    timeInit = 9e-3
+    timeInit = 8e-3
     for i in range(len(dataxd)):
-        if (dataxd[i][0] >= timeInit):
-            data.append(dataxd[i][1])
-            time.append(dataxd[i][0] - timeInit)
+        data.append(dataxd[i][1])
+        time.append(dataxd[i][0] - timeInit)
 
     return np.asarray(time), np.asarray(data)
 
