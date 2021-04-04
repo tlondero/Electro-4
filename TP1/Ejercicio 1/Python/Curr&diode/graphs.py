@@ -129,8 +129,9 @@ plt.legend()
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
+plt.ticklabel_format(axis='x', style='sci')
 plt.show()
-fig.tight_layout()  # otherwise the right y-label is slightly clipped
+plt.ticklabel_format(axis='x', style='sci')
 plt.show()
 
 
