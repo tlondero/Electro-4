@@ -18,13 +18,13 @@ Cgs_plus_cgd2=1150E-12
 
 VTH=4
 VGSO=12
+VDSO=12
 VGSIO=5.5
-VD0=13
 
 IGSO=12/RG
 ION= VGSO/(RL+RDS)*D
 IOFF=ION
-IGSIO=65E-3
+IGSIO=55E-3
 
 VDSON=RDS*ION
 deltaQ=7.3E-9#fijate que en el spice dice otra cosa
@@ -34,83 +34,83 @@ deltaQ=7.3E-9#fijate que en el spice dice otra cosa
 tau1=RG*Cgs_plus_cgd1
 tau2=RG*Cgs_plus_cgd2
 
-ton=-tau1*np.log(1-VTH/VGSO)#30.41E-9
+toff=-tau2*np.log(VGSIO/VGSO)
 
-tri=-tau1*np.log((VGSO-VGSIO)/(VGSO)) - ton#5.198e-08-ton
-tvf=deltaQ*RG/(VGSO-VGSIO) #1.7358e-07-tri-ton
+
+trv=deltaQ*RG/(VGSIO) #
+
+tfi=-tau1*np.log((VTH)/(VGSIO)) #
 
 tend=9.7358e-07
 
 
 
 
-t1= np.linspace(0,ton,100)
-t2= np.linspace(ton,tri+ton,100)
-t3= np.linspace(ton+tri,tvf+tri+ton,100)
-t4= np.linspace(tvf+tri+ton,tend,100)
-tvf1=np.linspace(tri+ton,tvf*1+tri+ton,int(100*1))
+t1= np.linspace(0,toff,100)
+t2= np.linspace(toff,toff+trv,100)
+t3= np.linspace(toff+trv,toff+trv+tfi,100)
+t4= np.linspace(toff+trv+tfi,tend,100)
+#tvf1=np.linspace(tri+ton,tvf*1+tri+ton,int(100*1))
 #tvf2=np.linspace(tvf*0.5+tri+ton,tvf+tri+ton,int(100*0.5))
 
 
 VGS=[]
 
-VGS1=(VGSO*(1-np.exp(-t1/tau1)))
+VGS1=(VGSO*(np.exp(-t1/tau2)))
 
-VGS2=(VGSO*(1-np.exp(-t2/tau1)))
+VGS2=VGSIO+0*t2
 
-VGS3= VGSIO+0*t3
+delta=trv+toff
 
-delta=tvf+tri+ton
-VGS4=((VGSO-VGSIO)*(1-np.exp(-(t4-delta)/tau2)))+VGSIO
+
+VGS3= (VGSIO*(np.exp(-(t3-delta)/tau1)))
+
+
+VGS4=(VGSIO*(np.exp(-(t4-delta)/tau1)))
 
 
 IGS=[]
 
-IGS1=(IGSO*(np.exp(-t1/tau1)))
+IGS1=-(IGSO*(np.exp(-t1/tau2)))
 
-IGS2=(IGSO*(np.exp(-t2/tau1)))
+IGS2=-IGSIO+0*t2
 
-IGS3= IGSIO+0*t3
+IGS3= -(IGSIO*(np.exp(-(t3-delta)/tau1)))
 
-
-IGS4=(IGSIO*(np.exp(-(t4-delta)/tau2)))
-
-
-
-
+IGS4=-(IGSIO*(np.exp(-(t4-delta)/tau1)))
 
 
 IDS=[]
 
-IDS1=(0*(np.exp(-t1/tau1)))
+IDS1=ION+t1*0
 
-IDS2=(ION*(t2-ton)/(tri))
+IDS2=ION+t2*0
 
-IDS3=ION+t3*0
+IDS3=(ION*(1-(t3-toff-trv)/(tfi)))
 
-IDS4=ION+t4*0
+IDS4=t4*0
 
 
 
 VDS=[]
 
 
-VDS1=(VD0+0*(np.exp(-t1/tau1)))
+VDS1=(VDSON+0*(np.exp(-t1/tau1)))
 
-VDS2=VDS1
+VDS2=(((VDSO-VDSON)*(t2-(toff))/(trv)))+VDSON
 
-VDS3=((VD0)-((VD0-VDSON)*(tvf1-(ton+tri))/(tvf)))
+VDS3=VDSO+t3*0
 
-#VDS4=tvf2*VDSON
-VDS5=t4*0+VDSON
+VDS5=t4*0+VDSO
 
 
-fig, ax1 = plt.subplots()
+fig, ax1 = plt.subplots(figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
+
 ax1.set_xlabel('time (s)')
 ax1.set_ylabel('Vds')
 ax1.plot(t1, VDS1, color='c')
 ax1.plot(t2, VDS2, color='r')
-ax1.plot(tvf1, VDS3, color='g')
+ax1.plot(t3, VDS3, color='g')
 ax1.plot(t4, VDS5, color='g',label='VDS')
 plt.legend()
 
@@ -122,7 +122,7 @@ ax2.set_ylabel('Ids')
 ax2.plot(t1,IDS1,'--',color='c')
 ax2.plot(t2,IDS2,'--',color='r')
 ax2.plot(t3,IDS3,'--',color='g',label='IDS')
-ax2.plot(t4,IDS3,'--',color='g')
+ax2.plot(t4,IDS4,'--',color='g')
 
 plt.xlabel("t")
 plt.legend()
@@ -130,12 +130,12 @@ plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
 plt.show()
-fig.tight_layout()  # otherwise the right y-label is slightly clipped
-plt.show()
+#fig.tight_layout()  # otherwise the right y-label is slightly clipped
+#plt.show()
 
 
 
-fig2, ax3 = plt.subplots()
+fig2, ax3 = plt.subplots(figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 ax3.set_xlabel('time (s)')
 ax3.set_ylabel('Vgs')
 
@@ -153,12 +153,12 @@ plt.grid(which='minor')
 
 
 ax4 = ax3.twinx()
-ax4.set_ylabel('Igs')
+ax4.set_ylabel('Ig')
 
 ax4.plot(t1,IGS1,'--',color='c')
 ax4.plot(t2,IGS2,'--',color='r')
 ax4.plot(t3,IGS3,'--',color='g')
-ax4.plot(t4,IGS4,'--',color='b',label='IGS')#, label='')
+ax4.plot(t4,IGS4,'--',color='b',label='IG')#, label='')
 plt.legend()
 plt.xlabel("t")
 plt.show()

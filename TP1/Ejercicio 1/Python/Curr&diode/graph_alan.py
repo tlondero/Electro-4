@@ -37,7 +37,7 @@ Imean=5.0645
 #        Il_off[i]=0
 
 
-fig, ax1 = plt.subplots()
+fig, ax1 = plt.subplots(figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 ax1.set_xlabel('time (s)')
 ax1.set_ylabel('I [A]')
 ax1.plot(t1, Il_on, color='g',label='IL ON')

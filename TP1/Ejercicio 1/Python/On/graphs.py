@@ -9,7 +9,7 @@ L=220E-6
 RL=1
 RDS=0.16
 fsw=60E3
-tauRL=L/RL
+
 D=0.5
 Cgs_plus_cgd1=750E-12
 Cgs_plus_cgd2=1150E-12
@@ -19,7 +19,7 @@ Cgs_plus_cgd2=1150E-12
 VTH=4
 VGSO=12
 VGSIO=5.5
-VD0=13
+VD0=13.3
 
 IGSO=12/RG
 ION= VGSO/(RL+RDS)*D
@@ -105,7 +105,7 @@ VDS3=((VD0)-((VD0-VDSON)*(tvf1-(ton+tri))/(tvf)))
 VDS5=t4*0+VDSON
 
 
-fig, ax1 = plt.subplots()
+fig, ax1 = plt.subplots(figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 ax1.set_xlabel('time (s)')
 ax1.set_ylabel('Vds')
 ax1.plot(t1, VDS1, color='c')
@@ -135,7 +135,7 @@ plt.show()
 
 
 
-fig2, ax3 = plt.subplots()
+fig2, ax3 = plt.subplots(figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 ax3.set_xlabel('time (s)')
 ax3.set_ylabel('Vgs')
 

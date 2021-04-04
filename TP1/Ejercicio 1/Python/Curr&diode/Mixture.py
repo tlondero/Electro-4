@@ -23,11 +23,12 @@ Cgs_plus_cgd2=1150E-12
 
 VTH=4
 VGSO=12
+
 VGSIO=5.5
 VD0=12
-
+VDL=6.47
 IGSO=12/RG
-ION= VGSO/(RL+RDS)*D
+ION= 5.17
 IOFF=ION
 
 VDSON=RDS*ION
@@ -42,8 +43,8 @@ t1= np.linspace(0,1/(2*60E3),100)
 t2= np.linspace(1/(2*60E3),1/60E3,100)
 
 off=0.74E-7+2.97E-7
-Il1= (-t1*VD0/L) +5 + (abs(min((-t1*VD0/L)))+abs(max((-t1*VD0/L))))/2
-Il2= ((t2)*VD0/L) +5 -(abs(min((-t2*VD0/L)))+abs(max((-t2*VD0/L))))/2
+Il1= (-t1*VDL/L) +ION + (abs(min((-t1*VDL/L)))+abs(max((-t1*VDL/L))))/2
+Il2= ((t2)*VDL/L) +ION -(abs(min((-t2*VDL/L)))+abs(max((-t2*VDL/L))))/2
 
 
 ##################spice

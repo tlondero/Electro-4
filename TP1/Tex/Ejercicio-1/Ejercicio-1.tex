@@ -152,7 +152,7 @@ según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de dr
 \label{ej1:eq:trise}
 \end{equation}
 
-A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}$ obteniendo
+A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}= 65mA$ obteniendo
 
 \begin{equation}
 	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112ns
@@ -219,7 +219,7 @@ Como tanto el apagado como el encendido del transistor poseen el mismo circuito,
 En primer lugar, la tensión $V_{gs}$ cae según (\ref{ej1:eq:vgs_off_1}) hasta el valor $V_{gs_{io}} = 5.5V$ mientras que la corriente $I_G$ disminuye su valor en módulo según (\ref{ej1:eq:ig_off_1}) hasta $I_G = \frac{0V - V_{gs_{io}}}{R_1} = -55mA$ en un proceso que dura
 
 \begin{equation}
-t_{off} = -\tau_2 ln(\frac{V_{gs_{io}}}{V_2}) = 89.72ns
+t_{off} = -\tau_2 ln(\frac{V_{gs_{io}}}{V_2}) = 90ns
 \label{ej1:eq:toff}
 \end{equation}
 
