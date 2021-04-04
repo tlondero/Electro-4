@@ -8,7 +8,7 @@ Dada una fuente Boost con una tensión de entrada $12 \ V$ y frecuencia de switc
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth, page=1]{ImagenesEjercicio-2/CircuitsEj2}
+	\includegraphics[width=0.5\linewidth, page=1]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave ideal.}
 	\label{fig:ej2:circuito}
 \end{figure}
@@ -19,7 +19,7 @@ Para el período de encendido, el hemicircuito es el siguiente.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth, page=2]{ImagenesEjercicio-2/CircuitsEj2}
+	\includegraphics[width=0.6\linewidth, page=2]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave cerrada.}
 	\label{fig:ej2:circuito_off}
 \end{figure}
@@ -52,7 +52,7 @@ Por otro lado, durante el apagado, el hemicircuito resultante es el que se muest
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth, page=3]{ImagenesEjercicio-2/CircuitsEj2}
+	\includegraphics[width=0.6\linewidth, page=3]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave cerrada.}
 	\label{fig:ej2:circuito_on}
 \end{figure}
@@ -120,9 +120,6 @@ d &= 0.5
 
 Este valor es cercano al obtenido considerando la alinealidad.
 
-\note{TIENE SENTIDO??}
-\note{Falta ver el real obtenido.}
-
 \subsection{Calculos y simulaciones}
 
 Se analizaron las señales propias del circuito. Considerando la fuente Boost ideal, se puede notar que la corriente en la bobina sigue siendo la misma, ya que agregar una resistencia en serie no cambia dicha variable. Es por ello que tanto al corriente como la tensión en el inductor se calculan de la misma forma, siendo así la corriente media en la bobina y su ripple:
@@ -135,7 +132,7 @@ Se analizaron las señales propias del circuito. Considerando la fuente Boost id
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/il.png}
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/il.png}
 	\caption{Corriente sobre la bobina en el permanente.}
 	\label{fig:ej2:il}
 \end{figure}
@@ -152,16 +149,16 @@ y mientras se mantenga abierta
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vl.png}
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/vl.png}
 	\caption{Tensión sobre la bobina en el permanente.}
 	\label{fig:ej2:vl}
 \end{figure}
 
-Para el diodo, al no ser ideal, se debe considerar la corriente en reversa. Esta se hace presente al llevar al estado de no conducción al diodo, es decir, esta se da unos instantes al cerrar la llave cuando se pone el ánodo a tierra.
+Para el diodo, al no ser ideal, se debe considerar la corriente en reversa. Esta se hace presente al llevar al estado de no conducción al diodo, es decir, esta se da unos instantes al cerrar la llave cuando se pone el ánodo a tierra. Cabe aclarar que el modelo del diodo existente en Simulink no considera la corriente en inversa $I_{RR}$.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/id.png}
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/id.png}
 	\caption{Corriente sobre el diodo en el permanente.}
 	\label{fig:ej2:id}
 \end{figure}
@@ -175,7 +172,7 @@ I_O \ d \ T_S &= C \Delta V_O	\\
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vout.png}
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/vout.png}
 	\caption{Tensión sobre la salida en el permanente.}
 	\label{fig:ej2:vout}
 \end{figure}
@@ -188,6 +185,15 @@ Además es posible observar que:
 
 \subsection{Conclusión de los datos obtenidos}
 
-Se simuló el circuito tanto en Simulink como en LTSpice. Cabe aclarar que el modelo del diodo existente en Simulink no considera la corriente en inversa $I_{RR}$. Salvo dicha aclaración, se observa que la tensión media a la salida es menor a la que se requería. Esto se debe a que en los cálculos planteados en las Ecuaciones (\ref{ej2:eq:on}) y (\ref{ej2:eq:off}) se considera al diodo como uno ideal.
+Se simuló el circuito tanto en Simulink como en LTSpice. Se observa que la tensión media a la salida es menor a la que se requería. Esto se debe a que en los cálculos planteados en las Ecuaciones (\ref{ej2:eq:on}) y (\ref{ej2:eq:off}) se considera al diodo como uno ideal.
+
+Simulando nuevamente con un diodo ideal, se nota que la tensión de salida es más adecuada a la calculada.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/vo_diodo_ideal.png}
+	\caption{Tensión sobre la salida en el permanente con diodo ideal.}
+	\label{fig:ej2:vo_diodo_ideal}
+\end{figure}
 
 \end{document}
