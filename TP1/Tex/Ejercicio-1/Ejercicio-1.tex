@@ -102,27 +102,22 @@ y el ripple en la tensión $V_L$ puede hallarse según la Ecuación (\ref{ej1:eq
 \Delta V_L = \left( V_2 - \bar{I_L} (R_{ds_{on}}+R_2) \right) \cdot (1-e^{-\frac{R_{ds_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
 \end{equation}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}
-	\caption{Corriente de la bobina en régimen permanente.}
-	\label{ej1:fig:corriente_bobina}
-\end{figure}
-
-Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:corriente_diodo}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t)R_{ds_{on}} \approx \bar{I_L}R_{ds_{on}} = 827mV$ durante el estado encendido.
+Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:idiodo_permanente}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t)R_{ds_{on}} \approx \bar{I_L}R_{ds_{on}} = 827mV$ durante el estado encendido.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}
-	\caption{Corriente del diodo en régimen permanente.}
-	\label{ej1:fig:corriente_diodo}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}
-	\caption{$V_{ds}$ en régimen permanente.}
-	\label{ej1:fig:vds_permanente}
+	\begin{minipage}{0.495\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ImagenesEjercicio-1/IL_permanente} % first figure itself
+		\caption{Corriente en la bobina en régimen permanente.}
+		\label{ej1:fig:il_permanente}
+	\end{minipage}\hfill
+	\begin{minipage}{0.495\textwidth}
+		\centering
+		\includegraphics[width=\textwidth]{ImagenesEjercicio-1/ID_apagado_a_encendido} % second figure itself
+		\caption{Corriente del diodo y $V_{ds}$ en régimen permanente.}
+		\label{ej1:fig:idiodo_permanente}
+	\end{minipage}
 \end{figure}
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
@@ -263,7 +258,45 @@ I_{G}(t) = \frac{0V-V_{gs_{io}}}{R_1} e^{-\frac{t}{\tau_1}}
 
 \subsection{Circuito en la Simulación y Diferencias con los Cálculos Teóricos}
 
+ACA DECIR COMO SE SIMULÓ, CON SPICE O MATLAB ETC.
 
+\subsubsection{Encendido del MOSFET}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_encendido_gate}
+	\caption{Comparación entre lo simulado y lo calculado para $V_{gs}$ e $I_G$ en el encendido del MOSFET.}
+	\label{ej1:fig:sim_encendido_gate}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_encendido_drain}
+	\caption{Comparación entre lo simulado y lo calculado para $V_{ds}$ e $I_D$ en el encendido del MOSFET.}
+	\label{ej1:fig:sim_encendido_drain}
+\end{figure}
+
+\subsubsection{Apagado del MOSFET}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_apagado_gate}
+	\caption{Comparación entre lo simulado y lo calculado para $V_{gs}$ e $I_G$ en el apagado del MOSFET.}
+	\label{ej1:fig:sim_apagado_gate}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_encendido_drain}
+	\caption{Comparación entre lo simulado y lo calculado para $V_{ds}$ e $I_D$ en el apagado del MOSFET.}
+	\label{ej1:fig:sim_apagado_drain}
+\end{figure}
+
+\subsubsection{Régimen Permanente}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/permanente_il}
+	\caption{Comparación entre lo simulado y lo calculado para el régimen permanente.}
+	\label{ej1:fig:permanente_il}
+\end{figure}
 
 \subsection{Circuito en la Práctica}
 
