@@ -22,6 +22,7 @@ t_m, IL_m = getData('../Matlab/il.mat')
 t_m, ID_m = getData('../Matlab/id.mat')
 t_m, Vout_m = getData('../Matlab/vo.mat')
 t_m, Vtrig_m = getData('../Matlab/vtrig.mat')
+# t_ms, Vo_ideal = getData('../Matlab/ideal_vo.mat')
 t_m = np.asarray(t_m)*1e6
 
 #Get SPICE data
