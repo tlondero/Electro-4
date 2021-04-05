@@ -115,18 +115,18 @@ Vds_ej2 = np.asarray(LTR_punto2.get_trace("V(vd)").data)
 Ids_ej2 = np.asarray(LTR_punto2.get_trace("I(S1)").data)
 
 giveMe4WithCrop(t_ej3, Vds_ej3, t_ej3, Ids_ej3*1e3, t_ej2, Vds_ej2, t_ej2, Ids_ej2*1e3, '$V_{DS} \ [V]$', '$I_{DS} \ [mA]$', 'Tiempo $[\mu s]$', '$V_{DS}$ con MOS', '$I_{DS}$ con MOS', '$V_{DS}$ llave ideal', '$I_{DS}$ llave ideal', [7, 9], [32, 35], [-150, 850])
-plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ids-vds.png')
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ids-vds-2v3.png')
 plt.show()
 
 #VGS E IG CARGA Y DESCARGA
 Vgs_ej3 = np.asarray(LTR_punto3.get_trace("V(vg)").data)
 Ig_ej3 = np.asarray(LTR_punto3.get_trace("Ig(M1)").data)
 
-Vgs_ej2 = np.asarray(LTR_punto2.get_trace("V(vd)").data)
+Vgs_ej2 = np.asarray(LTR_punto2.get_trace("V(vtrig)").data)
 Ig_ej2 = np.asarray(LTR_punto2.get_trace("I(V1)").data)
 
 giveMe4WithCrop(t_ej3, Vgs_ej3, t_ej3, Ig_ej3*1e3, t_ej2, Vgs_ej2, t_ej2, Ig_ej2*1e3, '$V_{GS} \ [V]$', '$I_G \ [mA]$', 'Tiempo $[\mu s]$', '$V_{gs}$ con MOS', '$I_g$ con MOS', '$V_{gs}$ llave ideal', '$I_g$ llave ideal', [7, 9], [32, 35], [-125, 100])
-plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ig-vgs.png')
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ig-vgs-2v3.png')
 plt.show()
 
 #IL y VL
@@ -137,7 +137,7 @@ Vl_ej2 = np.asarray(LTR_punto2.get_trace("V(vl+)").data) - np.asarray(LTR_punto2
 Il_ej2 = np.asarray(LTR_punto2.get_trace("I(L1)").data)
 
 giveMe4(t_ej3, Vl_ej3, t_ej3, Il_ej3*1e3, t_ej2, Vl_ej2, t_ej2, Il_ej2*1e3, '$V_{L} \ [V]$', '$I_L \ [mA]$', 'Tiempo $[\mu s]$', '$V_{L}$ con MOS', '$I_L$ con MOS', '$V_{L}$ llave ideal', '$I_L$ llave ideal', [0, 50], [0, 850])
-plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\il-vl.png')
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\il-vl-2v3.png')
 plt.show()
 
 #ID y VD
@@ -148,5 +148,5 @@ Vd_ej2 = np.asarray(LTR_punto2.get_trace("V(vd)").data) - np.asarray(LTR_punto2.
 Id_ej2 = np.asarray(LTR_punto2.get_trace("I(D1)").data)
 
 giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3*1e3, t_ej2, Vd_ej2, t_ej2, Id_ej2*1e3, '$V_{D} \ [V]$', '$I_D \ [mA]$', 'Tiempo $[\mu s]$', '$V_{D}$ con MOS', '$I_D$ con MOS', '$V_{D}$ llave ideal', '$I_D$ llave ideal', [0, 50], [-500, 850])
-plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\id-vd.png')
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\id-vd-2v3.png')
 plt.show()
