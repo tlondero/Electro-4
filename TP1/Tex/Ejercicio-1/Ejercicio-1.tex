@@ -8,11 +8,11 @@ Se analizó la conmutación de un MOSFET \href{https://www.vishay.com/docs/91019
 
 %Aca puede ir la foto del circuito
 
-Para la conmutación del MOSFET se utilizó un periodo de $T_s = 20 \mu s$ y un duty cycle de $D = 50 \%$.
+Para la conmutación del MOSFET se utilizó un periodo de $T_s = 16.67 \mu s$ y un duty cycle de $D = 50 \%$.
 
 \subsection{Circuito en la Teoría}
 
-En la teoría, se consideró al diodo MUR460 como ideal excepto por la caída de potencial de la juntura en directa, siendo esta extraída de la datasheet, con un valor de $V_{D_{on}} = 1.3V$. Además, se consideró a la bobina como ideal con resistencia serie nula.
+En la teoría, se consideró al diodo MUR460 como ideal excepto por la caída de potencial de la juntura en directa, siendo esta extraída de la datasheet, con un valor de $V_{D_{on}} = 1.3V$. Además, se consideró a la bobina con resistencia serie.
 
 \begin{figure}[H]
 	\centering
@@ -123,7 +123,7 @@ Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en l
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 
-Al encender el MOSFET con un escalón de tensión de $V_{GG} = 12V$, tomado en el borne izquierdo de $R_1$ y referido a masa, crece la corriente de gate $I_G$ instantáneamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{ej1:eq:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{ej1:eq:vgs_ton}).
+Al encender el MOSFET con un escalón de tensión de $V_{GG} = 12V$, tomado en el borne izquierdo de $R_1$ y referido a masa, crece la corriente de gate $I_G$ rápidamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{ej1:eq:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{ej1:eq:vgs_ton}).
 
 \begin{equation}
 I_G(t) = \frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_1}}
@@ -135,7 +135,7 @@ V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_1}})
 \label{ej1:eq:vgs_ton}
 \end{equation}
 
-Donde la constante de tiempo $\tau_1 = R_1 (C_{gs}+C_{gd_{1}}) = 75ns$ es regida por la capacitancia de entrada del MOSFET compuesta por la capacitancia entre gate y source y la capacitancia entre gate y drain, con un valor de $C_{gs}+C_{gd_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{gs_{th}} = 4V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
+Donde la constante de tiempo $\tau_1 = R_1 (C_{gs}+C_{gd_{1}}) = 75ns$ es regida por la capacidad de entrada del MOSFET compuesta por la capacitancia entre gate y source y la situada entre gate y drain, con un valor de $C_{gs}+C_{gd_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{gs_{th}} = 4V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
 \begin{equation}
 t_{d_{on}} = -\tau_1 ln\left( 1-\frac{V_{th}}{V_2} \right) = 30ns
 \label{ej1:eq:tdon}
@@ -148,7 +148,7 @@ según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de dr
 \label{ej1:eq:trise}
 \end{equation}
 
-La tensión $V_{ds}$ no disminuye hasta que la corriente $I_D$ no es lo suficientemente alta para que la corriente del diodo sea en consecuencia lo suficientemente baja para que este se polarice en inversa. Es cuando el diodo se polariza en inversa y no deja pasar corriente que la tensión entre sus bornes comienza a aumentar, lo que genera que la caída de tensión del MOSFET disminuya. A partir de este momento, se formará la zona de depleción de la body layer en el transistor y la $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (\ref{ej1:eq:ilbar}). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}= 65mA$ obteniendo
+La tensión $V_{ds}$ no disminuye hasta que la corriente $I_D$ no es lo suficientemente alta para que la corriente del diodo sea en consecuencia lo suficientemente baja para que este se polarice en inversa. Es cuando el diodo se polariza en inversa y no deja pasar corriente que la tensión entre sus bornes comienza a aumentar, lo que genera que la caída de tensión del MOSFET disminuya. A partir de este momento, se formará la zona de agotamiento del body layer en el transistor y la $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de agotamiento. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (\ref{ej1:eq:ilbar}). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}= 65mA$ obteniendo
 
 \begin{equation}
 	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112ns
@@ -208,7 +208,7 @@ siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Apagado}
 
-Al hacer nula la tensión $V_{GG}$ tomada a la izquierda del resistor $R_1$, comienza el apagado del MOSFET. La corriente $I_G$, medida como entrante al gate, se torna instantáneamente negativa con un valor de $I_G = \frac{0V-12V}{R_1} = 120mA$ a causa del descargado del capacitor parásito de entrada del MOSFET, compuesta por las capacitancias $C_{gs} + C_{ds}$. Este capacitor parásito se encontraba cargado debido al previo encendido del transistor, donde se asume que la tensión $V_{gs}$ alcanzó una tensión igual a $V_2 = 12V$.
+Al hacer nula la tensión $V_{GG}$ tomada a la izquierda del resistor $R_1$, comienza el apagado del MOSFET. La corriente $I_G$, medida como entrante al gate, se torna instantáneamente negativa con un valor de $I_G = \frac{0V-12V}{R_1} = -120mA$ a causa del descargado del capacitor parásito de entrada del MOSFET, compuesta por las capacitancias $C_{gs} + C_{ds}$. Este capacitor parásito se encontraba cargado debido al previo encendido del transistor, donde se asume que la tensión $V_{gs}$ alcanzó una tensión igual a $V_2 = 12V$.
 
 Como tanto el apagado como el encendido del transistor poseen el mismo circuito, las constantes de tiempo $\tau_1$ y $\tau_2$ serán las mismas. Sin embargo, ahora estudiaremos la descarga del capacitor parásito de entrada.
 
