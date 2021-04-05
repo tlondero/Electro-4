@@ -70,7 +70,7 @@ plt.xlim(0, 50)
 plt.show()
 
 plt.figure(num=3, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-plt.ylabel("$I_D \ [A]$")
+plt.ylabel("$I_D \ [mA]$")
 plt.xlabel("Tiempo $[\mu s]$")
 plt.minorticks_on()
 plt.grid(which='major')
