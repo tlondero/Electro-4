@@ -2,6 +2,17 @@
 
 \begin{document}
 
-\subsection{Introducción}
+\subsection{Diferencias Switch Ideal - MOS}
+En esta sección se reemplazará la llave ideal por un MOSFET con un circuito de disparo igual al del primer ejercicio.\\
+Al realizar este cambio se puede notar cambios en muchas variables del circuito.
+Se  se puede notar un cambio en la $V_L$ y que el duty cycle aumento respecto al que habia con una switch ideal, ademas que la tensión de salida ahora es $V_o \approx$
+\note{chamullo del duty cycle mas grande y nueva tensión de salida}
+También se puede observar que la corriente de reverse recovery del diodo ahora se ve acotada a \note{VALOR DEL IRR}, la cual es menor a la registrada en el caso anterior.
 
+\note{foto de la corriente de bobina y MOS en conmutacion llave ideal y mos}
+\subsection{Tiempos de Conmutación}
+Los tiempos de conmutación se ven alterados respecto al circuito de la primera sección ya que los valores de $V_{gs-IO}$, $I_{g-IO}$ e $I_{ds}$ dependen principalmente del circuito de aplicación.
+en este caso como en la topología Boost cuando el MOS se encuentra abierto se encuentra un circuito RLC mientras que cuando esta cerrado un RL del lado del generador y un RC en la carga.
+
+\note{foto con tiempos de conmutación de llave sin boost y con boost}
 \end{document}
