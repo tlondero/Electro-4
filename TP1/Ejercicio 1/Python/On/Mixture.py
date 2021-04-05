@@ -43,7 +43,7 @@ ton=-tau1*np.log(1-VTH/VGSO)#30.41E-9
 tri=-tau1*np.log((VGSO-VGSIO)/(VGSO)) - ton#5.198e-08-ton
 tvf=deltaQ*RG/(VGSO-VGSIO) #1.7358e-07-tri-ton
 
-tend=9.7358e-07
+tend=9.735e-07
 
 
 
@@ -65,9 +65,9 @@ VGS3= VGSIO+0*t3
 delta=tvf+tri+ton
 VGS4=((VGSO-VGSIO)*(1-np.exp(-(t4-delta)/tau2)))+VGSIO
 
-off=0.74E-7
+off=0.76E-7
 plt.figure(num=1, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-plt.plot(t1+off,VGS1,color='c')
+plt.plot(t1+off,VGS1,color='c', label='Teorico')
 plt.plot(t2+off,VGS2,color='r')
 plt.plot(t3+off,VGS3,color='g')
 plt.plot(t4+off,VGS4,color='b')
@@ -146,7 +146,9 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Vgs,'--',color='c')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(-2,2))
+plt.plot(t,Vgs,'--',color='c', label='Simulado')
+plt.legend()
 plt.show()
 
 plt.figure(num=2, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -155,13 +157,16 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Vds,'--',color='c')
-plt.plot(t1+off,VDS1,color='c')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(-2,2))
+plt.plot(t,Vds,'--',color='c', label='Simulado')
+plt.plot(t1+off,VDS1,color='c',label='Teorico')
 plt.plot(t2+off,VDS2,color='r')
 
 plt.plot(tvf1+off,VDS3,color='g')
 
 plt.plot(t4+off,VDS5,color='g')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(-2,2))
+plt.legend()
 plt.show()
 
 plt.figure(num=3, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -170,12 +175,13 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Ig,'--',color='c')
-plt.plot(t1+off,IGS1,color='c')
+plt.plot(t,Ig,'--',color='c', label='Simulado')
+plt.plot(t1+off,IGS1,color='c',label='Teorico')
 plt.plot(t2+off,IGS2,color='r')
 plt.plot(t3+off,IGS3,color='g')
 plt.plot(t4+off,IGS4,color='b')#, label='')
-
+plt.ticklabel_format(axis='x', style='sci', scilimits=(-2,2))
+plt.legend()
 plt.show()
 
 plt.figure(num=4, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -184,11 +190,12 @@ plt.xlabel("t")
 plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
-plt.plot(t,Ids,'--',color='c')
-plt.plot(t1+off,IDS1,color='c')
+plt.plot(t,Ids,'--',color='c',label='Simulado')
+plt.plot(t1+off,IDS1,color='c',label='Teorico')
 plt.plot(t2+off,IDS2,color='r')
 plt.plot(t3+off,IDS3,color='g')
-
+plt.ticklabel_format(axis='x', style='sci', scilimits=(-2,2))
+plt.legend()
 plt.show()
 
 plt.figure(num=5, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -198,6 +205,8 @@ plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
 plt.plot(t,Id,color='c')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(-2,2))
+plt.legend()
 plt.show()
 
 plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -207,5 +216,7 @@ plt.minorticks_on()
 plt.grid(which='major')
 plt.grid(which='minor')
 plt.plot(t,Il,color='c')
+plt.ticklabel_format(axis='x', style='sci', scilimits=(-2,2))
+plt.legend()
 plt.show()
 

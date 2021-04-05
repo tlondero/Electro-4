@@ -79,6 +79,7 @@ Analizando la constante de tiempo $\frac{L}{R} = 189.65\mu s$ de los hemicircuit
 
 \begin{equation}
 	\bar{I_L} = I_{L_{on}}(t \rightarrow \infty) \cdot D + I_{L_{off}}(t \rightarrow \infty) \cdot (1-D) = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
+\label{ej1:eq:ilbar}
 \end{equation}
 
 Esto puede también resolverse de manera gráfica considerando las Ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:IL_off}) de las corrientes de la bobina para cada hemicircuito. En la Figura (\ref{ej1:fig:ILmediagrafico}) se observa que el cruce de ambas envolventes será la solución para la corriente media en la bobina en régimen permanente de conmutación. Tener en cuenta que la Ecuación (\ref{ej1:eq:IL_off}) supone al diodo como una fuente de tensión constante que no se apaga aunque la corriente sea cero. Debido a esto, no se tuvo en cuenta de la Ecuación (\ref{ej1:eq:IL_off}) la solución particular de la ecuación diferencial para el gráfico de la Figura (\ref{ej1:fig:ILmediagrafico}).
@@ -147,7 +148,7 @@ según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de dr
 \label{ej1:eq:trise}
 \end{equation}
 
-A partir de este momento, se formará la zona de depleción de la body layer por lo que la tensión $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}= 65mA$ obteniendo
+La tensión $V_{ds}$ no disminuye hasta que la corriente $I_D$ no es lo suficientemente alta para que la corriente del diodo sea en consecuencia lo suficientemente baja para que este se polarice en inversa. Es cuando el diodo se polariza en inversa y no deja pasar corriente que la tensión entre sus bornes comienza a aumentar, lo que genera que la caída de tensión del MOSFET disminuya. A partir de este momento, se formará la zona de depleción de la body layer en el transistor y la $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de depleción. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (\ref{ej1:eq:ilbar}). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}= 65mA$ obteniendo
 
 \begin{equation}
 	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112ns
@@ -214,7 +215,7 @@ Como tanto el apagado como el encendido del transistor poseen el mismo circuito,
 En primer lugar, la tensión $V_{gs}$ cae según (\ref{ej1:eq:vgs_off_1}) hasta el valor $V_{gs_{io}} = 5.5V$ mientras que la corriente $I_G$ disminuye su valor en módulo según (\ref{ej1:eq:ig_off_1}) hasta $I_G = \frac{0V - V_{gs_{io}}}{R_1} = -55mA$ en un proceso que dura
 
 \begin{equation}
-t_{off} = -\tau_2 ln(\frac{V_{gs_{io}}}{V_2}) = 90ns
+t_{d_{off}} = -\tau_2 ln(\frac{V_{gs_{io}}}{V_2}) = 90ns
 \label{ej1:eq:toff}
 \end{equation}
 
@@ -258,45 +259,122 @@ I_{G}(t) = \frac{0V-V_{gs_{io}}}{R_1} e^{-\frac{t}{\tau_1}}
 
 \subsection{Circuito en la Simulación y Diferencias con los Cálculos Teóricos}
 
-ACA DECIR COMO SE SIMULÓ, CON SPICE O MATLAB ETC.
+Se realizaron las simulaciones para este circuito utilizando el software \textit{LTSpiceXVII} y el lenguaje de programación \textit{Python} para graficar las simulaciones sobre las curvas teóricas. Las configuraciones del software se detallan en la Figura (\ref{ej1:fig:spice_specs}).
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/spice_specs}
+	\caption{Configuración para la simulación.}
+	\label{ej1:fig:spice_specs}
+\end{figure}
 
 \subsubsection{Encendido del MOSFET}
+
+Se puede observar que cuando el MOSFET es encendido, aparece en la simulación en la curva de $V_{gs}$ un pequeño sobrepico de tensión por encima de $V_{gs_{io}}$. Esto se debe a que el diodo, previamente polarizado en directa, debe evacuar los portadores de carga de la zona de drift y luego formar la zona de vaciamiento para lograr polarizarse en inversa. Esto esencialmente genera un gran pico de corriente en sentido contrario al del funcionamiento normal del diodo. Este pico de corriente, denominado $I_{rr}$ o reverse recovery current, genera que la corriente de drain $I_D$ del MOSFET aumente hasta $I_D = I_o+I_{rr}$ en vez de hasta $I_o$. Esto a su vez genera que la tensión $V_{gs}$ aumente por encima de $V_{gs_{io}}$. Una vez que la corriente de recovery del diodo se acaba, la tensión $V_{gs}$ y $V_{ds}$ caen abruptamente a los valores ideales.
+
+Otra diferencia con lo calculado surge a raíz de que en los cálculos teóricos no se consideró el driver totem-pole del transistor que demanda tanto en el estado encendido como en el apagado una caída diódica $V_{be}$ a causa de la juntura base emisor de los transistores bipolares. Es por esto que en la Figura (\ref{ej1:fig:sim_encendido_gate}) se observa que la curva simulada de $V_{gs}$ no comienza en $0V$ ni termina en $12V$, sino en $\approx 0.6V$ y $\approx 11.4V$ respectivamente.
+
+Tanto en $V_{ds}$ como $I_D$ se observan diferencias en las formas de las curvas, sin embargo estas se deben a la linealización de los cálculos teóricos.
+
+EXPLICAR LA DIFERENCIA EN $I_G$, CREO QUE VA POR EL LADO DEL di/dt IDEAL INFINITO QUE ES IMPOSIBLE DE TENER?
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_encendido_gate}
-	\caption{Comparación entre lo simulado y lo calculado para $V_{gs}$ e $I_G$ en el encendido del MOSFET.}
-	\label{ej1:fig:sim_encendido_gate}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_gate} % first figure itself
+		\caption{Comparación $V_{gs}$ entre simulado y calculado.}
+		\label{ej1:fig:sim_encendido_gate}
+	\end{minipage}\hfill
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_gate_i} % second figure itself
+		\caption{Comparación $I_{G}$ entre simulado y calculado.}
+		\label{ej1:fig:sim_encendido_gate_i}
+	\end{minipage}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_encendido_drain}
-	\caption{Comparación entre lo simulado y lo calculado para $V_{ds}$ e $I_D$ en el encendido del MOSFET.}
-	\label{ej1:fig:sim_encendido_drain}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_drain} % first figure itself
+		\caption{Comparación $V_{ds}$ entre simulado y calculado.}
+		\label{ej1:fig:sim_encendido_drain}
+	\end{minipage}\hfill
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_drain_i} % second figure itself
+		\caption{Comparación $I_{D}$ entre simulado y calculado.}
+		\label{ej1:fig:sim_encendido_drain_i}
+	\end{minipage}
 \end{figure}
+
+
 
 \subsubsection{Apagado del MOSFET}
+
+Para el apagado del MOSFET se puede observar en la Figura (\ref{ej1:fig:sim_apagado_gate}) y en consecuencia la Figura (\ref{ej1:fig:sim_apagado_gate_i}) la caída diódica $V_{be}$ a causa del totem pole discutido en la sección anterior.
+
+Solamente se observan además de esto ligeras diferencias causadas por la linealización de las curva $V_{ds}$ en los calculos teóricos.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_apagado_gate}
-	\caption{Comparación entre lo simulado y lo calculado para $V_{gs}$ e $I_G$ en el apagado del MOSFET.}
-	\label{ej1:fig:sim_apagado_gate}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_gate} % first figure itself
+		\caption{Comparación $V_{gs}$ entre simulado y calculado en el apagado.}
+		\label{ej1:fig:sim_apagado_gate}
+	\end{minipage}\hfill
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_gate_i} % second figure itself
+		\caption{Comparación $I_{G}$ entre simulado y calculado en el apagado.}
+		\label{ej1:fig:sim_apagado_gate_i}
+	\end{minipage}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/sim_encendido_drain}
-	\caption{Comparación entre lo simulado y lo calculado para $V_{ds}$ e $I_D$ en el apagado del MOSFET.}
-	\label{ej1:fig:sim_apagado_drain}
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_drain} % first figure itself
+		\caption{Comparación $V_{ds}$ entre simulado y calculado en el apagado.}
+		\label{ej1:fig:sim_apagado_drain}
+	\end{minipage}\hfill
+	\begin{minipage}{0.5\textwidth}
+		\centering
+		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_drain_i} % second figure itself
+		\caption{Comparación $I_{D}$ entre simulado y calculado en el apagado.}
+		\label{ej1:fig:sim_apagado_drain_i}
+	\end{minipage}
 \end{figure}
 
-\subsubsection{Régimen Permanente}
+\subsubsection{Corriente de la Bobina en Régimen Permanente}
+
+Para el caso de la corriente en la bobina, se observa en la Figura (\ref{ej1:fig:il_permanente_sum}) que el ripple de corriente calculado es igual que el ripple de corriente en la simulación. Sin embargo, existe una diferencia de $90mA$ (error porcentual de un $1.74\%$) en la corriente media de la bobina.
+
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/pend}%{ImagenesEjercicio-1/permanente_il}
-	\caption{Comparación entre lo simulado y lo calculado para el régimen permanente.}
-	\label{ej1:fig:permanente_il}
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/il_permanente_sim}
+	\caption{Comparación entre $I_L$ calculado y simulado en régimen permanente.}
+	\label{ej1:fig:il_permanente_sum}
 \end{figure}
+
+\subsubsection{Comparación con los Tiempos de Conmutación Calculados}
+
+NO SE QUE DECIR ACA MAS QUE QUIZAS EL HECHO DE TENER EL TOTEMPOLE Y QUE HAYA BAJADO O SUBIDO LA TENSION EN VGS HAYA HECHO MAS RAPIDO/MAS LENTO CIERTOS PROCESOS
+
+\begin{table}[H]
+\centering
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+ & $t_{d_{on}}$ & $t_{ri}$ & $t_{fv}$ & $t_{d_{off}}$ & $t_{rv}$ & $t_{fi}$ \\ \midrule
+Calculado & $30ns$ & $16ns$ & $112ns$ & $90ns$ & $133ns$ & $24ns$ \\
+Simulado & $41ns$ & $15ns$ & $107ns$ & $122ns$ & $138ns$ & $28ns$ \\
+Error Porcentual & $-26.8\%$ & $6.66\%$ & $4.67\%$ & $-26.2\%$ & $-3.62\%$ & $-14.3\%$ \\ \bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Circuito en la Práctica}
 
