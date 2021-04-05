@@ -159,8 +159,8 @@ t_ej3 = np.abs(np.asarray(LTR_punto3.get_trace(0).data))*1e6
 t_ej2 = np.abs(np.asarray(LTR_punto2.get_trace(0).data))*1e6
 t_ej1 = np.abs(np.asarray(LTR_punto1.get_trace(0).data))*1e6
 
+show3con2 = True
 show3con1 = True
-show3con2 = False
 
 ##########################################
 ##      COMPARACIÓN PUNTO 3 CON 2       ##
@@ -174,7 +174,7 @@ if show3con2:
     Vds_ej2 = np.asarray(LTR_punto2.get_trace("V(vd)").data)
     Ids_ej2 = np.asarray(LTR_punto2.get_trace("I(S1)").data)
 
-    giveMe4WithCrop(t_ej3, Vds_ej3, t_ej3, Ids_ej3*1e3, t_ej2, Vds_ej2, t_ej2, Ids_ej2*1e3, '$V_{DS} \ [V]$', '$I_{DS} \ [mA]$', 'Tiempo $[\mu s]$', '$V_{DS}$ con MOS', '$I_{DS}$ con MOS', '$V_{DS}$ llave ideal', '$I_{DS}$ llave ideal', [7, 9], [32, 35], [-150, 850])
+    giveMe4WithCrop(t_ej3, Vds_ej3, t_ej3, Ids_ej3*1e3, t_ej2, Vds_ej2, t_ej2, Ids_ej2*1e3, '$V_{DS} \ [V]$', '$I_{DS} \ [mA]$', 'Tiempo $[\mu s]$', '$V_{DS}$ con MOS', '$I_{DS}$ con MOS', '$V_{DS}$ llave ideal', '$I_{DS}$ llave ideal', [16, 18], [22, 27], [-150, 850])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ids-vds-2v3.png')
     plt.show()
 
@@ -186,7 +186,7 @@ if show3con2:
     Vgs_ej2 = np.asarray(LTR_punto2.get_trace("V(vtrig)").data)
     Ig_ej2 = np.asarray(LTR_punto2.get_trace("I(V1)").data)
 
-    giveMe4WithCrop(t_ej3, Vgs_ej3, t_ej3, Ig_ej3*1e3, t_ej2-(25.5e-6), Vgs_ej2*12/5, t_ej2-(25.5e-6), Ig_ej2*1e3, '$V_{GS} \ [V]$', '$I_G \ [mA]$', 'Tiempo $[\mu s]$', '$V_{gs}$ con MOS', '$I_g$ con MOS', '$V_{gs}$ llave ideal', '$I_g$ llave ideal', [7, 9], [32, 35], [-125, 100])
+    giveMe4WithCrop(t_ej3, Vgs_ej3, t_ej3, Ig_ej3*1e3, t_ej2-(25.5e-6), Vgs_ej2*12/5, t_ej2-(25.5e-6), Ig_ej2*1e3, '$V_{GS} \ [V]$', '$I_G \ [mA]$', 'Tiempo $[\mu s]$', '$V_{GS}$ con MOS', '$I_G$ con MOS', '$V_{GS}$ llave ideal', '$I_G$ llave ideal', [16, 19], [22, 27], [-125, 100])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ig-vgs-2v3.png')
     plt.show()
 
@@ -198,7 +198,7 @@ if show3con2:
     Vl_ej2 = np.asarray(LTR_punto2.get_trace("V(vl+)").data) - np.asarray(LTR_punto2.get_trace("V(vl-)").data)
     Il_ej2 = np.asarray(LTR_punto2.get_trace("I(L1)").data)
 
-    giveMe4(t_ej3, Vl_ej3, t_ej3, Il_ej3*1e3, t_ej2, Vl_ej2, t_ej2, Il_ej2*1e3, '$V_{L} \ [V]$', '$I_L \ [mA]$', 'Tiempo $[\mu s]$', '$V_{L}$ con MOS', '$V_{L}$ llave ideal', '$I_L$ con MOS', '$I_L$ llave ideal', [0, 50], [0, 850])
+    giveMe4(t_ej3, Vl_ej3, t_ej3, Il_ej3*1e3, t_ej2, Vl_ej2, t_ej2, Il_ej2*1e3, '$V_{L} \ [V]$', '$I_L \ [mA]$', 'Tiempo $[\mu s]$', '$V_{L}$ con MOS', '$V_{L}$ llave ideal', '$I_L$ con MOS', '$I_L$ llave ideal', [0, 50], ylim2=[0, 850])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\il-vl-2v3.png')
     plt.show()
 
@@ -210,7 +210,7 @@ if show3con2:
     Vd_ej2 = np.asarray(LTR_punto2.get_trace("V(vd)").data) - np.asarray(LTR_punto2.get_trace("V(vout)").data)
     Id_ej2 = np.asarray(LTR_punto2.get_trace("I(D1)").data)
 
-    giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3, t_ej2, Vd_ej2, t_ej2, Id_ej2, '$V_{D} \ [V]$', '$I_D \ [A]$', 'Tiempo $[\mu s]$', '$V_{D}$ con MOS', '$I_D$ con MOS', '$V_{D}$ llave ideal', '$I_D$ llave ideal', [0, 50], [-2.5, 0.85])
+    giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3, t_ej2, Vd_ej2, t_ej2, Id_ej2, '$V_{D} \ [V]$', '$I_D \ [A]$', 'Tiempo $[\mu s]$', '$V_{D}$ con MOS', '$I_D$ con MOS', '$V_{D}$ llave ideal', '$I_D$ llave ideal', [0, 50], ylim2=[-2.5, 0.85])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\id-vd-2v3.png')
     plt.show()
 
@@ -223,7 +223,7 @@ if show3con1:
     Vds_ej1 = np.asarray(LTR_punto1.get_trace("V(vd)").data)
     Ids_ej1 = np.asarray(LTR_punto1.get_trace("Id(M1)").data)
 
-    giveMe2WithCrop(t_ej3, Vds_ej3, t_ej1, Vds_ej1, '$V_{DS} \ [V]$','Tiempo $[\mu s]$','$V_{DS}$ con carga', '$V_{DS}$ sin carga', [7, 10], [16, 18], [0, 25])
+    giveMe2WithCrop(t_ej3, Vds_ej3, t_ej1, Vds_ej1, '$V_{DS} \ [V]$','Tiempo $[\mu s]$','$V_{DS}$ con carga', '$V_{DS}$ sin carga', [16, 18], [22, 27], [0, 25])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ids-vds-1v3.png')
     plt.show()
 
@@ -232,7 +232,7 @@ if show3con1:
     Vgs_ej1 = np.asarray(LTR_punto1.get_trace("V(vg)").data)
     Ig_ej1 = np.asarray(LTR_punto1.get_trace("Ig(M1)").data)
 
-    giveMe4WithCrop(t_ej3, Vgs_ej3, t_ej3, Ig_ej3*1e3, t_ej1, Vgs_ej1, t_ej1, Ig_ej1*1e3, '$V_{GS} \ [V]$', '$I_G \ [mA]$', 'Tiempo $[\mu s]$', '$V_{gs}$ con carga', '$I_g$ con carga', '$V_{gs}$ sin carga', '$I_g$ sin carga', [7, 9], [32, 35], [-125, 100])
+    giveMe4WithCrop(t_ej3-0.75, Vgs_ej3, t_ej3-0.75, Ig_ej3*1e3, t_ej1, Vgs_ej1, t_ej1, Ig_ej1*1e3, '$V_{GS} \ [V]$', '$I_G \ [mA]$', 'Tiempo $[\mu s]$', '$V_{GS}$ con carga', '$I_G$ con carga', '$V_{GS}$ sin carga', '$I_G$ sin carga', [16, 18], [22, 27], [-125, 100])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ig-vgs-1v3.png')
     plt.show()
 
