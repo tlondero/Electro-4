@@ -22,8 +22,10 @@ t_m, IL_m = getData('../Matlab/il.mat')
 t_m, ID_m = getData('../Matlab/id.mat')
 t_m, Vout_m = getData('../Matlab/vo.mat')
 t_m, Vtrig_m = getData('../Matlab/vtrig.mat')
-# t_ms, Vo_ideal = getData('../Matlab/ideal_vo.mat')
 t_m = np.asarray(t_m)*1e6
+
+# t_m_ideal, Vo_ideal = getData('../Matlab/ideal_vo.mat')
+# t_m_ideal = np.asarray(t_m_ideal)*1e6
 
 #Get SPICE data
 LTR = LTSpiceRawRead("../Spice/Draft3.raw")
@@ -55,6 +57,7 @@ plt.plot(t_s,IL_s*1e3,color='b', label="LTSpice")
 plt.legend()
 plt.xlim(0, 50)
 plt.ylim(200, 800)
+plt.savefig('..\..\Tex\Ejercicio-2\ImagenesEjercicio-2\il.png')
 plt.show()
 
 plt.figure(num=2, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -67,6 +70,7 @@ plt.plot(t_m,VL_m,color='r', label="Simulink")
 plt.plot(t_s,VL_s,color='b', label="LTSpice")
 plt.legend()
 plt.xlim(0, 50)
+plt.savefig('..\..\Tex\Ejercicio-2\ImagenesEjercicio-2\ vl.png')
 plt.show()
 
 plt.figure(num=3, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -80,6 +84,7 @@ plt.plot(t_s,ID_s*1e3,color='b', label="LTSpice")
 plt.legend()
 plt.xlim(0, 50)
 plt.ylim(-1000, 1000)
+plt.savefig('..\..\Tex\Ejercicio-2\ImagenesEjercicio-2\id.png')
 plt.show()
 
 plt.figure(num=4, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -92,6 +97,7 @@ plt.plot(t_m,Vout_m,color='r', label="Simulink")
 plt.plot(t_s,Vout_s,color='b', label="LTSpice")
 plt.legend()
 plt.xlim(0, 50)
+plt.savefig('..\..\Tex\Ejercicio-2\ImagenesEjercicio-2\ vout.png')
 plt.show()
 
 plt.figure(num=5, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
@@ -104,24 +110,18 @@ plt.plot(t_m,Vtrig_m,color='r', label="Simulink")
 plt.plot(t_s,Vtrig_s,color='b', label="LTSpice")
 plt.legend()
 plt.xlim(0, 50)
+plt.savefig('..\..\Tex\Ejercicio-2\ImagenesEjercicio-2\ vtrig.png')
 plt.show()
 
-# fig, ax1 = plt.subplots(num=5, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-#
-# color = 'tab:red'
-# ax1.set_xlabel('Tiempo $[\mu s]$')
-# ax1.set_ylabel('$V_L \ [V]$', color=color)
-# ax1.plot(t, VL, color=color)
-# ax1.tick_params(axis='y', labelcolor=color)
-#
-# ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
-#
-# color = 'tab:blue'
-# ax2.set_ylabel('$I_L \ [mA]$', color=color)  # we already handled the x-label with ax1
-# ax2.plot(t, IL, color=color)
-# ax2.tick_params(axis='y', labelcolor=color)
+# plt.figure(num=5, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
+# plt.ylabel("$V_{Trig} \ [V]$")
+# plt.xlabel("Tiempo $[\mu s]$")
 # plt.minorticks_on()
 # plt.grid(which='major')
 # plt.grid(which='minor')
-# fig.tight_layout()  # otherwise the right y-label is slightly clipped
+# plt.plot(t_m_ideal,Vo_ideal,color='r', label="Diodo ideal")
+# plt.plot(t_s,Vout_s,color='b', label="Diodo real")
+# plt.legend()
+# plt.xlim(0, 50)
+# plt.savefig('..\..\Tex\Ejercicio-2\ImagenesEjercicio-2\ vo_diodo_ideal.png')
 # plt.show()
