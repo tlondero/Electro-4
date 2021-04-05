@@ -103,9 +103,15 @@ def giveMe4(x1, y1, x2, y2, x1p, y1p, x2p, y2p, yLabel1, yLabel2, xLabel, label1
 #Get SPICE data
 LTR_punto3 = LTSpiceRawRead("../Spice/Draft4.raw")
 LTR_punto2 = LTSpiceRawRead("../../Ejercicio 2/Spice/Draft3.raw")
+LTR_punto1 = LTSpiceRawRead("../../Ejercicio 1/Spice/Draft1.raw")
 
 t_ej3 = np.abs(np.asarray(LTR_punto3.get_trace(0).data))*1e6
 t_ej2 = np.abs(np.asarray(LTR_punto2.get_trace(0).data))*1e6
+t_ej1 = np.abs(np.asarray(LTR_punto1.get_trace(0).data))*1e6
+
+##########################################
+##      COMPARACIÓN PUNTO 3 CON 2       ##
+##########################################
 
 #VDS E IDS CARGA Y DESCARGA
 Vds_ej3 = np.asarray(LTR_punto3.get_trace("V(vd)").data)
@@ -149,4 +155,40 @@ Id_ej2 = np.asarray(LTR_punto2.get_trace("I(D1)").data)
 
 giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3*1e3, t_ej2, Vd_ej2, t_ej2, Id_ej2*1e3, '$V_{D} \ [V]$', '$I_D \ [mA]$', 'Tiempo $[\mu s]$', '$V_{D}$ con MOS', '$I_D$ con MOS', '$V_{D}$ llave ideal', '$I_D$ llave ideal', [0, 50], [-500, 850])
 plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\id-vd-2v3.png')
+plt.show()
+
+##########################################
+##      COMPARACIÓN PUNTO 3 CON 1       ##
+##########################################
+
+#VDS E IDS CARGA Y DESCARGA
+Vds_ej1 = np.asarray(LTR_punto1.get_trace("V(vd)").data)
+Ids_ej1 = np.asarray(LTR_punto1.get_trace("Id(M1)").data)
+
+giveMe4WithCrop(t_ej3, Vds_ej3, t_ej3, Ids_ej3*1e3, t_ej1, Vds_ej1, t_ej1, Ids_ej1*1e3, '$V_{DS} \ [V]$', '$I_{DS} \ [mA]$', 'Tiempo $[\mu s]$', '$V_{DS}$ con carga', '$I_{DS}$ con carga', '$V_{DS}$ sin carga', '$I_{DS}$ sin carga', [7, 9], [32, 35], [-150, 850])
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ids-vds-1v3.png')
+plt.show()
+
+#VGS E IG CARGA Y DESCARGA
+Vgs_ej1 = np.asarray(LTR_punto1.get_trace("V(vg)").data)
+Ig_ej1 = np.asarray(LTR_punto1.get_trace("Ig(M1)").data)
+
+giveMe4WithCrop(t_ej3, Vgs_ej3, t_ej3, Ig_ej3*1e3, t_ej1, Vgs_ej1, t_ej1, Ig_ej1*1e3, '$V_{GS} \ [V]$', '$I_G \ [mA]$', 'Tiempo $[\mu s]$', '$V_{gs}$ con MOS', '$I_g$ con MOS', '$V_{gs}$ llave ideal', '$I_g$ llave ideal', [7, 9], [32, 35], [-125, 100])
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\ig-vgs-1v3.png')
+plt.show()
+
+#IL y VL
+Vl_ej2 = np.asarray(LTR_punto1.get_trace("V(vl+)").data) - np.asarray(LTR_punto1.get_trace("V(vd)").data)
+Il_ej2 = np.asarray(LTR_punto1.get_trace("I(L1)").data)
+
+giveMe4(t_ej3, Vl_ej3, t_ej3, Il_ej3*1e3, t_ej1, Vl_ej2, t_ej1, Il_ej2*1e3, '$V_{L} \ [V]$', '$I_L \ [mA]$', 'Tiempo $[\mu s]$', '$V_{L}$ con MOS', '$I_L$ con MOS', '$V_{L}$ llave ideal', '$I_L$ llave ideal', [0, 50], [0, 850])
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\il-vl-1v3.png')
+plt.show()
+
+#ID y VD
+Vd_ej1 = np.asarray(LTR_punto1.get_trace("V(vd)").data) - np.asarray(LTR_punto1.get_trace("V(vd-)").data)
+Id_ej1 = np.asarray(LTR_punto1.get_trace("I(D1)").data)
+
+giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3*1e3, t_ej1, Vd_ej1, t_ej1, Id_ej1*1e3, '$V_{D} \ [V]$', '$I_D \ [mA]$', 'Tiempo $[\mu s]$', '$V_{D}$ con MOS', '$I_D$ con MOS', '$V_{D}$ llave ideal', '$I_D$ llave ideal', [0, 50], [-500, 850])
+plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\id-vd-1v3.png')
 plt.show()
