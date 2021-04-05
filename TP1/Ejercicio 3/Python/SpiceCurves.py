@@ -30,7 +30,7 @@ plt.grid(which='minor')
 plt.plot(t_s,IL_s*1e3,color='b', label="LTSpice")
 # plt.legend()
 plt.xlim(0, 50)
-plt.ylim(100, 700)
+plt.ylim(250, 850)
 plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\il.png')
 plt.show()
 
