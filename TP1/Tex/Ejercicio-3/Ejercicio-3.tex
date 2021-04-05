@@ -4,15 +4,72 @@
 
 \subsection{Diferencias Switch Ideal - MOS}
 En esta sección se reemplazará la llave ideal por un MOSFET con un circuito de disparo igual al del primer ejercicio.\\
+Se observa en los gráficos 
+\begin{multicols}{2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Conmutaciones $V_{ds}$ e  $I_{ds}$.}
+	\label{fig:ej3:conmutacionON_OFF_VDS_IDS}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Conmutaciones $V_{gs}$ e  $I_{g}$.}
+	\label{fig:ej3:conmutacionON_OFF_VGS_IG}
+\end{figure}
+\end{multicols}
+\begin{multicols}{2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Tensión y Corriente sobre la bobina.}
+	\label{fig:ej3:Il_Vl}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Tensión y Corriente sobre el diodo.}
+	\label{fig:ej3:Id_Vd}
+\end{figure}
+\end{multicols}
 Al realizar este cambio se puede notar cambios en muchas variables del circuito.
 Se  se puede notar un cambio en la $V_L$ y que el duty cycle aumento respecto al que habia con una switch ideal, ademas que la tensión de salida ahora es $V_o \approx$
 \note{chamullo del duty cycle mas grande y nueva tensión de salida}
-También se puede observar que la corriente de reverse recovery del diodo ahora se ve acotada a \note{VALOR DEL IRR}, la cual es menor a la registrada en el caso anterior.
+También se puede observar que la corriente de reverse recovery del diodo ahora se ve acotada a $\approx 2.8[A]$, la cual es menor a la registrada en el caso anterior.
 
-\note{foto de la corriente de bobina y MOS en conmutacion llave ideal y mos}
 \subsection{Tiempos de Conmutación}
 Los tiempos de conmutación se ven alterados respecto al circuito de la primera sección ya que los valores de $V_{gs-IO}$, $I_{g-IO}$ e $I_{ds}$ dependen principalmente del circuito de aplicación.
-en este caso como en la topología Boost cuando el MOS se encuentra abierto se encuentra un circuito RLC mientras que cuando esta cerrado un RL del lado del generador y un RC en la carga.
+en este caso como en la topología Boost cuando el MOS se encuentra abierto se encuentra un circuito RLC mientras que cuando esta cerrado un RL del lado del generador y un RC en la carga esto afectará a los tiempos de $t_{ri}$ $t_{fv}$, $t_{d_{off}}$, $t_{rv}$ y  $t_{fi}$.\\
+%\newpage
 
-\note{foto con tiempos de conmutación de llave sin boost y con boost}
+\begin{multicols}{2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Conmutaciones $V_{ds}$ e  $I_{ds}$ llave con y sin Boost.}
+	\label{fig:ej3:conmutacionON_OFF_VDS_IDS_SWITCH_BOOST}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Conmutaciones $V_{gs}$ e  $I_{g}$ llave con y sin Boost.}
+	\label{fig:ej3:conmutacionON_OFF_VGS_IG_SWITCH_BOOST}
+\end{figure}
+\end{multicols}
+\begin{multicols}{2}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Tensión y Corriente sobre la bobina llave con y sin Boost.}
+	\label{fig:ej3:Il_Vl_SWITCH_BOOST}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-3/pend}
+	\caption{Tensión y Corriente sobre el diodo llave con y sin Boost.}
+	\label{fig:ej3:Id_Vd_SWITCH_BOOST}
+\end{figure}
+\end{multicols}
+
 \end{document}
