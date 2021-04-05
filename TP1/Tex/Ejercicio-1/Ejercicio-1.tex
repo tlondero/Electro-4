@@ -259,14 +259,14 @@ I_{G}(t) = \frac{0V-V_{gs_{io}}}{R_1} e^{-\frac{t}{\tau_1}}
 
 \subsection{Circuito en la Simulación y Diferencias con los Cálculos Teóricos}
 
-Se realizaron las simulaciones para este circuito utilizando el software \textit{LTSpiceXVII} y el lenguaje de programación \textit{Python} para graficar las simulaciones sobre las curvas teóricas. Las configuraciones del software se detallan en la Figura (\ref{ej1:fig:spice_specs}).
-
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/spice_specs}
-	\caption{Configuración para la simulación.}
-	\label{ej1:fig:spice_specs}
-\end{figure}
+Se realizaron las simulaciones para este circuito utilizando el software \textit{LTSpice} % y el lenguaje de programación \textit{Python} para graficar las simulaciones sobre las curvas teóricas. Las configuraciones del %Se realizaron las simulaciones para este circuito utilizando el software \textit{LTSpiceXVII} y el lenguaje de programación \textit{Python} para graficar las simulaciones sobre las curvas teóricas. Las configuraciones del software se detallan en la Figura (\ref{ej1:fig:spice_specs}).
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/spice_specs}
+%	\caption{Configuración para la simulación.}
+%	\label{ej1:fig:spice_specs}
+%\end{figure}
 
 \subsubsection{Encendido del MOSFET}
 
@@ -276,7 +276,7 @@ Otra diferencia con lo calculado surge a raíz de que en los cálculos teóricos
 
 Tanto en $V_{ds}$ como $I_D$ se observan diferencias en las formas de las curvas, sin embargo estas se deben a la linealización de los cálculos teóricos.
 
-EXPLICAR LA DIFERENCIA EN $I_G$, CREO QUE VA POR EL LADO DEL di/dt IDEAL INFINITO QUE ES IMPOSIBLE DE TENER?
+Por otro lado se puede ver que existen diferencias entre la curva teórica de la corriente de Gate y la simulación, esto se debe a el totem-pole  el cual cambia la forma de onda de un escalón a la observada en el gráfico \ref{ej1:fig:sim_encendido_gate_i}, si en vez del totem-pole se utilizase una fuente ideal de tensión las curvas corresponderían.
 
 \begin{figure}[H]
 	\centering
@@ -350,7 +350,7 @@ Solamente se observan además de esto ligeras diferencias causadas por la lineal
 	\end{minipage}
 \end{figure}
 
-\subsubsection{Corriente de la Bobina en Régimen Permanente}
+\subsubsection{Corriente de la Bobina y Diodo en Régimen Permanente}
 
 Para el caso de la corriente en la bobina, se observa en la Figura (\ref{ej1:fig:il_permanente_sum}) que el ripple de corriente calculado es igual que el ripple de corriente en la simulación. Sin embargo, existe una diferencia de $90mA$ (error porcentual de un $1.74\%$) en la corriente media de la bobina.
 
@@ -360,11 +360,26 @@ Para el caso de la corriente en la bobina, se observa en la Figura (\ref{ej1:fig
 	\caption{Comparación entre $I_L$ calculado y simulado en régimen permanente.}
 	\label{ej1:fig:il_permanente_sum}
 \end{figure}
+Mientras tanto en la corriente del Diodo, el mismo seguirá a la corriente de la bobina en el semiciclo donde la llave se encuentra abierta, y luego irá a cero cuando la llave se encuentre cerrada.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/id_permanente_sim}
+	\caption{Comparación entre $I_D$ calculado y simulado en régimen permanente.}
+	\label{ej1:fig:id_permanente_sum}
+\end{figure}
+Se puede observar que hay un gran sobre pico de corriente cuando el diodo conmuta de directa a inversa, esto se debe a la corriente de reverse recovery.
+Ademas si se hace un detalle en la imagen (\ref{ej1:fig:id_permanente_sum}) se puede observar que son paralelas las corrientes (\ref{ej1:fig:id_permanente_sum_det}), al igual el pequeño offset que existe el cual fue explicado anteriormente.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/id_permanente_sim_det}
+	\caption{Comparación entre $I_D$ calculado y simulado en régimen permanente detalle.}
+	\label{ej1:fig:id_permanente_sum_det}
+\end{figure}
 
 \subsubsection{Comparación con los Tiempos de Conmutación Calculados}
 
-\note{NO SE QUE DECIR ACÁ MÁS QUE QUIZÁS EL HECHO DE TENER EL TOTEMPOLE Y QUE HAYA BAJADO O SUBIDO LA TENSIÓN EN VGS HAYA HECHO MAS RÁPIDO/MÁS LENTO CIERTOS PROCESOS.}
 
+A continuación se observa un cuadro comparativo de las los tiempos calculados y los medidos en simulación.
 \begin{table}[H]
 \centering
 \begin{tabular}{@{}lllllll@{}}
@@ -374,11 +389,11 @@ Calculado & $30ns$ & $16ns$ & $112ns$ & $90ns$ & $133ns$ & $24ns$ \\
 Simulado & $41ns$ & $15ns$ & $107ns$ & $122ns$ & $138ns$ & $28ns$ \\
 Error Porcentual & $-26.8\%$ & $6.66\%$ & $4.67\%$ & $-26.2\%$ & $-3.62\%$ & $-14.3\%$ \\ \bottomrule
 \end{tabular}
-\caption{Tabla mágica.}
+\caption{Comparación entre tiempos calculados y simulados.}
 \end{table}
-
-\subsection{Circuito en la Práctica}
+Se puede apreciar que no hay un error significativo en los cálculos y lo simulado.
+%\subsection{Circuito en la Práctica}
 
 \subsection{Conclusiones}
-
+Se calcularon y midieron los tiempos de conmutación al igual que las curvas de tensión y corriente del MOSFET al igual que la bobina y diodo, obteniendo resultados en los cuales se corresponden lo simulado con lo teórico en gran medida, se pudieron observar las curvas de conmutación del MOSFET con todas sus particularidades y explicar las diferencias entre lo teórico y simulado.
 \end{document}
