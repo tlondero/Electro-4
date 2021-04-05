@@ -35,16 +35,16 @@ Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina
 Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:VL_on}) que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{ds_{on}} = I_{L_{on}}\cdot R_{ds_{on}}$
 
 \begin{equation}
-	 I_{L_{on}}(t) = \left( I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right) -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}+R_2}{L}t} + \frac{V_2}{R_{ds_{on}}+R_2} \ \ \ \ n \in \mathbb{N}
+	 I_{L_{on}}(t) = \left( \left. I_{L_{off}} \right|_{t= n/f_{sw}} -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}+R_2}{L}t} + \frac{V_2}{R_{ds_{on}}+R_2} \ \ \ \ n \in \mathbb{N}
 \label{ej1:eq:IL_on}
 \end{equation}
 
 \begin{equation}
-	V_{L_{on}}(t) = \left( V_2 - I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right)\cdot (R_{ds_{on}}+R_2) \right)e^{-\frac{R_{ds_{on}}+R_2}{L}t} \ \ \ \ n \in \mathbb{N}
+	V_{L_{on}}(t) = \left( V_2 - \left. I_{L_{off}} \right|_{t= n/f_{sw}}\cdot (R_{ds_{on}}+R_2) \right)e^{-\frac{R_{ds_{on}}+R_2}{L}t} \ \ \ \ n \in \mathbb{N}
 \label{ej1:eq:VL_on}
 \end{equation}
 
-Donde $t=\frac{n}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de apagado a encendido y $I_{L_{off}}\left(t= \frac{n}{f_{sw}}\right)$ la corriente en la bobina en dicho momento.
+Donde $t=\frac{n}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de apagado a encendido y $\left. I_{L_{off}} \right|_{t= n/f_{sw}}$ la corriente en la bobina en dicho momento.
 
 \subsubsection{Segundo Hemicircuito: MOSFET OFF}
 
@@ -60,16 +60,16 @@ Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria e
 Resolviendo el circuito RL que se obtiene en este estado, se observa que la bobina tiene una pérdida de energía almacenada dada por las ecuaciones (\ref{ej1:eq:IL_off}) y (\ref{ej1:eq:VL_off}).
 
 \begin{equation}
-	 I_{L_{off}}(t) = \left( I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right) -\frac{V_d}{R_2}\right) e^{-\frac{R_2}{L}t} + \frac{V_d}{R_2} \ \ \ \ n \in \mathbb{N}_o
+	 I_{L_{off}}(t) = \left( \left. I_{L_{on}} \right|_{t= nD/f_{sw}} -\frac{V_d}{R_2}\right) e^{-\frac{R_2}{L}t} + \frac{V_d}{R_2} \ \ \ \ n \in \mathbb{N}_o
 \label{ej1:eq:IL_off}
 \end{equation}
 
 \begin{equation}
-	 V_{L_{off}}(t) = \left( V_d - I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right)\cdot R_2 \right)e^{-\frac{R_2}{L}t} \ \ \ \ n \in \mathbb{N}_o
+	 V_{L_{off}}(t) = \left( V_d - \left. I_{L_{on}} \right|_{t= nD/f_{sw}} \cdot R_2 \right)e^{-\frac{R_2}{L}t} \ \ \ \ n \in \mathbb{N}_o
 \label{ej1:eq:VL_off}
 \end{equation}
 
-Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de encendido a apagado y $I_{L_{on}}\left(t= \frac{nD}{f_{sw}}\right)$ la corriente en la bobina en dicho momentos. 
+Donde $t=\frac{nD}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de encendido a apagado y $\left. I_{L_{on}} \right|_{t= nD/f_{sw}}$ la corriente en la bobina en dicho momentos. 
 
 \subsubsection{Análisis en Estado Permanente}
 
@@ -78,7 +78,7 @@ En electrónica, se define el estado permanente de un circuito como la condició
 Analizando la constante de tiempo $\frac{L}{R} = 189.65\mu s$ de los hemicircuitos conformados por la carga inductiva, se observa que ésta es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_{on} = t_{off} = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.33\mu s$ por lo que se puede aproximar la tensión $V_L$ en cada estado como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$. Para hallar la corriente media $\bar{I_L}$ de la bobina se realiza el promedio ponderado por el duty cycle de conmutación de los estados permanentes de ambos hemicircuitos, quedando
 
 \begin{equation}
-	\bar{I_L} = I_{L_{on}}(t \rightarrow \infty) \cdot D + I_{L_{off}}(t \rightarrow \infty) \cdot (1-D) = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
+	\bar{I_L} = \left. I_{L_{on}}\right|_{t \rightarrow \infty} \cdot D + \left. I_{L_{off}}\right|_{t \rightarrow \infty} \cdot (1-D) = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
 \label{ej1:eq:ilbar}
 \end{equation}
 
@@ -100,7 +100,7 @@ Conociendo la corriente media de la bobina, aproximando la tensión en cada esta
 y el ripple en la tensión $V_L$ puede hallarse según la Ecuación (\ref{ej1:eq:VL_on}) como
 
 \begin{equation}
-\Delta V_L = \left( V_2 - \bar{I_L} (R_{ds_{on}}+R_2) \right) \cdot (1-e^{-\frac{R_{ds_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
+\Delta V_L = \left[ V_2 - \bar{I_L} (R_{ds_{on}}+R_2) \right] \cdot (1-e^{-\frac{R_{ds_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
 \end{equation}
 
 Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:idiodo_permanente}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t)R_{ds_{on}} \approx \bar{I_L}R_{ds_{on}} = 827mV$ durante el estado encendido.
@@ -363,7 +363,7 @@ Para el caso de la corriente en la bobina, se observa en la Figura (\ref{ej1:fig
 
 \subsubsection{Comparación con los Tiempos de Conmutación Calculados}
 
-NO SE QUE DECIR ACA MAS QUE QUIZAS EL HECHO DE TENER EL TOTEMPOLE Y QUE HAYA BAJADO O SUBIDO LA TENSION EN VGS HAYA HECHO MAS RAPIDO/MAS LENTO CIERTOS PROCESOS
+\note{NO SE QUE DECIR ACÁ MÁS QUE QUIZÁS EL HECHO DE TENER EL TOTEMPOLE Y QUE HAYA BAJADO O SUBIDO LA TENSIÓN EN VGS HAYA HECHO MAS RÁPIDO/MÁS LENTO CIERTOS PROCESOS.}
 
 \begin{table}[H]
 \centering
@@ -374,6 +374,7 @@ Calculado & $30ns$ & $16ns$ & $112ns$ & $90ns$ & $133ns$ & $24ns$ \\
 Simulado & $41ns$ & $15ns$ & $107ns$ & $122ns$ & $138ns$ & $28ns$ \\
 Error Porcentual & $-26.8\%$ & $6.66\%$ & $4.67\%$ & $-26.2\%$ & $-3.62\%$ & $-14.3\%$ \\ \bottomrule
 \end{tabular}
+\caption{Tabla mágica.}
 \end{table}
 
 \subsection{Circuito en la Práctica}
