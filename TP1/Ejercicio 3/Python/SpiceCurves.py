@@ -159,8 +159,8 @@ t_ej3 = np.abs(np.asarray(LTR_punto3.get_trace(0).data))*1e6
 t_ej2 = np.abs(np.asarray(LTR_punto2.get_trace(0).data))*1e6
 t_ej1 = np.abs(np.asarray(LTR_punto1.get_trace(0).data))*1e6
 
-show3con2 = True
-show3con1 = False
+show3con2 = False
+show3con1 = True
 
 ##########################################
 ##      COMPARACIÓN PUNTO 3 CON 2       ##
@@ -250,6 +250,6 @@ if show3con1:
     Vd_ej1 = np.asarray(LTR_punto1.get_trace("V(vd)").data) - np.asarray(LTR_punto1.get_trace("V(vd-)").data)
     Id_ej1 = np.asarray(LTR_punto1.get_trace("I(D1)").data)
 
-    giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3, t_ej1, Vd_ej1, t_ej1, Id_ej1, '$V_{D} \ [V]$', '$I_D \ [A]$', 'Tiempo $[\mu s]$', '$V_{D}$ con carga', '$V_D$ sin carga', '$I_{D}$ con carga', '$I_D$ sin carga', [0, 50], [-500, 850])
+    giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3, t_ej1, Vd_ej1, t_ej1, Id_ej1, '$V_{D} \ [V]$', '$I_D \ [A]$', 'Tiempo $[\mu s]$', '$V_{D}$ con carga', '$V_D$ sin carga', '$I_{D}$ con carga', '$I_D$ sin carga', [0, 50], ylim2=[-2.5, 1])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\id-vd-1v3.png')
     plt.show()
