@@ -267,12 +267,12 @@ if powerMOS:
     plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
     plt.ylabel("Potencia [W]")
     plt.xlabel('Tiempo $[\mu s]$')
-    plt.xlim(0,17)
+    plt.xlim(0,12)
 
     plt.minorticks_on()
     plt.grid(which='major')
 
     plt.plot(t_ej3, power, color='red')
 
-    plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\potemcia-mos.png')
+    plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\potencia-mos.png')
     plt.show()
