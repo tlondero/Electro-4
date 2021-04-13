@@ -34,7 +34,7 @@ En esta sección se reemplaza la llave ideal por un MOSFET con un circuito de di
 \end{figure}
 \end{multicols}
 
-Con el cambio mencionado, se pueden notar variaciones en la $V_L$ y en el duty cycle, el cual aumentó respecto al que se daba con un switch ideal. La variación porcentual de esta variable es $\Delta DC = 0.XX \% $. También se observa la diferencia en los tiempos de conmutación, la cual se debe a que en la llave ideal los cambios son instantáneos mientras que con la real no lo es. Con respecto a la diferencia de offset en la corriente, la causa se debe a la $r_{DS}$ existente en el MOSFET y no en la llave. Por último se puede observar que la corriente de reverse recovery del diodo ahora se ve acotada a $I_{rr}\approx 2.8 \ A$, la cual es menor a la registrada en el caso anterior, esto es esperado dado que la corriente de reverse recovery queda definida por lo siguiente:\\
+Con el cambio mencionado, se pueden notar variaciones en la $V_L$ y en el duty cycle, el cual aumentó respecto al que se daba con un switch ideal. La variación porcentual de esta variable es $\Delta DC = 1.71 \% $. También se observa la diferencia en los tiempos de conmutación, la cual se debe a que en la llave ideal los cambios son instantáneos mientras que con la real no lo es. Con respecto a la diferencia de offset en la corriente, la causa se debe a la $r_{DS}$ existente en el MOSFET y no en la llave. Por último se puede observar que la corriente de reverse recovery del diodo ahora se ve acotada a $I_{rr}\approx 2.8 \ A$, la cual es menor a la registrada en el caso anterior, esto es esperado dado que la corriente de reverse recovery queda definida por lo siguiente:\\
 Dado un diodo, este almacenará cierta carga cuando se lo polariza en inversa $\Delta Q$, la corriente que proporcionará será directamente proporcional a que tan rápida conmutará la llave que cambie la polarización del diodo, en el caso de la llave ideal este cambio era instantáneo y con el MOS dependerá de los tiempos de conmutación.
 
 \subsection{Potencia}
@@ -70,7 +70,8 @@ $t_{on}$ & $t_{ri}$ & $t_{fv}$ & $t_{doff}$ & $t_{rv}$ & $t_{fi}$          \\	\h
 \caption{Tiempos de conmutación en el disparo del MOSFET.}
 \end{table}
 
-Algo a notar en las Figuras (\ref{fig:ej3:Id_Vd_SWITCH_BOOST}) y (\ref{fig:ej3:Il_Vl_SWITCH_BOOST}) es que la corriente por la bobina y el diodo, al igual que la tensión sobre los mismos, depende de la carga. Es por este motivo es razonable que sus valores sean distintos. En cuanto a la corriente de recovery se puede ver que con un MOSFET toma un valor razonable a diferencia del uso de un componente ideal. 
+Algo a notar en las Figuras (\ref{fig:ej3:Id_Vd_SWITCH_BOOST}) y (\ref{fig:ej3:Il_Vl_SWITCH_BOOST}) es que la corriente por la bobina y el diodo, al igual que la tensión sobre los mismos, depende de la carga. Es por este motivo es razonable que sus valores sean distintos. En cuanto a la corriente de recovery se puede ver que con un MOSFET toma un valor razonable a diferencia del uso de un componente ideal.También se ve una diferencia en la fase, esto se debe a que cuentan con distinto DC ambos circuitos, mas allá de que comparten la misma frecuencia. 
+También se ve en las formas de onda de VGS IG, ID y VDS que el tanto las pendientes como los tiempos son distintos, esto se debe a que hay un valor distinto de $V_{GS-IO}$ y una diferente corriente $I_D$ la cual depende del circuito.
 \begin{multicols}{2}
 \begin{figure}[H]
 	\centering
