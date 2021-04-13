@@ -159,7 +159,8 @@ t_ej3 = np.abs(np.asarray(LTR_punto3.get_trace(0).data))*1e6
 t_ej2 = np.abs(np.asarray(LTR_punto2.get_trace(0).data))*1e6
 t_ej1 = np.abs(np.asarray(LTR_punto1.get_trace(0).data))*1e6
 
-show3con2 = True
+powerMOS = True
+show3con2 = False
 show3con1 = False
 
 ##########################################
@@ -252,4 +253,26 @@ if show3con1:
 
     giveMe4(t_ej3, Vd_ej3, t_ej3, Id_ej3, t_ej1, Vd_ej1, t_ej1, Id_ej1, '$V_{D} \ [V]$', '$I_D \ [A]$', 'Tiempo $[\mu s]$', '$V_{D}$ con carga', '$V_D$ sin carga', '$I_{D}$ con carga', '$I_D$ sin carga', [0, 50], ylim2=[-2.5, 1])
     plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\id-vd-1v3.png')
+    plt.show()
+
+##########################################
+##          POTENCIA DEL MOS            ##
+##########################################
+if powerMOS:
+    Vg_ej3 = np.asarray(LTR_punto3.get_trace("V(vg)").data)
+    Ig_ej3 = np.asarray(LTR_punto3.get_trace("Ig(M1)").data)
+
+    power = Vds_ej3 * Ids_ej3 + Vg_ej3 * Ig_ej3
+
+    plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
+    plt.ylabel("Potencia [W]")
+    plt.xlabel('Tiempo $[\mu s]$')
+    plt.xlim(0,17)
+
+    plt.minorticks_on()
+    plt.grid(which='major')
+
+    plt.plot(t_ej3, power, color='red')
+
+    plt.savefig('..\..\Tex\Ejercicio-3\ImagenesEjercicio-3\potemcia-mos.png')
     plt.show()
