@@ -132,25 +132,50 @@ else:
     color3 = 'tab:red'
     color4 = 'tab:orange'
 
-    plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-    plt.ylabel("Potencia [W]")
+    fig, (ax1, ax2) = plt.subplots(2, 1, sharex=True, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
+    fig.subplots_adjust(hspace=0.05)  # adjust space between axes
+
+    l1, = ax1.plot(t_ccm, pot_ccm, color=color1)
+    l1, = ax2.plot(t_ccm, pot_ccm, color=color1)
+
+    l2, = ax1.plot(t_pot, pot_pot, color=color2)
+    l2, = ax2.plot(t_pot, pot_pot, color=color2)
+
+    l3, = ax1.plot(t_snub, pot_snub, color=color3)
+    l3, = ax2.plot(t_snub, pot_snub, color=color3)
+
+    l4, = ax1.plot(t_snub, pot_snub_r, '--', color=color4)
+    l4, = ax2.plot(t_snub, pot_snub_r, '--', color=color4)
+
+    plt.text(-1.9, 21, 'Potencia [W]', va='center', rotation='vertical')
+
+    ax1.set_ylim(70, 85)  # outliers only
+    ax2.set_ylim(0, 20)  # most of the data
+
+    # hide the spines between ax and ax2
+    ax1.spines['bottom'].set_visible(False)
+    ax2.spines['top'].set_visible(False)
+    ax1.xaxis.tick_top()
+    ax1.tick_params(labeltop=False)  # don't put tick labels at the top
+    ax2.xaxis.tick_bottom()
+
+    d = .5  # proportion of vertical to horizontal extent of the slanted line
+    kwargs = dict(marker=[(-1, -d), (1, d)], markersize=12,
+                  linestyle="none", color='k', mec='k', mew=1, clip_on=False)
+    ax1.plot([0, 1], [0, 0], transform=ax1.transAxes, **kwargs)
+    ax2.plot([0, 1], [1, 1], transform=ax2.transAxes, **kwargs)
+
+    ax1.legend([l1, l2, l3, l4], ["CCM", "Sin snubber", "Con snubber", "Resistencia del snubber"])
+
+    ax1.minorticks_on()
+    ax1.grid(which='major')
+    ax2.minorticks_on()
+    ax2.grid(which='major')
+
     plt.xlabel('Tiempo $[\mu s]$')
-
-    plt.minorticks_on()
-    plt.grid(which='major')
-
-    l1, = plt.plot(t_ccm, pot_ccm, color=color1)
-    l2, = plt.plot(t_pot, pot_pot, color=color2)
-    l3, = plt.plot(t_snub, pot_snub, color=color3)
-    l4, = plt.plot(t_snub, pot_snub_r, '-', color=color4)
-
-    plt.legend([l1, l2, l3, l4], ["CCM", "Sin snubber", "Con snubber", "Resistencia del snubber"])
-
+    #ax1.text(-1.75, 85, 'Potencia [W]', va='top', rotation='vertical')
     plt.tight_layout()
-
-    plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\potencias.png')
-
-    plt.ylim(0, 10)
+    fig.subplots_adjust(hspace=0.05)
     plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\potencias-crop.png')
 
     plt.show()
