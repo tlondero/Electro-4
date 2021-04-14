@@ -17,7 +17,7 @@ def getData(path):
     return np.asarray(time), np.asarray(data)
 
 #Get SPICE data
-LTR = LTSpiceRawRead("Draft4.raw")
+LTR = LTSpiceRawRead("../Spice/Draft4.raw")
 
 t_s = np.abs(np.asarray(LTR.get_trace(0).data))*1e6
 Vo_s = np.asarray(LTR.get_trace("Id(M1)").data)
