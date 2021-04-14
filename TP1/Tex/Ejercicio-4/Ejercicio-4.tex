@@ -70,22 +70,31 @@ Luego,
 	R_{snub} = \sqrt{\frac{L_{par}}{C_{snub}}} = 355\Omega
 \end{equation}
 
-Quedando el circuito como se observa en la Figura (). A continuación se detallan las curvas simuladas con el snubber en las Figuras (\ref{ej4:fig:vds_snub}) y (\ref{ej4:fig:il_snub}).
+%Quedando el circuito como se observa en la Figura (). A continuación se detallan las curvas simuladas con el snubber en las Figuras (\ref{ej4:fig:vds_snub}) y (\ref{ej4:fig:il_snub}).
+%
+%\begin{figure}[H]
+%	\centering
+%	\begin{minipage}{0.495\textwidth}
+%		\centering
+%		\includegraphics[width=\textwidth]{ImagenesEjercicio-4/comparacion-vds}	% first figure itself
+%		\caption{Comparación entre $V_{ds}$ en modo discontinuo con y sin snubber.}
+%		\label{ej4:fig:vds_snub}
+%	\end{minipage}\hfill
+%	\begin{minipage}{0.495\textwidth}
+%		\centering
+%		\includegraphics[width=\textwidth]{ImagenesEjercicio-4/comparacion-ids}	% second figure itself
+%		\caption{Comparación entre $I_{ds}$ en modo discontinuo con y sin snubber.}
+%		\label{ej4:fig:il_snub}
+%	\end{minipage}
+%\end{figure}
+
+Quedando el circuito como se observa en la Figura (). A continuación se detallan las curvas simuladas con el snubber en la Figura (\ref{ej4:fig:vds_ids_snub}).
 
 \begin{figure}[H]
 	\centering
-	\begin{minipage}{0.495\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{ImagenesEjercicio-4/pend}%{ImagenesEjercicio-4/FALTA}% % first figure itself
-		\caption{Comparación entre $V_{ds}$ en modo discontinuo con y sin snubber.}
-		\label{ej4:fig:vds_snub}
-	\end{minipage}\hfill
-	\begin{minipage}{0.495\textwidth}
-		\centering
-		\includegraphics[width=\textwidth]{ImagenesEjercicio-4/pend}%{ImagenesEjercicio-4/FALTA} % second figure itself
-		\caption{Comparación entre $I_{L}$ en modo discontinuo con y sin snubber.}
-		\label{ej4:fig:il_snub}
-	\end{minipage}
+	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-4/con-y-sin-snubber}
+	\caption{Comparación de las curvas de $V_{ds}$ e $I_{ds}$ en modo discontinuo con y sin snubber.}
+	\label{ej4:fig:vds_ids_snub}
 \end{figure}
 
 Si bien se puede observar una disminución en la amplitud y pseudo-frecuencia de oscilación, se puede sintonizar el circuito snubber más allá de los cálculos teóricos para lograr un mayor amortiguamiento. En la siguiente sección veremos como si bien este circuito logra disminuir el efecto de ringing, también aumenta la disipación de potencia.
