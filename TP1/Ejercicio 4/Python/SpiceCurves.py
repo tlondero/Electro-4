@@ -35,71 +35,118 @@ def giveMe4(x1, y1, x2, y2, x1p, y1p, x2p, y2p, yLabel1, yLabel2, xLabel, label1
 
     fig.tight_layout()
 
-#Get SPICE data
+compSnubb = False
 
-LTR_snubber_sin = LTSpiceRawRead("../Spice/Draft4.raw")
-LTR_snubber_con = LTSpiceRawRead("../Spice/Draft4_snubber.raw")
+if compSnubb:
 
-t_sin = np.abs(np.asarray(LTR_snubber_sin.get_trace(0).data))*1e6
-t_con = np.abs(np.asarray(LTR_snubber_con.get_trace(0).data))*1e6
+    #Get SPICE data
 
-Vds_sin = np.asarray(LTR_snubber_sin.get_trace("V(vd)").data)
-Vds_con = np.asarray(LTR_snubber_con.get_trace("V(vd)").data)
+    LTR_snubber_sin = LTSpiceRawRead("../Spice/Draft4.raw")
+    LTR_snubber_con = LTSpiceRawRead("../Spice/Draft4_snubber.raw")
 
-Ids_sin = np.asarray(LTR_snubber_sin.get_trace("Id(M1)").data)*1e3
-Ids_con = np.asarray(LTR_snubber_con.get_trace("Id(M1)").data)*1e3
+    t_sin = np.abs(np.asarray(LTR_snubber_sin.get_trace(0).data))*1e6
+    t_con = np.abs(np.asarray(LTR_snubber_con.get_trace(0).data))*1e6
 
-###########################################
-##        COMPARACIÓN De todo            ##
-###########################################
+    Vds_sin = np.asarray(LTR_snubber_sin.get_trace("V(vd)").data)
+    Vds_con = np.asarray(LTR_snubber_con.get_trace("V(vd)").data)
 
-giveMe4(t_sin, Vds_sin, t_sin, Ids_sin, t_con, Vds_con, t_con, Vds_con, 'Tensión [V]', 'Corriente [mA]', 'Tiempo $[\mu s]$', 'Tensión sin snubber',
-        'Tensión con snubber', 'Corriente sin snubber', 'Corriente con snubber')
-plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\con-y-sin-snubber.png')
-plt.show()
+    Ids_sin = np.asarray(LTR_snubber_sin.get_trace("Id(M1)").data)*1e3
+    Ids_con = np.asarray(LTR_snubber_con.get_trace("Id(M1)").data)*1e3
+
+    ###########################################
+    ##        COMPARACIÓN De todo            ##
+    ###########################################
+
+    giveMe4(t_sin, Vds_sin, t_sin, Ids_sin, t_con, Vds_con, t_con, Vds_con, 'Tensión [V]', 'Corriente [mA]', 'Tiempo $[\mu s]$', 'Tensión sin snubber',
+            'Tensión con snubber', 'Corriente sin snubber', 'Corriente con snubber')
+    plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\con-y-sin-snubber.png')
+    plt.show()
+
+    color1 = 'tab:red'
+    color2 = 'tab:orange'
+
+    ###########################################
+    ##            COMPARACIÓN Vds            ##
+    ###########################################
+
+    plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
+    plt.ylabel("Tensión [V]")
+    plt.xlabel('Tiempo $[\mu s]$')
+
+    plt.minorticks_on()
+    plt.grid(which='major')
+
+    l1, = plt.plot(t_sin, Vds_sin, color=color1)
+    l2, = plt.plot(t_con, Vds_con, color=color2)
+
+    plt.legend([l1, l2], ["Sin snubber", "Con snubber"])
+
+    plt.tight_layout()
+
+    plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\comparacion-vds.png')
+    plt.show()
+
+    ###########################################
+    ##            COMPARACIÓN Ids            ##
+    ###########################################
+
+    plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
+    plt.ylabel("Corriente [mA]")
+    plt.xlabel('Tiempo $[\mu s]$')
+
+    plt.minorticks_on()
+    plt.grid(which='major')
+
+    l1, = plt.plot(t_sin, Ids_sin, color=color1)
+    l2, = plt.plot(t_con, Ids_con, color=color2)
+
+    plt.legend([l1, l2], ["Sin snubber", "Con snubber"])
+
+    plt.tight_layout()
+
+    plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\comparacion-ids.png')
+    plt.show()
+
+else:
+    ###########################################
+    ##               Potencia                ##
+    ###########################################
 
 
-color1 = 'tab:red'
-color2 = 'tab:orange'
+    # #Get SPICE data
+    LTR_ccm = LTSpiceRawRead("../Spice/Draft4_CCM.raw")
+    LTR_pot = LTSpiceRawRead("../Spice/Draft4_pot.raw")
+    LTR_snub = LTSpiceRawRead("../Spice/Draft4_snubber_pot.raw")
 
-###########################################
-##            COMPARACIÓN Vds            ##
-###########################################
+    t_ccm = np.abs(np.asarray(LTR_ccm.get_trace(0).data))*1e6
+    t_pot = np.abs(np.asarray(LTR_pot.get_trace(0).data))*1e6
+    t_snub = np.abs(np.asarray(LTR_snub.get_trace(0).data))*1e6
 
-plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-plt.ylabel("Tensión [V]")
-plt.xlabel('Tiempo $[\mu s]$')
+    pot_ccm = np.asarray(LTR_ccm.get_trace("V(vd)").data)*np.asarray(LTR_ccm.get_trace("Id(M1)").data) + np.asarray(LTR_ccm.get_trace("V(vg)").data)*np.asarray(LTR_ccm.get_trace("Ig(M1)").data)
+    pot_pot = np.asarray(LTR_pot.get_trace("V(vd)").data)*np.asarray(LTR_pot.get_trace("Id(M1)").data) + np.asarray(LTR_pot.get_trace("V(vg)").data)*np.asarray(LTR_pot.get_trace("Ig(M1)").data)
+    pot_snub = np.asarray(LTR_snub.get_trace("V(vd)").data)*np.asarray(LTR_snub.get_trace("Id(M1)").data) + np.asarray(LTR_snub.get_trace("V(vg)").data)*np.asarray(LTR_snub.get_trace("Ig(M1)").data)
+    pot_snub_r = (np.asarray(LTR_snub.get_trace("V(vd)").data) - np.asarray(LTR_snub.get_trace("V(p001)").data))*np.asarray(LTR_snub.get_trace("I(R7)").data)
 
-plt.minorticks_on()
-plt.grid(which='major')
+    color1 = 'tab:blue'
+    color2 = 'tab:green'
+    color3 = 'tab:red'
+    color4 = 'tab:orange'
 
-l1, = plt.plot(t_sin, Vds_sin, color=color1)
-l2, = plt.plot(t_con, Vds_con, color=color2)
+    plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
+    plt.ylabel("Potencia [W]")
+    plt.xlabel('Tiempo $[\mu s]$')
 
-plt.legend([l1, l2], ["Sin snubber", "Con snubber"])
+    plt.minorticks_on()
+    plt.grid(which='major')
 
-plt.tight_layout()
+    l1, = plt.plot(t_ccm, pot_ccm, color=color1)
+    l2, = plt.plot(t_pot, pot_pot, color=color2)
+    l3, = plt.plot(t_snub, pot_snub, color=color3)
+    l4, = plt.plot(t_snub, pot_snub_r, '-', color=color4)
 
-plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\comparacion-vds.png')
-plt.show()
+    plt.legend([l1, l2, l3, l4], ["CCM", "Sin snubber", "Con snubber", "Resistencia del snubber"])
 
-###########################################
-##            COMPARACIÓN Ids            ##
-###########################################
+    plt.tight_layout()
 
-plt.figure(num=6, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
-plt.ylabel("Corriente [mA]")
-plt.xlabel('Tiempo $[\mu s]$')
-
-plt.minorticks_on()
-plt.grid(which='major')
-
-l1, = plt.plot(t_sin, Ids_sin, color=color1)
-l2, = plt.plot(t_con, Ids_con, color=color2)
-
-plt.legend([l1, l2], ["Sin snubber", "Con snubber"])
-
-plt.tight_layout()
-
-plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\comparacion-ids.png')
-plt.show()
+    plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\potencias.png')
+    plt.show()
