@@ -11,16 +11,27 @@
 \begin{page}
 \begin{circuitikz}[american voltages]
 
+	\def\Dist{1.25}
+
 	\node[nigfete](m1){};	
 	\draw	
+		(m1.D) |- ++ (1,\Dist) node[](aux1){}
+		(m1.S) |- ++ (1,-\Dist)  node[](aux2){}
 		
+		(m1) ++ (1,0) to[C, l_=$\begin{array}{c} C_{Snub} \\ 2.255 \ nf\end{array}$] ++ (0,\Dist) |- (aux1.center)
+		(m1) ++ (1,0) to[R, l=$\begin{array}{c} R_{Snub} \\ 355 \ \Omega\end{array}$] ++ (0,-\Dist)	|- (aux2.center)	
+			
+	;
+	
+	\draw[dashed]
+		(m1.D) ++ (0,\Dist) -- ++(0,0.75)
+		(m1.S) ++ (0,-\Dist) -- ++(0,-0.75)
+		(m1.G) -- ++(-0.75,0)
 	;
 	
 %	\draw[color = red]
 %		(aux1.center) node[circ](){1}
 %		(aux2.center) node[circ](){2}
-%		(aux3.center) node[circ](){3}
-%		(aux4.center) node[circ](){4}
 %	;
 
 \end{circuitikz}
