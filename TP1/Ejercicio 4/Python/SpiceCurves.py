@@ -149,4 +149,8 @@ else:
     plt.tight_layout()
 
     plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\potencias.png')
+
+    plt.ylim(0, 10)
+    plt.savefig('..\..\Tex\Ejercicio-4\ImagenesEjercicio-4\potencias-crop.png')
+
     plt.show()
