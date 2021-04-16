@@ -23,7 +23,7 @@ En la teoría, se consideró al diodo MUR460 como ideal excepto por la caída de
 
 \subsubsection{Primer Hemicircuito: MOSFET ON}
 
-Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina y la $R_{ds_{on}}$ del MOSFET. Como el diodo se encuentra con su ánodo conectado a aproximadamente tierra, y su cátodo conectado a $V_i$, este se encuentra en inversa por lo que no circula corriente a través de él.
+Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina y la $R_{DS_{on}}$ del MOSFET. Como el diodo se encuentra con su ánodo conectado a aproximadamente tierra, y su cátodo conectado a $V_i$, este se encuentra en inversa por lo que no circula corriente a través de él.
 
 \begin{figure}[H]
 	\centering
@@ -32,18 +32,18 @@ Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina
 	\label{ej1:fig:circuito_on}
 \end{figure}
 
-Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:VL_on}) que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{ds_{on}} = I_{L_{on}}\cdot R_{ds_{on}}$
+Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:VL_on}) que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{DS_{on}} = I_{L_{on}}\cdot R_{DS_{on}}$
 
 \begin{equation}
 \begin{gathered}
-	 I_{L_{on}}(t) = \left( \left. I_{L_{off}} \right|_{t= n/f_{sw}} -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}+R_2}{L}t} \\ + \frac{V_2}{R_{ds_{on}}+R_2} \ \ \ \ n \in \mathbb{N}
+	 I_{L_{on}}(t) = \left( \left. I_{L_{off}} \right|_{t= n/f_{sw}} -\frac{V_2}{R_{DS_{on}}+R_2}\right) e^{-\frac{R_{DS_{on}}+R_2}{L}t} \\ + \frac{V_2}{R_{DS_{on}}+R_2} \ \ \ \ n \in \mathbb{N}
 \end{gathered}
 \label{ej1:eq:IL_on}
 \end{equation}
 
 \begin{equation}
 \begin{gathered}
-	V_{L_{on}}(t) = \left[ V_2 - \left. I_{L_{off}} \right|_{t= n/f_{sw}}\cdot (R_{ds_{on}}+R_2) \right]e^{-\frac{R_{ds_{on}}+R_2}{L}t} \\ \ \ \ \ \ \ n \in \mathbb{N}
+	V_{L_{on}}(t) = \left[ V_2 - \left. I_{L_{off}} \right|_{t= n/f_{sw}}\cdot (R_{DS_{on}}+R_2) \right]e^{-\frac{R_{DS_{on}}+R_2}{L}t} \\ \ \ \ \ \ \ n \in \mathbb{N}
 \end{gathered}
 \label{ej1:eq:VL_on}
 \end{equation}
@@ -52,7 +52,7 @@ Donde $t=\frac{n}{f_{sw}}$ son los momentos en los que el MOSFET conmuta de apag
 
 \subsubsection{Segundo Hemicircuito: MOSFET OFF}
 
-Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_{L_on}$. Sobre el MOSFET caen $V_{ds_{off}} = V_2 + V_D = 13.3V$ circulando la malla formada por el diodo, el MOSFET y la fuente de entrada. En este estado, si se desprecia la corriente parásita del MOSFET, toda la corriente $I_{L_{off}}$ de la bobina pasa por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina y no se extrae corriente de la fuente de alimentación.
+Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria entre sus bornes para que siga circulando la corriente $I_{L_on}$. Sobre el MOSFET caen $V_{DS_{off}} = V_2 + V_D = 13.3V$ circulando la malla formada por el diodo, el MOSFET y la fuente de entrada. En este estado, si se desprecia la corriente parásita del MOSFET, toda la corriente $I_{L_{off}}$ de la bobina pasa por el diodo el cual se encuentra polarizado en directa a consecuencia de la tensión impuesta por la bobina y no se extrae corriente de la fuente de alimentación.
 
 \begin{figure}[H]
 	\centering
@@ -64,7 +64,7 @@ Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria e
 Resolviendo el circuito RL que se obtiene en este estado, se observa que la bobina tiene una pérdida de energía almacenada dada por las ecuaciones (\ref{ej1:eq:IL_off}) y (\ref{ej1:eq:VL_off}).
 
 \begin{equation}
-	 I_{L_{off}}(t) = \left( \left. I_{L_{on}} \right|_{t= nD/f_{sw}} -\frac{V_d}{R_2}\right) e^{-\frac{R_2}{L}t} + \frac{V_d}{R_2} \ \ \ \ n \in \mathbb{N}_o
+	 I_{L_{off}}(t) = \left( \left. I_{L_{on}} \right|_{t= nD/f_{sw}} -\frac{V_D}{R_2}\right) e^{-\frac{R_2}{L}t} + \frac{V_D}{R_2} \ \ \ \ n \in \mathbb{N}_o
 \label{ej1:eq:IL_off}
 \end{equation}
 
@@ -106,10 +106,10 @@ Conociendo la corriente media de la bobina, aproximando la tensión en cada esta
 y el ripple en la tensión $V_L$ puede hallarse según la Ecuación (\ref{ej1:eq:VL_on}) como
 
 \begin{equation}
-\Delta V_L = \left[ V_2 - \bar{I_L} (R_{ds_{on}}+R_2) \right] \cdot (1-e^{-\frac{R_{ds_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
+\Delta V_L = \left[ V_2 - \bar{I_L} (R_{DS_{on}}+R_2) \right] \cdot (1-e^{-\frac{R_{DS_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
 \end{equation}
 
-Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:idiodo_permanente}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t) \cdot R_{ds_{on}} \approx \bar{I_L} \cdot R_{ds_{on}} = 827mV$ durante el estado encendido.
+Finalmente, la corriente en el diodo $I_{D}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:idiodo_permanente}). La tensión $V_{DS}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t) \cdot R_{DS_{on}} \approx \bar{I_L} \cdot R_{DS_{on}} = 827mV$ durante el estado encendido.
 
 \begin{figure}[H]
 	\centering
@@ -137,56 +137,56 @@ I_G(t) = \frac{V_{GG}}{R_1}e^{-\frac{t}{\tau_1}}
 \end{equation}
 
 \begin{equation}
-V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_1}})
+V_{GS}(t) = V_{GG}(1-e^{-\frac{t}{\tau_1}})
 \label{ej1:eq:vgs_ton}
 \end{equation}
 
-Donde la constante de tiempo $\tau_1 = R_1 (C_{gs}+C_{gd_{1}}) = 75ns$ es regida por la capacidad de entrada del MOSFET compuesta por la capacitancia entre gate y source y la situada entre gate y drain, con un valor de $C_{gs}+C_{gd_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{gs_{th}} = 4V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
+Donde la constante de tiempo $\tau_1 = R_1 (C_{GS}+C_{GD_{1}}) = 75ns$ es regida por la capacidad de entrada del MOSFET compuesta por la capacitancia entre gate y source y la situada entre gate y drain, con un valor de $C_{GS}+C_{GD_{1}} = 750pF$ observado en la Figura (\ref{ej1:fig:cgd}). Cuando la tensión entre gate y source llega al valor de threshold $V_{GS_{th}} = 4V$ (proporcionada por la datasheet del IRF530) luego de un tiempo 
 \begin{equation}
 t_{d_{on}} = -\tau_1 ln\left( 1-\frac{V_{th}}{V_2} \right) = 30ns
 \label{ej1:eq:tdon}
 \end{equation}
 
-según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de drain $I_{ds}$ con pendiente constante. Una vez que la corriente de drain $I_{ds}$ alcanza el valor medio de la corriente de la bobina $\bar{I_L}$, se observa en la Figura (\ref{ej1:fig:vgsio}) proporcionada por la datasheet del IRF530 que la tensión $V_{gs}$ será $V_{gs_{io}} = 5.5V$. Utilizando este valor y la Ecuación (\ref{ej1:eq:vgs_ton}) se obtiene que el tiempo de rise de la corriente de drain es
+según la Ecuación (\ref{ej1:eq:vgs_ton}), comienza a crecer la corriente de drain $I_{DS}$ con pendiente constante. Una vez que la corriente de drain $I_{DS}$ alcanza el valor medio de la corriente de la bobina $\bar{I_L}$, se observa en la Figura (\ref{ej1:fig:vgsio}) proporcionada por la datasheet del IRF530 que la tensión $V_{GS}$ será $V_{GS_{io}} = 5.5V$. Utilizando este valor y la Ecuación (\ref{ej1:eq:vgs_ton}) se obtiene que el tiempo de rise de la corriente de drain es
 
 \begin{equation}
-	t_{ri} = -\tau_1 ln\left( 1-\frac{V_{gs_{io}}}{V_2} \right) -t_{d_{on}} = 16ns
+	t_{ri} = -\tau_1 ln\left( 1-\frac{V_{GS_{io}}}{V_2} \right) -t_{d_{on}} = 16ns
 \label{ej1:eq:trise}
 \end{equation}
 
-La tensión $V_{ds}$ no disminuye hasta que la corriente $I_D$ no es lo suficientemente alta para que la corriente del diodo sea en consecuencia lo suficientemente baja para que este se polarice en inversa. Es cuando el diodo se polariza en inversa y no deja pasar corriente que la tensión entre sus bornes comienza a aumentar, lo que genera que la caída de tensión del MOSFET disminuya. A partir de este momento, se formará la zona de agotamiento del body layer en el transistor y la $V_{ds}$ comenzará a caer. La tensión $V_{gs} = V_{gs_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{gs_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{gd}$ se incrementa de $C_{gd_1}$ a $C_{gd_2}$ debido a la formación de la susodicha zona de agotamiento. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{ds}$ alcanzará un valor $V_{ds} = V_{ds_{on}} = \bar{I_L} R_{ds_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (\ref{ej1:eq:ilbar}). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{gs_{io}}}{R_1}= 65mA$ obteniendo
+La tensión $V_{DS}$ no disminuye hasta que la corriente $I_D$ no es lo suficientemente alta para que la corriente del diodo sea en consecuencia lo suficientemente baja para que este se polarice en inversa. Es cuando el diodo se polariza en inversa y no deja pasar corriente que la tensión entre sus bornes comienza a aumentar, lo que genera que la caída de tensión del MOSFET disminuya. A partir de este momento, se formará la zona de agotamiento del body layer en el transistor y la $V_{DS}$ comenzará a caer. La tensión $V_{GS} = V_{GS_{io}}$ y la corriente $I_G = \frac{V_{GG}-V_{GS_{io}}}{R_1} = 65mA$ se mantendrá constante mientras la capacitancia $C_{GD}$ se incrementa de $C_{GD_1}$ a $C_{GD_2}$ debido a la formación de la susodicha zona de agotamiento. Luego de un tiempo $t_{fv}$ en el que fluyó una carga de $\Delta Q = 7.3nC$ al gate del MOSFET, dato proporcionado de la datasheet del IRF530 visto en la Figura (\ref{ej1:fig:deltaq}), la tensión $V_{DS}$ alcanzará un valor $V_{DS} = V_{DS_{on}} = \bar{I_L} R_{DS_{on}} = 828mV$ utilizando el valor de $\bar{I_L}$ calculado en la Ecuación (\ref{ej1:eq:ilbar}). El tiempo transcurrido en esta transición puede calcularse teniendo en cuenta la corriente $I_G = \frac{V_2 - V_{GS_{io}}}{R_1}= 65mA$ obteniendo
 
 \begin{equation}
-	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{gs_{io}}} = 112ns
+	t_{fv} = \frac{R_1 \Delta Q}{V_2 - V_{GS_{io}}} = 112ns
 	\label{ej1:eq:tfv}
 \end{equation}
 
-Finalmente, habiendo transicionado la capacitancia $C_{gd}$ de $C_{gd_1}$ a $C_{gd_2}$, se terminará de cargar el capacitor parásito de entrada del MOSFET según las Ecuaciones (\ref{ej1:eq:vgs_ton_2}) y (\ref{ej1:eq:ig_ton_2}).
+Finalmente, habiendo transicionado la capacitancia $C_{GD}$ de $C_{GD_1}$ a $C_{GD_2}$, se terminará de cargar el capacitor parásito de entrada del MOSFET según las Ecuaciones (\ref{ej1:eq:vgs_ton_2}) y (\ref{ej1:eq:ig_ton_2}).
 
 \begin{equation}
-V_{gs}(t) = V_{GG}(1-e^{-\frac{t}{\tau_2}})
+V_{GS}(t) = V_{GG}(1-e^{-\frac{t}{\tau_2}})
 \label{ej1:eq:vgs_ton_2}
 \end{equation}
 
 \begin{equation}
-I_{G}(t) =  \frac{V_{GG}-V_{gs_{io}}}{R_1}e^{-\frac{t}{\tau_2}}
+I_{G}(t) =  \frac{V_{GG}-V_{GS_{io}}}{R_1}e^{-\frac{t}{\tau_2}}
 \label{ej1:eq:ig_ton_2}
 \end{equation}
 
-siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150pF$ observado en la Figura (\ref{ej1:fig:cgd}). Se puede observar en las Figuras (\ref{ej1:fig:encendido_gate}) y (\ref{ej1:fig:encendido_drain}) el proceso entero de encendido descrito anteriormente.
+siendo $\tau_2 = R_1(C_{GS} + C_{GS_2}) = 115ns$ donde $C_{GS} + C_{GD_2} = 1150pF$ observado en la Figura (\ref{ej1:fig:cgd}). Se puede observar en las Figuras (\ref{ej1:fig:encendido_gate}) y (\ref{ej1:fig:encendido_drain}) el proceso entero de encendido descrito anteriormente.
 
 \begin{figure}[H]
 	\centering
 	\begin{minipage}{0.45\textwidth}
 		\centering	
 		\includegraphics[width=\linewidth]{ImagenesEjercicio-1/encendido_gate}
-		\caption{$V_{gs}$ e $I_G$ en el encendido del MOSFET.}
+		\caption{$V_{GS}$ e $I_{G}$ en el encendido del MOSFET.}
 		\label{ej1:fig:encendido_gate}
 	\end{minipage}\hfill
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{ImagenesEjercicio-1/encendido_drain}
-		\caption{$V_{ds}$ e $I_D$ en el encendido del MOSFET.}
+		\caption{$V_{DS}$ e $I_{DS}$ en el encendido del MOSFET.}
 		\label{ej1:fig:encendido_drain}
 	\end{minipage}\hfill
 \end{figure}
@@ -195,13 +195,13 @@ siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150
 	\begin{minipage}{0.4\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{ImagenesEjercicio-1/Vgs-Id_LI} % first figure itself
-		\caption{$V_{gs_{io}}$ de la datasheet del IRF530.}
+		\caption{$V_{GS_{io}}$ de la datasheet del IRF530.}
 		\label{ej1:fig:vgsio}
 	\end{minipage}\hfill
 	\begin{minipage}{0.4\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{ImagenesEjercicio-1/deltaq} % second figure itself
-		\caption{$\Delta Q$ en la transición de $C_{gd_1}$ a $C_{gs_2}$ de la datasheet del IRF530.}
+		\caption{$\Delta Q$ en la transición de $C_{GD_1}$ a $C_{GD_2}$ de la datasheet del IRF530.}
 		\label{ej1:fig:deltaq}
 	\end{minipage}\hfill
 \end{figure}
@@ -209,58 +209,58 @@ siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/Vds-C}
-	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530 donde no ingresa carga al capacitor parásito $C_{gs}$ debido a la tensión constante $V_{gs}$.}
+	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530 donde no ingresa carga al capacitor parásito $C_{GS}$ debido a la tensión constante $V_{GS}$.}
 	\label{ej1:fig:cgd}
 \end{figure}
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Apagado}
 
-Al hacer nula la tensión $V_{GG}$ tomada a la izquierda del resistor $R_1$, comienza el apagado del MOSFET. La corriente $I_G$, medida como entrante al gate, se torna instantáneamente negativa con un valor de $I_G = \frac{0V-12V}{R_1} = -120mA$ a causa del descargado del capacitor parásito de entrada del MOSFET, compuesta por las capacitancias $C_{gs} + C_{ds}$. Este capacitor parásito se encontraba cargado debido al previo encendido del transistor, donde se asume que la tensión $V_{gs}$ alcanzó una tensión igual a $V_2 = 12V$.
+Al hacer nula la tensión $V_{GG}$ tomada a la izquierda del resistor $R_1$, comienza el apagado del MOSFET. La corriente $I_G$, medida como entrante al gate, se torna instantáneamente negativa con un valor de $I_G = \frac{0V-12V}{R_1} = -120mA$ a causa del descargado del capacitor parásito de entrada del MOSFET, compuesta por las capacitancias $C_{GS} + C_{GD}$. Este capacitor parásito se encontraba cargado debido al previo encendido del transistor, donde se asume que la tensión $V_{GS}$ alcanzó una tensión igual a $V_2 = 12V$.
 
 Como tanto el apagado como el encendido del transistor poseen el mismo circuito, las constantes de tiempo $\tau_1$ y $\tau_2$ serán las mismas. Sin embargo, ahora estudiaremos la descarga del capacitor parásito de entrada.
 
-En primer lugar, la tensión $V_{gs}$ cae según (\ref{ej1:eq:vgs_off_1}) hasta el valor $V_{gs_{io}} = 5.5V$ mientras que la corriente $I_G$ disminuye su valor en módulo según (\ref{ej1:eq:ig_off_1}) hasta $I_G = \frac{0V - V_{gs_{io}}}{R_1} = -55mA$ en un proceso que dura
+En primer lugar, la tensión $V_{GS}$ cae según (\ref{ej1:eq:vgs_off_1}) hasta el valor $V_{GS_{io}} = 5.5V$ mientras que la corriente $I_G$ disminuye su valor en módulo según (\ref{ej1:eq:ig_off_1}) hasta $I_G = \frac{0V - V_{GS_{io}}}{R_1} = -55mA$ en un proceso que dura
 
 \begin{equation}
-t_{d_{off}} = -\tau_2 ln(\frac{V_{gs_{io}}}{V_2}) = 90ns
+t_{d_{off}} = -\tau_2 ln(\frac{V_{GS_{io}}}{V_2}) = 90ns
 \label{ej1:eq:toff}
 \end{equation}
 
 \begin{equation}
-V_{gs}(t) = V_2e^{-\frac{t}{\tau_2}}
+V_{GS}(t) = V_2e^{-\frac{t}{\tau_2}}
 \label{ej1:eq:vgs_off_1}
 \end{equation}
 
 \begin{equation}
-I_{g}(t) = \frac{0V-V_2}{R_1} e^{-\frac{t}{\tau_2}}
+I_{G}(t) = \frac{0V-V_2}{R_1} e^{-\frac{t}{\tau_2}}
 \label{ej1:eq:ig_off_1}
 \end{equation}
 
-Luego, tanto la tensión $V_{gs}$ como la corriente $I_G$ se mantienen constantes por un tiempo igual a 
+Luego, tanto la tensión $V_{GS}$ como la corriente $I_G$ se mantienen constantes por un tiempo igual a 
 
 \begin{equation}
-t_{rv} = \frac{R_1 \Delta Q}{V_{gs_{io}}} = 133ns
+t_{rv} = \frac{R_1 \Delta Q}{V_{GS_{io}}} = 133ns
 \label{ej1:eq:trv}
 \end{equation}
 
-con valores $5.5V$ y $\frac{0V-5.5V}{R_1} = -55mA$ respectivamente. Durante este tiempo la carga total egresada del gate del MOSFET será provista por el capacitor parasítico $C_{gd}$ el cual transicionará en este proceso de $C_{gd_2}$ a $C_{gd_1}$. Además, a lo largo de este tiempo $t_{rv}$, comenzará a crecer la tensión $V_{ds}$ hasta el valor de $V_{ds} = V_{ds_off} = 13.3V$ deducido anteriormente.
+con valores $5.5V$ y $\frac{0V-5.5V}{R_1} = -55mA$ respectivamente. Durante este tiempo la carga total egresada del gate del MOSFET será provista por el capacitor parasítico $C_{GD}$ el cual transicionará en este proceso de $C_{GD_2}$ a $C_{GD_1}$. Además, a lo largo de este tiempo $t_{rv}$, comenzará a crecer la tensión $V_{DS}$ hasta el valor de $V_{DS} = V_{DS_off} = 13.3V$ deducido anteriormente.
 
 A partir de este momento, la corriente de drain disminuirá hasta cero en un tiempo
 
 \begin{equation}
-t_{fi} = -\tau_1 ln\left( \frac{V_{gs_{th}}}{V_{gs_{io}}} \right) = 24ns
+t_{fi} = -\tau_1 ln\left( \frac{V_{GS_{th}}}{V_{GS_{io}}} \right) = 24ns
 \label{ej1:eq:tfi}
 \end{equation}
 
-mientras que la tensión $V_{gs}$ y corriente $I_G$ disminuirán exponencialmente hasta $V_{gs_{th}}$ y $\frac{0V-V_{gs_{th}}}{R_1}$ según (\ref{ej1:eq:vgs_off_2}) y (\ref{ej1:eq:ig_off_2}) para finalmente tender a cero.
+mientras que la tensión $V_{GS}$ y corriente $I_G$ disminuirán exponencialmente hasta $V_{GS_{th}}$ y $\frac{0V-V_{GS_{th}}}{R_1}$ según (\ref{ej1:eq:vgs_off_2}) y (\ref{ej1:eq:ig_off_2}) para finalmente tender a cero.
 
 \begin{equation}
-V_{gs}(t) = V_{gs_{io}} e^{-\frac{t}{\tau_1}}
+V_{GS}(t) = V_{GS_{io}} e^{-\frac{t}{\tau_1}}
 \label{ej1:eq:vgs_off_2}
 \end{equation}
 
 \begin{equation}
-I_{G}(t) = \frac{0V-V_{gs_{io}}}{R_1} e^{-\frac{t}{\tau_1}}
+I_{G}(t) = \frac{0V-V_{GS_{io}}}{R_1} e^{-\frac{t}{\tau_1}}
 \label{ej1:eq:ig_off_2}
 \end{equation}
 
@@ -270,11 +270,11 @@ Se realizaron las simulaciones para este circuito utilizando el software \textit
 
 \subsubsection{Encendido del MOSFET}
 
-Se puede observar que cuando el MOSFET es encendido, aparece en la simulación en la curva de $V_{gs}$ un pequeño sobrepico de tensión por encima de $V_{gs_{io}}$. Esto se debe a que el diodo, previamente polarizado en directa, debe evacuar los portadores de carga de la zona de drift y luego formar la zona de vaciamiento para lograr polarizarse en inversa. Esto esencialmente genera un gran pico de corriente en sentido contrario al del funcionamiento normal del diodo. Este pico de corriente, denominado $I_{rr}$ o reverse recovery current, genera que la corriente de drain $I_D$ del MOSFET aumente hasta $I_D = I_o+I_{rr}$ en vez de hasta $I_o$. Esto a su vez genera que la tensión $V_{gs}$ aumente por encima de $V_{gs_{io}}$. Una vez que la corriente de recovery del diodo se acaba, la tensión $V_{gs}$ y $V_{ds}$ caen abruptamente a los valores ideales.
+Se puede observar que cuando el MOSFET es encendido, aparece en la simulación en la curva de $V_{GS}$ un pequeño sobrepico de tensión por encima de $V_{GS_{io}}$. Esto se debe a que el diodo, previamente polarizado en directa, debe evacuar los portadores de carga de la zona de drift y luego formar la zona de vaciamiento para lograr polarizarse en inversa. Esto esencialmente genera un gran pico de corriente en sentido contrario al del funcionamiento normal del diodo. Este pico de corriente, denominado $I_{rr}$ o reverse recovery current, genera que la corriente de drain $I_{DS}$ del MOSFET aumente hasta $I_{DS} = I_o+I_{rr}$ en vez de hasta $I_o$. Esto a su vez genera que la tensión $V_{GS}$ aumente por encima de $V_{GS_{io}}$. Una vez que la corriente de recovery del diodo se acaba, la tensión $V_{GS}$ y $V_{DS}$ caen abruptamente a los valores ideales.
 
-Otra diferencia con lo calculado surge a raíz de que en los cálculos teóricos no se consideró el driver totem-pole del transistor que demanda tanto en el estado encendido como en el apagado una caída de máxima de $V_{ce_{sat}}$ a causa de la juntura colector emisor de los transistores bipolares. Es por esto que en la Figura (\ref{ej1:fig:sim_encendido_gate}) se observa que la curva simulada de $V_{gs}$ no comienza en $0V$ ni termina en $12V$, sino en $\approx 0.6V$ y $\approx 11.4V$ respectivamente.
+Otra diferencia con lo calculado surge a raíz de que en los cálculos teóricos no se consideró el driver totem-pole del transistor que demanda tanto en el estado encendido como en el apagado una caída de máxima de $V_{CE_{sat}}$ a causa de la juntura colector emisor de los transistores bipolares. Es por esto que en la Figura (\ref{ej1:fig:sim_encendido_gate}) se observa que la curva simulada de $V_{GS}$ no comienza en $0V$ ni termina en $12V$, sino en $\approx 0.6V$ y $\approx 11.4V$ respectivamente.
 
-Tanto en $V_{ds}$ como $I_D$ se observan diferencias en las formas de las curvas, sin embargo estas se deben a la linealización de los cálculos teóricos.
+Tanto en $V_{DS}$ como $I_{DS}$ se observan diferencias en las formas de las curvas, sin embargo estas se deben a la linealización de los cálculos teóricos.
 
 Por otro lado se puede ver que existen diferencias entre la curva teórica de la corriente de Gate y la simulación, esto se debe a el totem-pole  el cual cambia la forma de onda de un escalón a la observada en el Gráfico (\ref{ej1:fig:sim_encendido_gate_i}), si en vez del totem-pole se utilizase una fuente ideal de tensión las curvas corresponderían.
 
@@ -283,7 +283,7 @@ Por otro lado se puede ver que existen diferencias entre la curva teórica de la
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_encendido_gate} % first figure itself
-		\caption{Comparación $V_{gs}$ entre simulado y calculado.}
+		\caption{Comparación $V_{GS}$ entre simulado y calculado.}
 		\label{ej1:fig:sim_encendido_gate}
 	\end{minipage}\hfill
 	\begin{minipage}{0.45\textwidth}
@@ -299,29 +299,29 @@ Por otro lado se puede ver que existen diferencias entre la curva teórica de la
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_encendido_drain} % first figure itself
-		\caption{Comparación $V_{ds}$ entre simulado y calculado.}
+		\caption{Comparación $V_{DS}$ entre simulado y calculado.}
 		\label{ej1:fig:sim_encendido_drain}
 	\end{minipage}\hfill
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_encendido_drain_i} % second figure itself
-		\caption{Comparación $I_{D}$ entre simulado y calculado.}
+		\caption{Comparación $I_{DS}$ entre simulado y calculado.}
 		\label{ej1:fig:sim_encendido_drain_i}
 	\end{minipage}
 \end{figure}
 
 \subsubsection{Apagado del MOSFET}
 
-Para el apagado del MOSFET se puede observar en la Figura (\ref{ej1:fig:sim_apagado_gate}) y en consecuencia la Figura (\ref{ej1:fig:sim_apagado_gate_i}) la caída $V_{ce_{sat}}$ a causa del totem pole discutido en la sección anterior.
+Para el apagado del MOSFET se puede observar en la Figura (\ref{ej1:fig:sim_apagado_gate}) y en consecuencia la Figura (\ref{ej1:fig:sim_apagado_gate_i}) la caída $V_{CE_{sat}}$ a causa del totem pole discutido en la sección anterior.
 
-Solamente se observan además de esto ligeras diferencias causadas por la linealización de las curva $V_{ds}$ en los calculos teóricos.
+Solamente se observan además de esto ligeras diferencias causadas por la linealización de las curva $V_{DS}$ en los calculos teóricos.
 
 \begin{figure}[H]
 	\centering
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_apagado_gate} % first figure itself
-		\caption{Comparación $V_{gs}$ entre simulado y calculado en el apagado.}
+		\caption{Comparación $V_{GS}$ entre simulado y calculado en el apagado.}
 		\label{ej1:fig:sim_apagado_gate}
 	\end{minipage}\hfill
 	\begin{minipage}{0.45\textwidth}
@@ -336,13 +336,13 @@ Solamente se observan además de esto ligeras diferencias causadas por la lineal
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_apagado_drain} % first figure itself
-		\caption{Comparación $V_{ds}$ entre simulado y calculado en el apagado.}
+		\caption{Comparación $V_{DS}$ entre simulado y calculado en el apagado.}
 		\label{ej1:fig:sim_apagado_drain}
 	\end{minipage}\hfill
 	\begin{minipage}{0.45\textwidth}
 		\centering
 		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_apagado_drain_i} % second figure itself
-		\caption{Comparación $I_{D}$ entre simulado y calculado en el apagado.}
+		\caption{Comparación $I_{DS}$ entre simulado y calculado en el apagado.}
 		\label{ej1:fig:sim_apagado_drain_i}
 	\end{minipage}
 \end{figure}
@@ -361,7 +361,7 @@ Mientras tanto en la corriente del Diodo, el mismo seguirá a la corriente de la
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-1/id_permanente_sim}
-	\caption{Comparación entre $I_D$ calculado y simulado en régimen permanente.}
+	\caption{Comparación entre $I_{DS}$ calculado y simulado en régimen permanente.}
 	\label{ej1:fig:id_permanente_sum}
 \end{figure}
 Se puede observar que hay un gran sobre pico de corriente cuando el diodo conmuta de directa a inversa, esto se debe a la corriente de reverse recovery.
@@ -369,7 +369,7 @@ Ademas si se hace un detalle en la imagen (\ref{ej1:fig:id_permanente_sum}) se p
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-1/id_permanente_sim_det}
-	\caption{Comparación entre $I_D$ calculado y simulado en régimen permanente detalle.}
+	\caption{Comparación entre $I_{DS}$ calculado y simulado en régimen permanente detalle.}
 	\label{ej1:fig:id_permanente_sum_det}
 \end{figure}
 
