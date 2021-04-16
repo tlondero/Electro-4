@@ -2,7 +2,7 @@
 
 %\begin{document}
 
-\subsection{Introducción}
+[H]\subsection{Introducción}
 
 Se analizó la conmutación de un MOSFET \href{https://www.vishay.com/docs/91019/91019.pdf}{IRF530} de potencia en un circuito con carga inductiva, utilizando un diodo \href{https://www.onsemi.com/pdf/datasheet/mur420-d.pdf}{MUR460} de potencia para proporcionar un camino a la corriente durante el apagado del MOSFET y no dañar al circuito.
 
@@ -35,12 +35,16 @@ Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina
 Resolviendo el circuito RL, se puede observar en las ecuaciones (\ref{ej1:eq:IL_on}) y (\ref{ej1:eq:VL_on}) que durante el MOSFET se encuentra encendido aumenta la energía almacenada en la bobina. Sobre el MOSFET caen $V_{ds_{on}} = I_{L_{on}}\cdot R_{ds_{on}}$
 
 \begin{equation}
-	 I_{L_{on}}(t) = \left( \left. I_{L_{off}} \right|_{t= n/f_{sw}} -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}+R_2}{L}t} + \frac{V_2}{R_{ds_{on}}+R_2} \ \ \ \ n \in \mathbb{N}
+\begin{gathered}
+	 I_{L_{on}}(t) = \left( \left. I_{L_{off}} \right|_{t= n/f_{sw}} -\frac{V_2}{R_{ds_{on}}+R_2}\right) e^{-\frac{R_{ds_{on}}+R_2}{L}t} \\ + \frac{V_2}{R_{ds_{on}}+R_2} \ \ \ \ n \in \mathbb{N}
+\end{gathered}
 \label{ej1:eq:IL_on}
 \end{equation}
 
 \begin{equation}
-	V_{L_{on}}(t) = \left( V_2 - \left. I_{L_{off}} \right|_{t= n/f_{sw}}\cdot (R_{ds_{on}}+R_2) \right)e^{-\frac{R_{ds_{on}}+R_2}{L}t} \ \ \ \ n \in \mathbb{N}
+\begin{gathered}
+	V_{L_{on}}(t) = \left[ V_2 - \left. I_{L_{off}} \right|_{t= n/f_{sw}}\cdot (R_{ds_{on}}+R_2) \right]e^{-\frac{R_{ds_{on}}+R_2}{L}t} \\ \ \ \ \ \ \ n \in \mathbb{N}
+\end{gathered}
 \label{ej1:eq:VL_on}
 \end{equation}
 
@@ -52,7 +56,7 @@ Una vez apagado el MOSFET, la bobina posee la tensión $V_{L_{off}}$ necesaria e
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\linewidth, page=2]{ImagenesEjercicio-1/CircuitsEj1}
+	\includegraphics[width=0.7\linewidth, page=2]{ImagenesEjercicio-1/CircuitsEj1}
 	\caption{Hemicircuito con MOSFET apagado.}
 	\label{ej1:fig:circuito_off}
 \end{figure}
@@ -78,7 +82,9 @@ En electrónica, se define el estado permanente de un circuito como la condició
 Analizando la constante de tiempo $\frac{L}{R} = 189.65\mu s$ de los hemicircuitos conformados por la carga inductiva, se observa que ésta es una orden de magnitud mayor que el tiempo que se transcurre en cada estado $t_{on} = t_{off} = \frac{D}{f_{sw}} = \frac{0.5}{60kHz} = 8.33\mu s$ por lo que se puede aproximar la tensión $V_L$ en cada estado como constante y la corriente $I_L$ como rectas de pendiente $\frac{V_L}{L}$. Para hallar la corriente media $\bar{I_L}$ de la bobina se realiza el promedio ponderado por el duty cycle de conmutación de los estados permanentes de ambos hemicircuitos, quedando
 
 \begin{equation}
-	\bar{I_L} = \left. I_{L_{on}}\right|_{t \rightarrow \infty} \cdot D + \left. I_{L_{off}}\right|_{t \rightarrow \infty} \cdot (1-D) = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
+\begin{gathered}
+	\bar{I_L} = \left. I_{L_{on}}\right|_{t \rightarrow \infty} \cdot D + \left. I_{L_{off}}\right|_{t \rightarrow \infty} \cdot (1-D) \\ = \frac{12V}{1\Omega + 0.16\Omega} \cdot 0.5 + 0V \cdot (1-0.5) = 5.17A
+\end{gathered}
 \label{ej1:eq:ilbar}
 \end{equation}
 
@@ -169,39 +175,39 @@ I_{G}(t) =  \frac{V_{GG}-V_{gs_{io}}}{R_1}e^{-\frac{t}{\tau_2}}
 
 siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150pF$ observado en la Figura (\ref{ej1:fig:cgd}). Se puede observar en las Figuras (\ref{ej1:fig:encendido_gate}) y (\ref{ej1:fig:encendido_drain}) el proceso entero de encendido descrito anteriormente.
 
-\begin{figure}[]
-	\centering
-	\includegraphics[width=\linewidth]{ImagenesEjercicio-1/encendido_gate}
-	\caption{$V_{gs}$ e $I_G$ en el encendido del MOSFET.}
-	\label{ej1:fig:encendido_gate}
-\end{figure}
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{ImagenesEjercicio-1/encendido_drain}
-	\caption{$V_{ds}$ e $I_D$ en el encendido del MOSFET.}
-	\label{ej1:fig:encendido_drain}
+	\begin{minipage}{0.45\textwidth}
+		\centering	
+		\includegraphics[width=\linewidth]{ImagenesEjercicio-1/encendido_gate}
+		\caption{$V_{gs}$ e $I_G$ en el encendido del MOSFET.}
+		\label{ej1:fig:encendido_gate}
+	\end{minipage}\hfill
+	\begin{minipage}{0.45\textwidth}
+		\centering
+		\includegraphics[width=\linewidth]{ImagenesEjercicio-1/encendido_drain}
+		\caption{$V_{ds}$ e $I_D$ en el encendido del MOSFET.}
+		\label{ej1:fig:encendido_drain}
+	\end{minipage}\hfill
 \end{figure}
-
 \begin{figure}[H]
 	\centering
 	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ImagenesEjercicio-1/Vgs-Id_LI} % first figure itself
+		\includegraphics[width=0.8\textwidth]{ImagenesEjercicio-1/Vgs-Id_LI} % first figure itself
 		\caption{$V_{gs_{io}}$ de la datasheet del IRF530.}
 		\label{ej1:fig:vgsio}
 	\end{minipage}\hfill
 	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=\textwidth]{ImagenesEjercicio-1/deltaq} % second figure itself
+		\includegraphics[width=0.8\textwidth]{ImagenesEjercicio-1/deltaq} % second figure itself
 		\caption{$\Delta Q$ en la transición de $C_{gd_1}$ a $C_{gs_2}$ de la datasheet del IRF530.}
 		\label{ej1:fig:deltaq}
-	\end{minipage}
+	\end{minipage}\hfill
 \end{figure}
-
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/Vds-C}
+	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/Vds-C}
 	\caption{Capacitancia de entrada del MOSFET según la datasheet del IRF530 donde no ingresa carga al capacitor parásito $C_{gs}$ debido a la tensión constante $V_{gs}$.}
 	\label{ej1:fig:cgd}
 \end{figure}
@@ -276,9 +282,9 @@ Otra diferencia con lo calculado surge a raíz de que en los cálculos teóricos
 
 Tanto en $V_{ds}$ como $I_D$ se observan diferencias en las formas de las curvas, sin embargo estas se deben a la linealización de los cálculos teóricos.
 
-Por otro lado se puede ver que existen diferencias entre la curva teórica de la corriente de Gate y la simulación, esto se debe a el totem-pole  el cual cambia la forma de onda de un escalón a la observada en el gráfico \ref{ej1:fig:sim_encendido_gate_i}, si en vez del totem-pole se utilizase una fuente ideal de tensión las curvas corresponderían.
+Por otro lado se puede ver que existen diferencias entre la curva teórica de la corriente de Gate y la simulación, esto se debe a el totem-pole  el cual cambia la forma de onda de un escalón a la observada en el Gráfico (\ref{ej1:fig:sim_encendido_gate_i}), si en vez del totem-pole se utilizase una fuente ideal de tensión las curvas corresponderían.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{minipage}{0.5\textwidth}
 		\centering
@@ -294,7 +300,7 @@ Por otro lado se puede ver que existen diferencias entre la curva teórica de la
 	\end{minipage}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{minipage}{0.5\textwidth}
 		\centering
