@@ -8,7 +8,7 @@ Dada una fuente Boost con una tensión de entrada $12 \ V$ y frecuencia de switc
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.5\linewidth, page=1]{ImagenesEjercicio-2/CircuitsEj2}
+	\includegraphics[width=0.8\linewidth, page=1]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave ideal.}
 	\label{fig:ej2:circuito}
 \end{figure}
@@ -19,7 +19,7 @@ Para el período de encendido, el hemicircuito es el siguiente.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\linewidth, page=2]{ImagenesEjercicio-2/CircuitsEj2}
+	\includegraphics[width=0.8\linewidth, page=2]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave cerrada.}
 	\label{fig:ej2:circuito_off}
 \end{figure}
@@ -35,6 +35,7 @@ C \dot{V_C} = -\frac{V_O}{R_2}
 
 Operando algebraicamente se obtienen las matrices: 
 \begin{equation*}
+\begin{gathered}
 \mathbb{A}_{on} =  \begin{pmatrix}
 	-R_4/L & 0 \\
 	0 & -1/ C R_2
@@ -42,17 +43,18 @@ Operando algebraicamente se obtienen las matrices:
 \mathbb{B}_{on} =  \begin{pmatrix}
 	1/L \\
 	0
-\end{pmatrix} \ \ \
+\end{pmatrix} \\
 \mathbb{C}_{on} =  \begin{pmatrix}
 	0 & 1 \\
 \end{pmatrix}
+\end{gathered}
 \end{equation*}
 
 Por otro lado, durante el apagado, el hemicircuito resultante es el que se muestra a continuación.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.6\linewidth, page=3]{ImagenesEjercicio-2/CircuitsEj2}
+	\includegraphics[width=\linewidth, page=3]{ImagenesEjercicio-2/CircuitsEj2}
 	\caption{Circuito de fuente Boost con llave cerrada.}
 	\label{fig:ej2:circuito_on}
 \end{figure}
@@ -69,6 +71,7 @@ I_L = I_C + I_O = C\dot{V_C} + \frac{V_O}{R_2}
 
 Operando algebraicamente se obtienen las matrices: 
 \begin{equation*}
+\begin{gathered}
 \mathbb{A}_{off} =  \begin{pmatrix}
 	-R_4/L & -1/L \\
 	1/C & -1/ C R_2
@@ -76,10 +79,11 @@ Operando algebraicamente se obtienen las matrices:
 \mathbb{B}_{off} =  \begin{pmatrix}
 	1/L \\
 	0
-\end{pmatrix} \ \ \
+\end{pmatrix} \\
 \mathbb{C}_{off} =  \begin{pmatrix}
 	0 & 1 \\
 \end{pmatrix}
+\end{gathered}
 \end{equation*}
 
 Se definen las matrices $\mathbb{A}$, $\mathbb{B}$ y $\mathbb{C}$ de la forma:
@@ -132,7 +136,7 @@ Se analizaron las señales propias del circuito. Considerando la fuente Boost id
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/il.png}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/il.png}
 	\caption{Corriente sobre la bobina en el permanente.}
 	\label{fig:ej2:il}
 \end{figure}
@@ -149,7 +153,7 @@ y mientras se mantenga abierta
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/vl.png}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vl.png}
 	\caption{Tensión sobre la bobina en el permanente.}
 	\label{fig:ej2:vl}
 \end{figure}
@@ -158,7 +162,7 @@ Para el diodo, al no ser ideal, se debe considerar la corriente en reversa. Esta
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/id.png}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/id.png}
 	\caption{Corriente sobre el diodo en el permanente.}
 	\label{fig:ej2:id}
 \end{figure}
@@ -172,7 +176,7 @@ I_O \ d \ T_S &= C \Delta V_O	\\
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/vout.png}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vout.png}
 	\caption{Tensión sobre la salida en el permanente.}
 	\label{fig:ej2:vout}
 \end{figure}
@@ -191,7 +195,7 @@ Simulando nuevamente con un diodo ideal, se nota que la tensión de salida es m�
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/vo_diodo_ideal.png}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vo_diodo_ideal.png}
 	\caption{Tensión sobre la salida en el permanente con diodo ideal.}
 	\label{fig:ej2:vo_diodo_ideal}
 \end{figure}
@@ -199,7 +203,7 @@ Para la simulación de LTSpice se retocó el valor de duty cycle a un valor tal 
 \begin{figure}[H]
 	\centering
 	%vo_diodo_ideal_sim
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-2/vo_duty_ideal.png}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-2/vo_duty_ideal.png}
 	\caption{Tensión sobre la salida en el permanente con diodo ideal en Matlab y DT ajustado LTSpice.}
 	\label{fig:ej2:vo_diodo_ideal_ltspice}
 \end{figure}

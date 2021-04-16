@@ -13,7 +13,7 @@ I_{L_b} = \frac{\Delta I_L}{2} = 247.202mA
 
 Por esta razón, si la corriente $I_L$ es menor que $I_{L_b}$, la fuente trabajará en modo discontinuo. Se seleccionó una resistencia de salida de $R_o = 500\Omega > R_{o_{min}} = \frac{V_o}{D \cdot I_{L_b}} = 146\Omega$  y se utilizó un duty cycle $D = 0.665$ para conservar los $24V$ de salida requeridos. A continuación se detallan las curvas simuladas.
 
-\begin{figure}[H]
+\begin{figure}
 	\centering
 	\begin{minipage}{0.495\textwidth}
 		\centering
@@ -27,10 +27,6 @@ Por esta razón, si la corriente $I_L$ es menor que $I_{L_b}$, la fuente trabaja
 		\caption{Corriente $I_{g}$ en modo discontinuo.}
 		\label{ej4:fig:ig}
 	\end{minipage}
-\end{figure}
-
-\begin{figure}[H]
-	\centering
 	\begin{minipage}{0.495\textwidth}
 		\centering
 		\includegraphics[width=\textwidth]{ImagenesEjercicio-4/vds} % first figure itself
@@ -47,7 +43,7 @@ Por esta razón, si la corriente $I_L$ es menor que $I_{L_b}$, la fuente trabaja
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.7\linewidth, page=1]{ImagenesEjercicio-4/il}
+	\includegraphics[width=\linewidth, page=1]{ImagenesEjercicio-4/il}
 	\caption{Corriente de la bobina en modo discontinuo.}
 	\label{ej4:fig:il}
 \end{figure}
@@ -83,14 +79,14 @@ Quedando el circuito como se observa en la Figura (\ref{ej4:fig:vds_comp}). A co
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-4/comparacion-vds}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-4/comparacion-vds}
 	\caption{Comparación entre $V_{ds}$ en modo discontinuo con y sin snubber.}
 	\label{ej4:fig:vds_snub}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-4/comparacion-ids}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-4/comparacion-ids}
 	\caption{Comparación entre $I_{ds}$ en modo discontinuo con y sin snubber.}
 	\label{ej4:fig:il_snub}
 \end{figure}
@@ -103,7 +99,7 @@ Se observa en la Figura (\ref{ej4:fig:pots}) que para el encendido del MOSFET la
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesEjercicio-4/potencias-crop-partidas}
+	\includegraphics[width=\linewidth]{ImagenesEjercicio-4/potencias-crop-partidas}
 	\caption{Comparación entre potencias disipadas en CCM, DCM y DCM con snubber, donde las curvas azul, verde y rojo son potencia disipada en el MOSFET en cada caso y la curva naranja es la potencia disipada en la resistencia del snubber para el caso de DCM con snubber.}
 	\label{ej4:fig:pots}
 \end{figure}
