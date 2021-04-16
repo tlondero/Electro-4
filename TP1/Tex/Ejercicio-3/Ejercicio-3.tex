@@ -67,11 +67,10 @@ $t_{on}$ & $t_{ri}$ & $t_{fv}$ & $t_{doff}$ & $t_{rv}$ & $t_{fi}$          \\	\h
 \end{tabular}
 \caption{Tiempos de conmutación en el disparo del MOSFET.}
 \end{table}
-
-
+\vspace*{-0.25cm}
 Algo a notar en las Figuras (\ref{fig:ej3:Id_Vd_SWITCH_BOOST}) y (\ref{fig:ej3:Il_Vl_SWITCH_BOOST}) es que la corriente por la bobina y el diodo, al igual que la tensión sobre los mismos, depende de la carga. Es por este motivo que es razonable que sus valores sean distintos. En cuanto a la corriente de recovery se puede ver que con un MOSFET toma un valor razonable a diferencia del uso de un componente ideal. También se ve una diferencia en la fase. Esto se debe a que ambos circuitos cuentan con distinto duty cycle, mas allá de que comparten la misma frecuencia. 
 También se ve en las formas de onda de $V_{GS}$ $I_G$, $I_{DS}$ y $V_{DS}$ que tanto las pendientes como los tiempos son distintos. Esto se debe a que hay un valor distinto de $V_{GS-IO}$ y una diferente corriente $I_o$, la cual depende del circuito.
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\begin{minipage}{0.495\textwidth}
 		\centering
@@ -85,6 +84,9 @@ También se ve en las formas de onda de $V_{GS}$ $I_G$, $I_{DS}$ y $V_{DS}$ que 
 		\caption{Conmutaciones $V_{GS}$ e  $I_{S}$ llave con y sin Boost.}
 		\label{fig:ej3:conmutacionON_OFF_VGS_IG_SWITCH_BOOST}
 	\end{minipage}\hfill
+\end{figure}
+\begin{figure}[H]
+	\centering
 	\begin{minipage}{0.495\textwidth}
 		\centering
 		\includegraphics[width=\linewidth]{ImagenesEjercicio-3/il-vl-1v3}
