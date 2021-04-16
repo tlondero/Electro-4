@@ -14,7 +14,7 @@ Para la conmutación del MOSFET se utilizó un periodo de $T_s = 16.67 \mu s$ y 
 
 En la teoría, se consideró al diodo MUR460 como ideal excepto por la caída de potencial de la juntura en directa, siendo esta extraída de la datasheet, con un valor de $V_{D_{on}} = 1.3V$. Además, se consideró a la bobina con resistencia serie.
 
-\begin{figure}[H]
+\begin{figure}[]
 	\centering
 	\includegraphics[width=0.7\linewidth, page=1]{ImagenesEjercicio-1/CircuitsEj1}
 	\caption{Circuito para el estudio de la conmutación del MOSFET.}
@@ -25,7 +25,7 @@ En la teoría, se consideró al diodo MUR460 como ideal excepto por la caída de
 
 Cuando el MOSFET se encuentra encendido, se forma un circuito RL entre la bobina y la $R_{ds_{on}}$ del MOSFET. Como el diodo se encuentra con su ánodo conectado a aproximadamente tierra, y su cátodo conectado a $V_i$, este se encuentra en inversa por lo que no circula corriente a través de él.
 
-\begin{figure}[H]
+\begin{figure}[]
 	\centering
 	\includegraphics[width=0.4\linewidth, page=3]{ImagenesEjercicio-1/CircuitsEj1}
 	\caption{Hemicircuito con MOSFET encendido.}
@@ -105,7 +105,7 @@ y el ripple en la tensión $V_L$ puede hallarse según la Ecuación (\ref{ej1:eq
 
 Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:idiodo_permanente}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t) \cdot R_{ds_{on}} \approx \bar{I_L} \cdot R_{ds_{on}} = 827mV$ durante el estado encendido.
 
-\begin{figure}[H]
+\begin{figure}[]
 	\centering
 	\begin{minipage}{0.495\textwidth}
 		\centering
@@ -168,8 +168,8 @@ I_{G}(t) =  \frac{V_{GG}-V_{gs_{io}}}{R_1}e^{-\frac{t}{\tau_2}}
 \end{equation}
 
 siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150pF$ observado en la Figura (\ref{ej1:fig:cgd}). Se puede observar en las Figuras (\ref{ej1:fig:encendido_gate}) y (\ref{ej1:fig:encendido_drain}) el proceso entero de encendido descrito anteriormente.
-\begin{multicols}{2}
-\begin{figure}[H]
+
+\begin{figure}[]
 	\centering
 	\includegraphics[width=\linewidth]{ImagenesEjercicio-1/encendido_gate}
 	\caption{$V_{gs}$ e $I_G$ en el encendido del MOSFET.}
@@ -182,7 +182,7 @@ siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150
 	\caption{$V_{ds}$ e $I_D$ en el encendido del MOSFET.}
 	\label{ej1:fig:encendido_drain}
 \end{figure}
-\end{multicols}
+
 \begin{figure}[H]
 	\centering
 	\begin{minipage}{0.45\textwidth}
