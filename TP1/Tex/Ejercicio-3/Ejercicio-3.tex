@@ -58,6 +58,7 @@ El valor de la $I_{rr}$ del diodo puede disminuir aumentando la $R_g$ (aumentand
 
 \subsection{Tiempos de Conmutación}
 Los tiempos de conmutación se ven alterados respecto al circuito de la primera sección, ya que los valores de $V_{GS-IO}$, $I_{G-IO}$ e $I_{DS}$ dependen principalmente del circuito de aplicación. Dada la topología del circuito (Boost), cuando el MOSFET se encuentra apagado, el circuito se simplifica a un RLC. Cuando se encuentra prendido se presentan dos circuitos: un RL del lado del generador y un RC en la carga. Es importante remarcar esto, ya que esto afecta los tiempos $t_{ri}$ ,$t_{fv}$, $t_{d_{off}}$, $t_{rv}$ y  $t_{fi}$. Para el caso de disparo con MOSFET son los siguientes:
+\vspace*{-1cm}
 \begin{table}[H]
 \center
 \begin{tabular}{cccccc}
@@ -67,7 +68,7 @@ $t_{on}$ & $t_{ri}$ & $t_{fv}$ & $t_{doff}$ & $t_{rv}$ & $t_{fi}$          \\	\h
 \end{tabular}
 \caption{Tiempos de conmutación en el disparo del MOSFET.}
 \end{table}
-\vspace*{-0.25cm}
+\vspace*{-1.5cm}
 Algo a notar en las Figuras (\ref{fig:ej3:Id_Vd_SWITCH_BOOST}) y (\ref{fig:ej3:Il_Vl_SWITCH_BOOST}) es que la corriente por la bobina y el diodo, al igual que la tensión sobre los mismos, depende de la carga. Es por este motivo que es razonable que sus valores sean distintos. En cuanto a la corriente de recovery se puede ver que con un MOSFET toma un valor razonable a diferencia del uso de un componente ideal. También se ve una diferencia en la fase. Esto se debe a que ambos circuitos cuentan con distinto duty cycle, mas allá de que comparten la misma frecuencia. 
 También se ve en las formas de onda de $V_{GS}$ $I_G$, $I_{DS}$ y $V_{DS}$ que tanto las pendientes como los tiempos son distintos. Esto se debe a que hay un valor distinto de $V_{GS-IO}$ y una diferente corriente $I_o$, la cual depende del circuito.
 \begin{figure}[H]
