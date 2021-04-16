@@ -109,7 +109,7 @@ H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d R_2 + R_2 + R_4}
 \end{equation*}
 %H = \frac{\left( 1 - d \right) R_2}{R_2 d^2 - 2 d \left( R_2 + R_4 \right) + R_2 + R_4}
 
-Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtienen dos resultados matemáticamente posibles, siendo estos $d = 0.544$ y $d = 0.956$. La aparición de ods valores se debe justamente a la consideración de los elementos parásitos en el circuito. La curva $\frac{V_o}{V_d}$ real se aleja de la ideal de manera decreciente. De los dos valores que se obtienen el segundo se descarta debido a que es el que se encuentra alejado de la fuente ideal, y se disipará una mayor potencia.
+Reemplazando con $R_4 = 2 \ \Omega$, $R_2 = 100 \ \Omega$, y sabiendo que se busca que $H = V_o / V_2 = 2$, se obtienen dos resultados matemáticamente posibles, siendo estos $d = 0.544$ y $d = 0.956$. La aparición de dos valores se debe justamente a la consideración de los elementos parásitos en el circuito. La curva $\frac{V_o}{V_d}$ real se aleja de la ideal de manera decreciente. De los dos valores que se obtienen el segundo se descarta debido a que es el que se encuentra alejado de la fuente ideal, y se disipará una mayor potencia.
 
 Por otro lado, utilizando la transferencia de la fuente Boost ideal, es decir sin $R_4$, se puede obtener que el duty cycle deseado es:
 \begin{align*}
@@ -120,9 +120,9 @@ d &= 0.5
 
 Este valor es cercano al obtenido considerando la alinealidad.
 
-\subsection{Calculos y simulaciones}
+\subsection{Cálculos y simulaciones}
 
-Se analizaron las señales propias del circuito. Considerando la fuente Boost ideal, se puede notar que la corriente en la bobina sigue siendo la misma, ya que agregar una resistencia en serie no cambia dicha variable. Es por ello que tanto al corriente como la tensión en el inductor se calculan de la misma forma, siendo así la corriente media en la bobina y su ripple:
+Se analizaron las señales propias del circuito. Considerando la fuente Boost ideal, se puede notar que la corriente en la bobina sigue siendo la misma, ya que agregar una resistencia en serie no cambia dicha variable. Es por ello que tanto la corriente como la tensión en el inductor se calculan de la misma forma, siendo así la corriente media en la bobina y su ripple:
 \begin{equation*}
 	I_{DC} = \frac{I_O}{1 - d} = \frac{V_O}{R_2 (1 - d)} = 526.137 \ mA
 \end{equation*}
@@ -153,7 +153,7 @@ y mientras se mantenga abierta
 	\caption{Tensión sobre la bobina en el permanente.}
 	\label{fig:ej2:vl}
 \end{figure}
-Cabe la pena mencionar que en el gráfico (\ref{fig:ej2:vl}) las tensiones no son exactamente 12 y -12, esto se debe a la caida de pontencial sobre la $R_{2}$ y la tensión de forward $V_d$\\
+vale la pena mencionar que en el Gráfico (\ref{fig:ej2:vl}) las tensiones no son exactamente 12 y -12, esto se debe a la caída de potencial sobre la $R_{2}$ y la tensión de forward $V_d$.\\
 Para el diodo, al no ser ideal, se debe considerar la corriente en reversa. Esta se hace presente al llevar al estado de no conducción al diodo, es decir, esta se da unos instantes al cerrar la llave cuando se pone el ánodo a tierra. Cabe aclarar que el modelo del diodo existente en Simulink no considera la corriente en inversa $I_{RR}$.
 
 \begin{figure}[H]
@@ -204,6 +204,6 @@ Para la simulación de LTSpice se retocó el valor de duty cycle a un valor tal 
 	\label{fig:ej2:vo_diodo_ideal_ltspice}
 \end{figure}
 
-Finalmente, cabe hace una aclaración con respecto a las curvas observadas en la Figura (\ref{fig:ej2:id}). En dicho gráfico se nota que la corriente $I_{RR}$ del diodo llega a valores elevados. Esto se debe a la idealización de la llave empleada en las simulaciones. Esto se analiza en mayor profundidad en la siguiente sección.
+Finalmente, cabe hacer una aclaración con respecto a las curvas observadas en la Figura (\ref{fig:ej2:id}). En dicho gráfico se nota que la corriente $I_{RR}$ del diodo llega a valores elevados. Esto se debe a la idealización de la llave empleada en las simulaciones. Esto se analiza en mayor profundidad en la siguiente sección.
 
 %\end{document}
