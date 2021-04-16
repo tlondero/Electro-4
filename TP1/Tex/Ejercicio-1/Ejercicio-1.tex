@@ -122,11 +122,11 @@ Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en l
 	\begin{minipage}{0.495\textwidth}
 		\centering
 		\includegraphics[width=0.8\textwidth]{ImagenesEjercicio-1/ID_apagado_a_encendido} % second figure itself
-		\caption{Corriente del diodo y $V_{ds}$ en régimen permanente.}
+		\caption{Corriente del diodo en régimen permanente.}
 		\label{ej1:fig:idiodo_permanente}
 	\end{minipage}
 \end{figure}
-Donde los colores simbolizan las distintas conmutaciones del MOS.
+Donde los colores son los distintos estados.
 
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 Al encender el MOSFET con un escalón de tensión de $V_{GG} = 12V$, tomado en el borne izquierdo de $R_1$ y referido a masa, crece la corriente de gate $I_G$ rápidamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{ej1:eq:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{ej1:eq:vgs_ton}).
@@ -192,19 +192,20 @@ siendo $\tau_2 = R_1(C_{gs} + C_{gd_2}) = 115ns$ donde $C_{gs} + C_{gd_2} = 1150
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\begin{minipage}{0.45\textwidth}
+	\begin{minipage}{0.4\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{ImagenesEjercicio-1/Vgs-Id_LI} % first figure itself
 		\caption{$V_{gs_{io}}$ de la datasheet del IRF530.}
 		\label{ej1:fig:vgsio}
 	\end{minipage}\hfill
-	\begin{minipage}{0.45\textwidth}
+	\begin{minipage}{0.4\textwidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{ImagenesEjercicio-1/deltaq} % second figure itself
 		\caption{$\Delta Q$ en la transición de $C_{gd_1}$ a $C_{gs_2}$ de la datasheet del IRF530.}
 		\label{ej1:fig:deltaq}
 	\end{minipage}\hfill
 \end{figure}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.8\linewidth]{ImagenesEjercicio-1/Vds-C}
@@ -265,14 +266,7 @@ I_{G}(t) = \frac{0V-V_{gs_{io}}}{R_1} e^{-\frac{t}{\tau_1}}
 
 \subsection{Circuito en la Simulación y Diferencias con los Cálculos Teóricos}
 
-Se realizaron las simulaciones para este circuito utilizando el software \textit{LTSpice} % y el lenguaje de programación \textit{Python} para graficar las simulaciones sobre las curvas teóricas. Las configuraciones del %Se realizaron las simulaciones para este circuito utilizando el software \textit{LTSpiceXVII} y el lenguaje de programación \textit{Python} para graficar las simulaciones sobre las curvas teóricas. Las configuraciones del software se detallan en la Figura (\ref{ej1:fig:spice_specs}).
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=0.4\linewidth]{ImagenesEjercicio-1/spice_specs}
-%	\caption{Configuración para la simulación.}
-%	\label{ej1:fig:spice_specs}
-%\end{figure}
+Se realizaron las simulaciones para este circuito utilizando el software \textit{LTSpice}
 
 \subsubsection{Encendido del MOSFET}
 
@@ -284,33 +278,33 @@ Tanto en $V_{ds}$ como $I_D$ se observan diferencias en las formas de las curvas
 
 Por otro lado se puede ver que existen diferencias entre la curva teórica de la corriente de Gate y la simulación, esto se debe a el totem-pole  el cual cambia la forma de onda de un escalón a la observada en el Gráfico (\ref{ej1:fig:sim_encendido_gate_i}), si en vez del totem-pole se utilizase una fuente ideal de tensión las curvas corresponderían.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_gate} % first figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_encendido_gate} % first figure itself
 		\caption{Comparación $V_{gs}$ entre simulado y calculado.}
 		\label{ej1:fig:sim_encendido_gate}
 	\end{minipage}\hfill
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_gate_i} % second figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_encendido_gate_i} % second figure itself
 		\caption{Comparación $I_{G}$ entre simulado y calculado.}
 		\label{ej1:fig:sim_encendido_gate_i}
 	\end{minipage}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_drain} % first figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_encendido_drain} % first figure itself
 		\caption{Comparación $V_{ds}$ entre simulado y calculado.}
 		\label{ej1:fig:sim_encendido_drain}
 	\end{minipage}\hfill
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_encendido_drain_i} % second figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_encendido_drain_i} % second figure itself
 		\caption{Comparación $I_{D}$ entre simulado y calculado.}
 		\label{ej1:fig:sim_encendido_drain_i}
 	\end{minipage}
@@ -322,32 +316,32 @@ Para el apagado del MOSFET se puede observar en la Figura (\ref{ej1:fig:sim_apag
 
 Solamente se observan además de esto ligeras diferencias causadas por la linealización de las curva $V_{ds}$ en los calculos teóricos.
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_gate} % first figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_apagado_gate} % first figure itself
 		\caption{Comparación $V_{gs}$ entre simulado y calculado en el apagado.}
 		\label{ej1:fig:sim_apagado_gate}
 	\end{minipage}\hfill
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_gate_i} % second figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_apagado_gate_i} % second figure itself
 		\caption{Comparación $I_{G}$ entre simulado y calculado en el apagado.}
 		\label{ej1:fig:sim_apagado_gate_i}
 	\end{minipage}
 \end{figure}
-\begin{figure}
+\begin{figure}[H]
 	\centering
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_drain} % first figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_apagado_drain} % first figure itself
 		\caption{Comparación $V_{ds}$ entre simulado y calculado en el apagado.}
 		\label{ej1:fig:sim_apagado_drain}
 	\end{minipage}\hfill
-	\begin{minipage}{0.5\textwidth}
+	\begin{minipage}{0.45\textwidth}
 		\centering
-		\includegraphics[width=1.1\textwidth]{ImagenesEjercicio-1/sim_apagado_drain_i} % second figure itself
+		\includegraphics[width=0.95\textwidth]{ImagenesEjercicio-1/sim_apagado_drain_i} % second figure itself
 		\caption{Comparación $I_{D}$ entre simulado y calculado en el apagado.}
 		\label{ej1:fig:sim_apagado_drain_i}
 	\end{minipage}
