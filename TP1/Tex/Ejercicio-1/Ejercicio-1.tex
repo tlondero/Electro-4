@@ -103,7 +103,7 @@ y el ripple en la tensión $V_L$ puede hallarse según la Ecuación (\ref{ej1:eq
 \Delta V_L = \left[ V_2 - \bar{I_L} (R_{ds_{on}}+R_2) \right] \cdot (1-e^{-\frac{R_{ds_{on}} + R_2}{L}\frac{D}{f_{sw}}}) = 258mV
 \end{equation}
 
-Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:idiodo_permanente}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t)R_{ds_{on}} \approx \bar{I_L}R_{ds_{on}} = 827mV$ durante el estado encendido.
+Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en la bobina cuando el MOSFET se encuentra apagado, y nula cuando el MOSFET se encuentra prendido, como se observa en la Figura (\ref{ej1:fig:idiodo_permanente}). La tensión $V_{ds}$ del MOSFET será igual a $13.3V$ durante el estado apagado como calculado en la sección anterior y $I_{L_{on}}(t) \cdot R_{ds_{on}} \approx \bar{I_L} \cdot R_{ds_{on}} = 827mV$ durante el estado encendido.
 
 \begin{figure}[H]
 	\centering
@@ -120,7 +120,7 @@ Finalmente, la corriente en el diodo $I_{diodo}$ será igual a la corriente en l
 		\label{ej1:fig:idiodo_permanente}
 	\end{minipage}
 \end{figure}
-
+Donde los colores simbolizan las distintas conmutaciones del MOS.
 \subsubsection{Análisis de los Tiempos de Conmutación: Encendido}
 
 Al encender el MOSFET con un escalón de tensión de $V_{GG} = 12V$, tomado en el borne izquierdo de $R_1$ y referido a masa, crece la corriente de gate $I_G$ rápidamente a un valor de $I_G = \frac{V_i}{R_1} = 0.12A$ para luego decrecer exponencialmente según (\ref{ej1:eq:ig_ton}). Al mismo tiempo, la tensión entre gate y source pasa de ser nula a crecer exponencialmente según (\ref{ej1:eq:vgs_ton}).
@@ -272,7 +272,7 @@ Se realizaron las simulaciones para este circuito utilizando el software \textit
 
 Se puede observar que cuando el MOSFET es encendido, aparece en la simulación en la curva de $V_{gs}$ un pequeño sobrepico de tensión por encima de $V_{gs_{io}}$. Esto se debe a que el diodo, previamente polarizado en directa, debe evacuar los portadores de carga de la zona de drift y luego formar la zona de vaciamiento para lograr polarizarse en inversa. Esto esencialmente genera un gran pico de corriente en sentido contrario al del funcionamiento normal del diodo. Este pico de corriente, denominado $I_{rr}$ o reverse recovery current, genera que la corriente de drain $I_D$ del MOSFET aumente hasta $I_D = I_o+I_{rr}$ en vez de hasta $I_o$. Esto a su vez genera que la tensión $V_{gs}$ aumente por encima de $V_{gs_{io}}$. Una vez que la corriente de recovery del diodo se acaba, la tensión $V_{gs}$ y $V_{ds}$ caen abruptamente a los valores ideales.
 
-Otra diferencia con lo calculado surge a raíz de que en los cálculos teóricos no se consideró el driver totem-pole del transistor que demanda tanto en el estado encendido como en el apagado una caída diódica $V_{be}$ a causa de la juntura base emisor de los transistores bipolares. Es por esto que en la Figura (\ref{ej1:fig:sim_encendido_gate}) se observa que la curva simulada de $V_{gs}$ no comienza en $0V$ ni termina en $12V$, sino en $\approx 0.6V$ y $\approx 11.4V$ respectivamente.
+Otra diferencia con lo calculado surge a raíz de que en los cálculos teóricos no se consideró el driver totem-pole del transistor que demanda tanto en el estado encendido como en el apagado una caída de máxima de $V_{ce_{sat}}$ a causa de la juntura colector emisor de los transistores bipolares. Es por esto que en la Figura (\ref{ej1:fig:sim_encendido_gate}) se observa que la curva simulada de $V_{gs}$ no comienza en $0V$ ni termina en $12V$, sino en $\approx 0.6V$ y $\approx 11.4V$ respectivamente.
 
 Tanto en $V_{ds}$ como $I_D$ se observan diferencias en las formas de las curvas, sin embargo estas se deben a la linealización de los cálculos teóricos.
 
@@ -314,7 +314,7 @@ Por otro lado se puede ver que existen diferencias entre la curva teórica de la
 
 \subsubsection{Apagado del MOSFET}
 
-Para el apagado del MOSFET se puede observar en la Figura (\ref{ej1:fig:sim_apagado_gate}) y en consecuencia la Figura (\ref{ej1:fig:sim_apagado_gate_i}) la caída diódica $V_{be}$ a causa del totem pole discutido en la sección anterior.
+Para el apagado del MOSFET se puede observar en la Figura (\ref{ej1:fig:sim_apagado_gate}) y en consecuencia la Figura (\ref{ej1:fig:sim_apagado_gate_i}) la caída $V_{ce_{sat}}$ a causa del totem pole discutido en la sección anterior.
 
 Solamente se observan además de esto ligeras diferencias causadas por la linealización de las curva $V_{ds}$ en los calculos teóricos.
 
