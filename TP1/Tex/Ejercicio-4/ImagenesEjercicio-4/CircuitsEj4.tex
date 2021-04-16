@@ -11,15 +11,15 @@
 \begin{page}
 \begin{circuitikz}[american voltages]
 
-	\def\Dist{1.25}
+	\def\Dist{0.6}
 
 	\node[nigfete](m1){};	
 	\draw	
 		(m1.D) |- ++ (1,\Dist) node[](aux1){}
 		(m1.S) |- ++ (1,-\Dist)  node[](aux2){}
 		
-		(m1) ++ (1,0) to[C, l_=$\begin{array}{c} C_{Snub} \\ 2.255 \ nf\end{array}$] ++ (0,\Dist) |- (aux1.center)
-		(m1) ++ (1,0) to[R, l=$\begin{array}{c} R_{Snub} \\ 355 \ \Omega\end{array}$] ++ (0,-\Dist)	|- (aux2.center)	
+		(m1) ++ (1,0) to[C, l_=$\begin{array}{c} C_{Snub} \\ 2.255 \ nf\end{array}$] ++ (0,1.25) |- (aux1.center)
+		(m1) ++ (1,0) to[R, l=$\begin{array}{c} R_{Snub} \\ 355 \ \Omega\end{array}$] ++ (0,-1.25)	|- (aux2.center)	
 			
 	;
 	
