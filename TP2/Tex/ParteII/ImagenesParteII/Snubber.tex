@@ -1,0 +1,23 @@
+\input{../../Informe/Header-Circuits.tex}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							CIRCUITOS								%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Snubber
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\ctikzset{bipoles/diode/height=0.3, bipoles/diode/width=0.3,}
+	\draw
+		node[ocirc](){}
+		(0,0) -| (1,0.5) to[D] ++ (3,0) -- ++ (0,-0.5)
+		(1,0) -- (1,-0.5) to[R] ++ (3,0) -- ++ (0,0.5) -- ++ (1,0) to[C] ++ (0,-2) node[ground](){}
+	;
+
+\end{circuitikz}
+\end{page}
+
+\end{document}
