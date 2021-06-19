@@ -2,6 +2,105 @@
 %
 %\begin{document}
 
-\subsection{XXX}
+\subsection{Matrices de estado}
+
+Para obtener teóricamente la transferencia del circuito, se vale del método de variables de estado se llega a las siguientes matrices:
+
+\begin{multicols}{2}
+\begin{equation}
+\mathbb{A} = 
+\begin{pmatrix}
+-\frac{DR_1}{L_1} + \frac{(1 - D) n^2 R_C R}{(R - R_C) L_1} & \frac{(1-D) n R}{(R - R_C) L_1}\\
+-\frac{(1 - D) n R}{(R - R_C) C} & -\frac{D }{(R - R_C) C} - \frac{(1 - D)}{(R - R_C) C}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+\mathbb{B} = 
+\begin{pmatrix}
+	-\frac{D}{L_1} & 0\\
+	0 & 0
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+\mathbb{C} = 
+\begin{pmatrix}
+	-\frac{(1-D)n R R_C}{R - R_C} & \frac{D R}{R + R_C} + \frac{(1-D) R}{R - R_C}
+\end{pmatrix}
+\end{equation}
+
+\begin{equation}
+\mathbb{D} = 
+\begin{pmatrix}
+	0 & 0
+\end{pmatrix}
+\end{equation}
+\end{multicols}
+
+Para el sistema se emplean los siguientes valores:
+\begin{multicols}{2}
+\begin{itemize}
+	\item $D = 0.3$
+	\item $L_1 = 40 \ \mu H$
+	\item $R_L = 0.001 \ \Omega$
+	\item $R_C = 0.001 \ \Omega$
+	\item $R = 6.75 \ \Omega$
+	\item $C = 47 \ \mu f$
+	\item $N_1 = 3 \ \mu H$
+	\item $N_2 = 1 \ \mu H$
+\end{itemize}
+\end{multicols}
+
+Con todo lo anterior, se obtiene la transferencia del sistema:
+\begin{equation}
+	G(s) = \mathbb{C} \left(s \mathbb{I} - \mathbb{A} \right)^{-1} \mathbb{B} = \frac{-15.75 s + 3.351 \cdot 10^{8}}{s^2 + 3002s + 2.346 \cdot 10^{9}}
+\end{equation}
+
+\subsection{Compensador}
+
+Se utiliza el siguiente circuito como compensador:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.3\linewidth, page = 1]{ImagenesParteIII/CircuitsP3.pdf}
+	\label{fig:compensador}
+	\caption{Circuito compensador del sistema.}
+\end{figure}
+
+La transferencia de este sistema es la siguiente:
+\begin{equation}
+	H(s) = \frac{ 1 }{ R_{f1} C_{C2} } \cdot \frac{s + \frac{1}{ R_{C1} C_{C1}}}{ s \left( s + \frac{R_{C1} + R_{C2}}{R_{C1} C_{C1} C_{C2}} \right)}
+\end{equation}
+
+Se emplean los siguientes valores:
+\begin{multicols}{2}
+\begin{itemize}
+	\item $R_{C1} = 10 \ k\Omega$
+	\item $R_{f1} = R_{f2} = 1 \ k\Omega$
+	\item $C_{C1} = 10 \ nf$
+	\item $C_{C2} = 1 \ \mu f$
+	\item $N_2 = 1 \ \mu H$
+\end{itemize}
+\end{multicols}
+
+Con esos valores, el compensador queda:
+\begin{equation}
+	H(s) = \frac{0.0001 s + 1}{ 1 \cdot 10^{-7} s^2 + 0.00101 s }
+\end{equation}
+
+Con el sistema realimentado, se grafican los diagramas de Bode y el plano Z del sistema.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Bode.png}
+	\label{fig:bode}
+	\caption{Diagrama de Bode.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Rlocus.png}
+	\label{fig:zplane}
+	\caption{Plano Z, diagrama de polos y ceros.}
+\end{figure}
 
 %\end{document}
