@@ -21,6 +21,8 @@ Idio = np.asarray(LTR.get_trace("I(D1)").data)
 Vo = np.asarray(LTR.get_trace("V(vout1)").data)
 Vg = np.asarray(LTR.get_trace("V(vg)").data)
 
+Vosc = np.asarray(LTR.get_trace("V(vosc)").data)
+
 #TENSIÓN DE GATE Y DE SW
 plt.figure(num=4, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 plt.ylabel("Tensión [V]")
@@ -30,6 +32,7 @@ plt.grid(which='major')
 plt.grid(which='minor')
 plt.plot(t,Vg, label="Tensión de Gate")
 plt.plot(t,Vsw, label="Tensión de SW")
+plt.plot(t,Vosc, label="Tensión del Oscilador")
 plt.legend()
 plt.xlim(0, 100)
 plt.savefig('..\Tex\ParteII\ImagenesParteII\TensionesVarias1.png')

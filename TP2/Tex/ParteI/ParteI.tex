@@ -39,15 +39,15 @@ Para conseguir un Duty deseado, basta con colocar una tensión de referencia en 
 
 \subsubsection{Soft-Start}
 
-El pin de Soft-Start cumple con la función de limitar el duty cicle al principio, hasta que el capacitor de SS esté cargado. %Una vez que esto ocurre (...)
+El pin de Soft-Start cumple con la función de limitar el Duty cicle al principio, hasta que el capacitor de SS esté cargado. %Una vez que esto ocurre (...)
 
-Cuando se está empleando una fuente realimentada, si al principio la salida de dicho circuito es nula, se busca que este no produzca un duty tal para llegue a la tensión deseada. De esta forma se evita que se sobredimensione y se pase del valor que se necesita, disminuyendo así las oscilaciones iniciales.
+Cuando se está empleando una fuente realimentada, si al principio la salida de dicho circuito es nula, se busca que este no produzca un Duty tal para llegue a la tensión deseada. De esta forma se evita que se sobredimensione y se pase del valor que se necesita, disminuyendo así las oscilaciones iniciales.
 
 %Limita el duty al principio hasta que el capacitor de SS esté cargado -> pin 9 (COM) va al comparador PWM, dependiendo esa tensión tenemos el duty.
 %SS -> Cuando tengo una fuente realimentada, que a la salida es 0 al principio, el circuito no produzca un duty tal para que llegue  a la tensión que quiere y se pasa.
 
 \subsubsection{Shutdown}
 
-Es posible implementar un circuito limitador de corriente utilizando el pin de Shutdown con una resistencia de shunt y un BJT. Se sensa la corriente hasta que esta sea mayor a la deseada. Cuando esto se de, el BJT activa el pin apagando la salida del circuito.
+Es posible implementar un circuito limitador de corriente utilizando el pin de Shutdown con una resistencia de shunt y un BJT. Se mide la corriente hasta que esta sea mayor a la deseada. Cuando esto se de, el BJT activa el pin apagando la salida del circuito.
 
 %\end{document}
