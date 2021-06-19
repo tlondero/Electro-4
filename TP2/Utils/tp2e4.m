@@ -39,3 +39,5 @@ C = tf(Cnum, Cden);
 C2 = tf(Cnum, Cden2);
 
 sisotool
+
+% h = bodeplot(IOTransfer_r2y); setoptions(h,'FreqUnits','Hz');
