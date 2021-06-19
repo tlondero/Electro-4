@@ -38,21 +38,7 @@ Para obtener teóricamente la transferencia del circuito, se vale del método de
 \end{equation}
 \end{multicols}
 
-Para el sistema se emplean los siguientes valores:
-\begin{multicols}{2}
-\begin{itemize}
-	\item $D = 0.3$
-	\item $L_1 = 40 \ \mu H$
-	\item $R_L = 0.001 \ \Omega$
-	\item $R_C = 0.001 \ \Omega$
-	\item $R = 6.75 \ \Omega$
-	\item $C = 47 \ \mu f$
-	\item $N_1 = 3 \ \mu H$
-	\item $N_2 = 1 \ \mu H$
-\end{itemize}
-\end{multicols}
-
-Con todo lo anterior, se obtiene la transferencia del sistema:
+Se toman los valores seleccionados en la Sección (\ref{sec:parteii}). Además se consideran las resistencias tanto de $N_1$ y de los capacitores de salida (para las cuentas se consideran los dos capacitores en paralelo como uno solo con una única ESR) siendo estos $R_L = 0.001 \ \Omega$ y $R_C = 0.001 \ \Omega$ respectivamente. De esta forma se obtiene la transferencia del sistema:
 \begin{equation}
 	G(s) = \mathbb{C} \left(s \mathbb{I} - \mathbb{A} \right)^{-1} \mathbb{B} = \frac{-15.75 s + 3.351 \cdot 10^{8}}{s^2 + 3002s + 2.346 \cdot 10^{9}}
 \end{equation}
