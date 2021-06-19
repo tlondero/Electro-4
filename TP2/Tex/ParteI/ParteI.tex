@@ -2,18 +2,52 @@
 %
 %\begin{document}
 
-\subsection{XXX}
+\subsection{SG3525A}
 
-c
+\subsubsection{Debajo de la tensión de operación}
 
-Limita el duty al principio hasta que el capacitor de SS esté cargado -> pin 9 (COM) va al comparador PWM, dependiendo esa tensión tenemos el duty.
+Este dispositivo cuenta con un pin de control llamado \quotes{Shutdown}. Este pin controla tanto el circuito de Soft-Start como las etapas de salida, proveyendo apagadas automáticas a través de pulsos de shutdown.
 
-SS -> Cuando tengo una fuente realimentada, que a la salida es 0 al principio, el circuito no produzca un duty tal para que llegue  a la tensión que quiere y se pasa.
+Al haber una tensión inferior al mínimo ($8 \ V$) en la entrada, este sistema de shutdown se activa, inhabilitando las salidas y los cambios en el capacitor de Soft-Start.
 
-d
+\subsubsection{Señal a la salida}
 
-Shutdown -> Cuando se activa, automáticamente se apaga la salida
+Para seleccionar la frecuencia de la señal a la salida del integrado, de deben conectar dos resistencias y un capacitor en los pines $C_T$ y $R_T$. El criterio de selección viene dado por las siguientes limitaciones:
 
+\begin{equation}
+	f_s = \frac{1}{C_T \left( 0.7 R_T + 3 R_D \right)}
+\end{equation}
 
+\begin{equation*}
+\begin{gathered}
+2.0 \ k\Omega \leqslant R_T \leqslant 150 \ k\Omega \\
+0 \ \Omega \leqslant R_D \leqslant 550 \ \Omega \\
+1 \ nf \leqslant C_T \leqslant 200 \ nf \\
+\end{gathered}
+\end{equation*}
+
+Para conseguir una frecuencia de $100 \ kHz$ basta con tomar:
+\begin{equation}
+\begin{gathered}
+R_T = 10 \ k\Omega \\
+R_D = 0 \ \Omega \\
+C_T = 1.43 \ nf \\
+\end{gathered}
+\end{equation}
+
+Para conseguir un Duty deseado, basta con colocar una tensión de referencia en el inversor (pin 1).
+
+\subsubsection{Soft-Start}
+
+El pin de Soft-Start cumple con la función de limitar el duty cicle al principio, hasta que el capacitor de SS esté cargado. %Una vez que esto ocurre (...)
+
+Cuando se está empleando una fuente realimentada, si al principio la salida de dicho circuito es nula, se busca que este no produzca un duty tal para llegue a la tensión deseada. De esta forma se evita que se sobredimensione y se pase del valor que se necesita, disminuyendo así las oscilaciones iniciales.
+
+%Limita el duty al principio hasta que el capacitor de SS esté cargado -> pin 9 (COM) va al comparador PWM, dependiendo esa tensión tenemos el duty.
+%SS -> Cuando tengo una fuente realimentada, que a la salida es 0 al principio, el circuito no produzca un duty tal para que llegue  a la tensión que quiere y se pasa.
+
+\subsubsection{Shutdown}
+
+Es posible implementar un circuito limitador de corriente utilizando el pin de Shutdown con una resistencia de shunt y un BJT. Se sensa la corriente hasta que esta sea mayor a la deseada. Cuando esto se de, el BJT activa el pin apagando la salida del circuito.
 
 %\end{document}
