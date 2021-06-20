@@ -74,19 +74,37 @@ Con esos valores, el compensador queda:
 	H(s) = \frac{0.0001 s + 1}{ 1 \cdot 10^{-7} s^2 + 0.00101 s }
 \end{equation}
 
-Con el sistema realimentado, se grafican los diagramas de Bode y el plano Z del sistema.
+Con el sistema realimentado, se grafican los diagramas de Bode para la transferencia y para la ganancia de lazo T, algiual que el diagrama de polos y ceros del sistema.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Bode.png}
 	\label{fig:bode}
-	\caption{Diagrama de Bode.}
+	\caption{Diagrama de Bode transferencia.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/BodeT.png}
+	\label{fig:bodeT}
+	\caption{Diagrama de Bode ganancia de lazo.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Rlocus.png}
 	\label{fig:zplane}
-	\caption{Plano Z, diagrama de polos y ceros.}
+	\caption{Plano S, diagrama de polos y ceros.}
 \end{figure}
+En lineas generales, si 
+\begin{equation}
+|T| >> 1 \implies \ \frac{V_o}{V_{ref}} \approx \frac{1}{\beta} =  0.5 \ \implies V_o\approx 0.5 \cdot V_{ref} 
+\end{equation}
+En el diseño del realimentador se tuvieron en cuenta diversos lugares para colocar una resistencia variable, podría ser en $R_{f1}$, $R_{f2}$ ó se podría variar la $V_{ref}$.El problema que se encontró con poner la variable en $R_{f2}$ es que la variación de salida con esta resistencia resulta homográfica, y sería preferible que sea lineal. Por lo que como opciones quedan $R_{f1}$ finalmente se optó por únicamnete variar la tension de $V_{ref}$. Debido a que los potenciómetros cuentan con una inductancia parasita considerable y este es el realimentador que podría introducir polos ó ceros indeseados al sistema.\\ 
+Finalmente se realizó la simulación a lazo cerrado y se obtuvieron las siguientes curvas:
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Vouts.png}
+	\label{fig:vouts_3}
+	\caption{Variación de tensión de salida.}
+\end{figure}
 %\end{document}
