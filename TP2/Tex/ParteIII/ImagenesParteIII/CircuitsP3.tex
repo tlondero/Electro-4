@@ -1,0 +1,40 @@
+\input{../../Informe/Header-Circuits.tex}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%							CIRCUITOS								%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%TYPE 2 COMPENSATOR
+\begin{page}
+\begin{circuitikz}[american voltages]
+
+	\draw
+		(0,0) node[op amp](op){}
+		
+		(op.out) -- ++(0.25,0) -| node[pos=.5](aux5){} ++ (0,2) node[](aux3){}		 
+		(aux5.center) -- ++ (0.5,0) node[ocirc, label=$V_e$](){}
+		(aux3.center) ++ (0,2) node[](aux4){}
+		
+		(op.+) -| ++ (-1,-1) node[ocirc, label=below:$V_{ref}$](){}
+		
+		(op.-) -- ++ (-2,0) node[](aux1){} to[R, l=$R_{f1}$] ++ (0,2) node[ocirc, label=$V_{out}$](){}		
+		(aux1.center) to[R, l_=$R_{f2}$] ++ (0,-2) node[ground](){}
+		
+		(op.-) ++ (-1,0) -- ++ (0,1.5) node[](aux2){} to[R, l=$R_{C1}$] ++ (2,0) to[C, l=$C_{C1}$] (aux3.center) 
+		(aux2.center) -- ++(0,2) to[C, l=$C_{C2}$] (aux4.center) -- (aux3.center)
+	;
+	
+%	\draw[color = red]
+%		(aux1.center) node[circ](){1}
+%		(aux2.center) node[circ](){2}
+%		(aux3.center) node[circ](){3}
+%		(aux4.center) node[circ](){4}
+%		(aux5.center) node[circ](){5}
+%	;
+
+\end{circuitikz}
+\end{page}
+
+\end{document}
