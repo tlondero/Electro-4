@@ -35,6 +35,7 @@ calculando el ripple a la salida se obtiene
 
 \begin{equation}
 C = \frac{DT_sV_o}{R_oC\Delta V_o} = 8.8 \mu F
+
 \end{equation}
 
 por lo que se seleccionó una combinación de capacitores con una capacitancia total de $\approx$ 48$\mu F$ siendo el paralelo de 1 capacitor electrolítico,3 cerámicos (2 de 1$\mu$F y uno de 68pF). Esta combinación se realiza con la intención de no solo aumentar la capacidad de salida, sino que tambien reducir la ESR neta de salida.  
@@ -140,17 +141,16 @@ Para el diodod el snubber se optó por el diodo
 \subsection{Potencias}
 Las potencias teóricas calculadas son:
 \begin{itemize}
-
-\item $ P_{MOS} =\frac{f_{sw}}{2}\cdot V_{sw} \left( \frac{V_o / R_L}{1-D} \cdot \frac{N_2}{N_1}- \frac{V_o}{2L_2 \cdot f_{sw}} \cdot (1-D) \frac{N_1}{N_2}  \right) t_{sw2}\ $ $=\frac{100K}{2}\cdot 21 \  400 \ 10^{-3} \  300 \ 10^{-9} = 351\ mW$
-\item $ P_{RSnubber} = \frac{CV_C^2 F_{sw}}{2}\ = 679 \ mW$
-\item $P_{diodo} = (I_oR_d^2 + I_oV_D)DT_sF_{sw} + pot irr = saludos$ 
+\item $ P_{MOS} =\frac{f_{sw}}{2}\cdot V_{sw}I_{N1-min} t_{sw2}\ =\frac{88 \ kHz}{2}\cdot (21 \ V) \cdot (400 \ mA) \cdot (300 \ ns) = 110\ mW$
+\item $ P_{RSnubber} = \frac{C{V_C}^2 F_{sw}}{2}\ = 679 \ mW$
+\item $P_{diodo} = (I_o{R_d}^2 + I_oV_D)DT_sF_{sw} + P_{Irr} = saludos$ 
 
 \end{itemize}
 Las medidas en la simulación son:
 \begin{itemize}
 \item $ P_{MOS} = 45 \ mW $
 \item $ P_{RSnubber} = 388.6 \ mW$
-\item $ P_{diodo} = saludos mW$
+\item $ P_{diodo} = 258.35 \ mW$
 \end{itemize}
 
 \subsection{Eficiencia}
