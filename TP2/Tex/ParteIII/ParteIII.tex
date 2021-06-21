@@ -119,7 +119,9 @@ Finalmente se realizó la simulación a lazo cerrado y se obtuvieron las siguien
 	\label{fig:vouts_3}
 	\caption{Variación de tensión de salida.}
 \end{figure}
-Al igual se midieron todas las tensiones relevantes del sistema:
+Al igual se midieron todas las curvas relevantes del sistema:
+
+En el caso de la tensión de salida, se observa un ripple del 2\%.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{ImagenesParteIII/ Vo.png}
@@ -133,6 +135,8 @@ Al igual se midieron todas las tensiones relevantes del sistema:
 	\label{fig:idiodo}
 	\caption{Corriente del diodo.}
 \end{figure}
+
+Se puede observar en esta simulación y todas las siguientes, que se produce una pequeña oscilación proveniente del nodo de switching, la cual se propaga al resto del circuito mediante la relación de transformación. El origen de estas oscilaciones se debe a la pérdida de energía total en el campo magnético del transformador la cual antes provocaba que se polarice el diodo del secundario en directa. Al acabarse la energía del núcleo y polarizándose débilmente al diodo en inversa, circula la corriente de reverse recovery del diodo por el secundario, inyectándose por la relación de transformación al primario, y finalmente produciendo oscilaciones entre la inductancia del primario y la capacitancia de salida del transistor.
 
 \begin{figure}[H]
 	\centering
