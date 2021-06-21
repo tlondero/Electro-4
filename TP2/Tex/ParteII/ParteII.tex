@@ -81,21 +81,23 @@ La corriente del diodo coincide con la corriente en (\ref{fig:secundario}) dado 
 	\label{fig:primario}
 	\caption{Tensión y corriente del primario.}
 \end{figure}
-Se observa en esta imagen que la corriente antes de comenzar tiene una oscilación, esto se debe a que el convertidor está trabajando en modo discontinuo.
+Se observa en esta imagen que la corriente antes de comenzar tiene una oscilación, esto se debe a que el convertidor está trabajando en modo discontinuo, es mucho mas visible en la tensión del primario.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Secundario.png}
 	\label{fig:secundario}
 	\caption{Tensión y corriente del secundario.}
 \end{figure}
-
+Aqui se ve como la oscilación se ve reflejada en el secundario
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{ImagenesParteII/TensionesVarias1.png}
 	\label{fig:tensionesvarias}
 	\caption{Tensión de Gate y del Switch.}
 \end{figure}
-En esta imagen se pueden observar varias señales, la verde es la tensión del oscilador del SG3525, la cual cada 2 conmutaciones se traduce a una conmutación en la señal de control del MOS, por loq ue se puede ver como cada 2 pulsos conmuta la $V_{gs}$ ademas se nota que en la tension $V_{ds}$ ($V_{Switch}$)  que su valor es la de $V_d$ mas el reflejado del secundario hasta caer a un valor de $Vd$ teoricamente una vez que el secundario se queda sin energía, esto realmetne no sucede dado a que comienza a propagarse una oscilación.
+En esta imagen se pueden observar varias señales, la verde es la tensión del oscilador del SG3525, la cual cada 2 conmutaciones se traduce a una conmutación en la señal de control del MOS (dado que este cuenta con 2 salidas, en uno actualiza una y en el otro ciclo la otra), por lo que se puede ver como cada 2 pulsos conmuta la $V_{gs}$.\\ 
+Viendo la forma de onda de $V_{ds}$ se aparecia facilmente que el convertidor trabaja en modo discontinuo Idealmente serían 3 niveles de tensión, $V_d$ mas la reflejada, $V_d$ y 0, pero al quedarse sin energía el nucleo, el circuito comienza a oscilar de una manera característica del modo discontinuo.
+
 \subsection{Snubber}
 Para el circuito dado, se diseña un snubber empleando un diodo, una resistencia y un capacitor.
 \begin{figure}[H]
@@ -121,15 +123,17 @@ De esta forma, se selecciona $C = 35 \ nF$. Planteando que tres veces el tiempo 
 	R < \left. \frac{DT_S}{3C} \right|_{C = 10 \ nF} = \frac{0.5}{100 \ kHz} \cdot \frac{1}{3 \cdot 35 \ nF} = 71 \ \Omega
 \end{equation}
 
-Finalmente se selecciona $R = 47 \ \Omega$.
-
+Finalmente se selecciona $R = 47 \ \Omega$. \\
+Para el diodo del snubber se utilizó el diodo schottky 1N5819
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.4\linewidth, page = 1]{ImagenesParteII/FlybackSnubber.pdf}
 	\label{fig:fly_snubber}
 	\caption{Circuito Flyback con snubber.}
 \end{figure}
-Para el diodod el snubber se optó por el diodo 
+
+
+Se simuló el circuito con la integración del snubber y se observa como las oscilaciones provocadas por el modo discontinuo fueron severamente reducidas.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Cap_snub.png}
@@ -142,16 +146,17 @@ Las potencias teóricas calculadas son:
 \begin{itemize}
 \item $ P_{MOS} =\frac{f_{sw}}{2}\cdot V_{sw}I_{N1-min} t_{sw2}\ =\frac{88 \ kHz}{2}\cdot (21 \ V) \cdot (400 \ mA) \cdot (300 \ ns) = 110\ mW$
 \item $ P_{RSnubber} = \frac{C{V_C}^2 F_{sw}}{2}\ = 679 \ mW$
-\item $P_{diodo} = (I_o{R_d}^2 + I_oV_D)DT_sF_{sw} + P_{Irr} = saludos$ 
+\item $P_{diodo} = (I_oR_{d}^2 + I_oV_D)D = 444.44mA (0.038\Omega )^2 + 444.44mA 1.25V 0.3 + P_{Irr} = 167.31mW$
 
 \end{itemize}
+despreciando la corriente de reverse recovery y utilizando datos del MUR160.
 Las medidas en la simulación son:
 \begin{itemize}
 \item $ P_{MOS} = 45 \ mW $
 \item $ P_{RSnubber} = 388.6 \ mW$
 \item $ P_{diodo} = 258.35 \ mW$
 \end{itemize}
-
+Donde para el diodo se utilizó un MUR460.
 \subsection{Eficiencia}
 Se calculó la eficiencia del circuito de la siguiente manera:
 %\note{PONER EN FUNCION DE LA CARGA Y DESDE LAMINIMA POTENCIA A LA SALIDA A LAMAXIMA}
@@ -169,6 +174,6 @@ Se observa que la combinación que da la mayor eficiencia tiende
 mientras que la simulada corresponde a baja carga y alta tensión.\\
 Luego se obtuvo la eficiencia en la simulación.
 \begin{equation}
-\eta = 87\%
+\eta = 73\%
 \end{equation}
 %\end{document}
