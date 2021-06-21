@@ -141,6 +141,7 @@ Las potencias teóricas calculadas son:
 \item $ P_{MOS} =\frac{f_{sw}}{2}\cdot V_{sw}I_{N1-min} t_{sw2}\ =\frac{88 \ kHz}{2}\cdot (21 \ V) \cdot (400 \ mA) \cdot (300 \ ns) = 110\ mW$
 \item $ P_{RSnubber} = \frac{C{V_C}^2 F_{sw}}{2}\ = 679 \ mW$
 \item $P_{diodo} = (I_o{R_d}^2 + I_oV_D)DT_sF_{sw} + P_{Irr} = saludos$ 
+
 \end{itemize}
 Las medidas en la simulación son:
 \begin{itemize}
@@ -153,9 +154,15 @@ Las medidas en la simulación son:
 Se calculó la eficiencia del circuito de la siguiente manera:
 \note{PONER EN FUNCION DE LA CARGA Y DESDE LAMINIMA POTENCIA A LA SALIDA A LAMAXIMA}
 \begin{equation}
-\eta =\frac{P_{Load}}{P_{d}}= 77\%
+\eta =\frac{P_{Load}}{P_{d}} = \frac{2 \cdot V_o^2 / R_L}{2 \cdot V_o^2 / R_L + \frac{CV_C^2 F_{sw}}{2} + \frac{f_{sw}}{2} \cdot V_{sw} \left( \frac{V_o / R_L}{1-D} \cdot \frac{N_2}{N_1} - \frac{V_o}{2L_2 \cdot f_{sw}} \cdot (1-D) \frac{N_1}{N_2}  \right) t_{sw2} } \Big\rvert_{V_o=3 V\ \& \ R_L=6.25 \Omega } = 70.35\%
 \end{equation}
-
+Para el gráfico se tomó una resistencia de 0.71 $\Omega$ dado que con este valor satura el transformador.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Eff.png}
+	\label{fig:etar}
+	\caption{Eficiencia en función de la carga.}
+\end{figure}
 mientras que la simulada corresponde a:
 \begin{equation}
 \eta = 87\%
