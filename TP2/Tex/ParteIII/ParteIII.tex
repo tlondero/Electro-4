@@ -4,7 +4,7 @@
 
 \subsection{Matrices de estado}
 
-Para obtener teóricamente la transferencia del circuito, se vale del método de variables de estado se llega a las siguientes matrices:
+Para obtener teóricamente la transferencia del circuito, se vale del método de variables de estado. De esta forma, se llega a las siguientes matrices:
 
 \begin{multicols}{2}
 \begin{equation}
@@ -98,7 +98,13 @@ En lineas generales, si
 \begin{equation}
 |T| >> 1 \implies \ \frac{V_o}{V_{ref}} \approx \frac{1}{\beta} =  0.5 \ \implies V_o\approx 0.5 \cdot V_{ref} 
 \end{equation}
-En el diseño del realimentador se tuvieron en cuenta diversos lugares para colocar una resistencia variable, podría ser en $R_{f1}$, $R_{f2}$ ó se podría variar la $V_{ref}$.El problema que se encontró con poner la variable en $R_{f2}$ es que la variación de salida con esta resistencia resulta homográfica, y sería preferible que sea lineal. Por lo que como opciones quedan $R_{f1}$ finalmente se optó por únicamnete variar la tension de $V_{ref}$. Debido a que los potenciómetros cuentan con una inductancia parasita considerable y este es el realimentador que podría introducir polos ó ceros indeseados al sistema.\\ 
+
+En el diseño del realimentador se tuvieron en cuenta diversos lugares para colocar una resistencia variable. Esta podría ser en $R_{f1}$, $R_{f2}$ o simplemente se podría variar la $V_{ref}$.
+
+El problema que se encontró con poner la variable en $R_{f2}$ es que la variación de salida con esta resistencia resulta homográfica, siendo preferible que sea lineal. Es por ello que esta opción quedó descartada. Finalmente se optó por variar únicamente la tension de $V_{ref}$.
+
+Debido a que los potenciómetros cuentan con una inductancia parásita considerable y, dado que este es el realimentador, se podrían introducir polos ó ceros indeseados al sistema empleando dicho componente.
+ 
 Finalmente se realizó la simulación a lazo cerrado y se obtuvieron las siguientes curvas:
 
 \begin{figure}[H]

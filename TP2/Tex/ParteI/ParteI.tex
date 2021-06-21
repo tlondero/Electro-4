@@ -26,7 +26,7 @@ Para seleccionar la frecuencia de la señal a la salida del integrado, de deben 
 \end{gathered}
 \end{equation*}
 
-Para conseguir una frecuencia de $100 \ kHz$ (a la salida, $\sim$200KHz en el oscilador)basta con tomar:
+Para conseguir una frecuencia de $100 \ kHz$ a la salida ($\sim$ 200 kHz en el oscilador), basta con tomar:
 \begin{equation}
 \begin{gathered}
 R_T = 2.2 \ k\Omega \\
@@ -35,12 +35,13 @@ C_T = 3.3 \ nf \\
 \end{gathered}
 \end{equation}
 
-Para conseguir un Duty deseado, lo que se debe hacer es colocar la salida del amplificador de error a 0 (pin no inversor a masa y pin inversor a $V_{ref}$), luego aplicando una tensión en el pin de compensación (9) podemos manejar el duty de salida. 
+Para conseguir un Duty deseado, lo que se debe hacer es colocar la salida del amplificador de error a $0 \ V$ (pin no inversor a masa y pin inversor a $V_{ref}$), luego aplicando una tensión en el pin de compensación (9), es posible manejar el duty de salida. 
+
 \subsubsection{Soft-Start}
 
-El pin de Soft-Start cumple con la función de limitar el Duty cicle al principio, hasta que el capacitor de SS esté cargado. %Una vez que esto ocurre (...)
+El pin de Soft-Start cumple con la función de limitar el duty cicle al principio, hasta que el capacitor de SS esté cargado. %Una vez que esto ocurre (...)
 
-Cuando se está empleando una fuente realimentada, si al principio la salida de dicho circuito es nula, se busca que este no produzca un Duty tal para llegue a la tensión deseada. De esta forma se evita que se sobredimensione y se pase del valor que se necesita, disminuyendo así las oscilaciones iniciales.
+Cuando se está empleando una fuente realimentada, si al principio la salida de dicho circuito es nula, se busca que este no produzca un duty tal para llegue a la tensión deseada. De esta forma se evita que se sobredimensione y se pase del valor que se necesita, disminuyendo así las oscilaciones iniciales.
 
 %Limita el duty al principio hasta que el capacitor de SS esté cargado -> pin 9 (COM) va al comparador PWM, dependiendo esa tensión tenemos el duty.
 %SS -> Cuando tengo una fuente realimentada, que a la salida es 0 al principio, el circuito no produzca un duty tal para que llegue  a la tensión que quiere y se pasa.
