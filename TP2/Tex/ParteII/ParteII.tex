@@ -72,16 +72,16 @@ Aqui se puede ver la tensión de salida con un ripple inferior al 2.3\%
 	\centering
 	\includegraphics[width=\linewidth]{ImagenesParteII/Idiodo.png}
 	\label{fig:idiodo}
-	\caption{Corriente del diodo.}
+	\caption{Corriente del diodo de salida.}
 \end{figure}
-
+Se observa que esta corriente coincide con la corriente en (\ref{fig:secundario}) dado a que es la misma.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Primario.png}
 	\label{fig:primario}
 	\caption{Tensión y corriente del primario.}
 \end{figure}
-
+Se observa en esta imagen que la corriente antes de comenzar tiene una oscilación, esto se debe a que el convertidor está trabajando en modo discontinuo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Secundario.png}
@@ -95,7 +95,7 @@ Aqui se puede ver la tensión de salida con un ripple inferior al 2.3\%
 	\label{fig:tensionesvarias}
 	\caption{Tensión de Gate y del Switch.}
 \end{figure}
-
+En esta imagen se pueden observar varias señales, la verde es la tensión del oscilador del SG3525, la cual cada 2 conmutaciones se traduce a una conmutación en la señal de control del MOS, por loq ue se puede ver como cada 2 pulsos conmuta la $V_{gs}$ ademas se nota que en la tension $V_{ds}$ ($V_{Switch}$)  que su valor es la de $V_d$ mas el reflejado del secundario hasta caer a un valor de $Vd$ teoricamente una vez que el secundario se queda sin energía, esto realmetne no sucede dado a que comienza a propagarse una oscilación.
 \subsection{Snubber}
 Para el circuito dado, se diseña un snubber empleando un diodo, una resistencia y un capacitor.
 \begin{figure}[H]
@@ -136,24 +136,21 @@ Para el diodod el snubber se optó por el diodo
 	\label{fig:tensionesvarias}
 	\caption{Tensión y corriente en el capacitor de snubber.}
 \end{figure}
-
+Aqui se observa las formas de onda de tensión y corriente sobre el capacitor del snubber una vez que fue agregado a la simulación. donde se observa que la tensión del capacitor llega a un valor máximo de $V_c \approx 25V$ y no se descarga del todo sino que llega a unos 2.5V.
 \subsection{Potencias}
 Las potencias teóricas calculadas son:
 \begin{itemize}
 \item $ P_{MOS} =\frac{f_{sw}}{2}\cdot V_{sw}I_{N1-min} t_{sw2}\ =\frac{88 \ kHz}{2}\cdot (21 \ V) \cdot (400 \ mA) \cdot (300 \ ns) = 110\ mW$
-\item $ P_{RSnubber} = \frac{C{V_C}^2 F_{sw}}{2} = 679 \ mW$
-\item $P_{diodo} = (I_oR_{d}^2 + I_oV_D)D = 444.44mA (0.038\Omega )^2 + 444.44mA 1.25V 0.3 + P_{Irr} = 167.31mW$
-
+\item $ P_{RSnubber} = \frac{C{V_C}^2 F_{sw}}{2}\ = 679 \ mW$
+\item $P_{diodo} = (I_o{R_d}^2 + I_oV_D)DT_sF_{sw} + P_{Irr} = saludos$ 
 
 \end{itemize}
-despreciando la corriente de reverse recovery y utilizando datos del MUR160.
 Las medidas en la simulación son:
 \begin{itemize}
 \item $ P_{MOS} = 45 \ mW $
 \item $ P_{RSnubber} = 388.6 \ mW$
 \item $ P_{diodo} = 258.35 \ mW$
 \end{itemize}
-donde para el diodo se utilizó un MUR460.
 
 \subsection{Eficiencia}
 Se calculó la eficiencia del circuito de la siguiente manera:
