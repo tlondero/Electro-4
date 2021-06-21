@@ -77,20 +77,20 @@ Con esos valores, el compensador queda:
 Con el sistema realimentado, se grafican los diagramas de Bode para la transferencia y para la ganancia de lazo T, algiual que el diagrama de polos y ceros del sistema.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Bode.png}
+	\includegraphics[width=0.8\linewidth]{ImagenesParteIII/Bode.png}
 	\label{fig:bode}
 	\caption{Diagrama de Bode transferencia.}
 \end{figure}
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/BodeT.png}
+	\includegraphics[width=0.8\linewidth]{ImagenesParteIII/BodeT.png}
 	\label{fig:bodeT}
 	\caption{Diagrama de Bode ganancia de lazo.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Rlocus.png}
+	\includegraphics[width=0.8\linewidth]{ImagenesParteIII/Rlocus.png}
 	\label{fig:zplane}
 	\caption{Plano S, diagrama de polos y ceros.}
 \end{figure}
@@ -104,7 +104,7 @@ En el diseño del realimentador se tuvieron en cuenta diversos lugares para colo
 El problema que se encontró con poner la variable en $R_{f2}$ es que la variación de salida con esta resistencia resulta homográfica, siendo preferible que sea lineal. Es por ello que esta opción quedó descartada. Finalmente se optó por variar únicamente la tension de $V_{ref}$.
 
 Debido a que los potenciómetros cuentan con una inductancia parásita considerable y, dado que este es el realimentador, se podrían introducir polos ó ceros indeseados al sistema empleando dicho componente.
- 
+ \subsection{Simulaciones}
 Finalmente se realizó la simulación a lazo cerrado y se obtuvieron las siguientes curvas:
 
 \begin{figure}[H]
@@ -112,5 +112,46 @@ Finalmente se realizó la simulación a lazo cerrado y se obtuvieron las siguien
 	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Vouts.png}
 	\label{fig:vouts_3}
 	\caption{Variación de tensión de salida.}
+\end{figure}
+Al igual se midieron todas las tensiones relevantes del sistema:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesParteIII/ Vo.png}
+	\label{fig:vo}
+	\caption{Tensión de salida.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesParteIII/Idiodo.png}
+	\label{fig:idiodo}
+	\caption{Corriente del diodo.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Primario.png}
+	\label{fig:primario}
+	\caption{Tensión y corriente del primario.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Secundario.png}
+	\label{fig:secundario}
+	\caption{Tensión y corriente del secundario.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesParteIII/TensionesVarias1.png}
+	\label{fig:tensionesvarias}
+	\caption{Tensión de Gate y del Switch.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Cap_snub.png}
+	\label{fig:tensionesvarias}
+	\caption{Tensión y corriente en el capacitor de snubber.}
 \end{figure}
 %\end{document}
