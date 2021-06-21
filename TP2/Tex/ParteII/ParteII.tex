@@ -61,42 +61,55 @@ Se simuló el circuito a lazo abierto. De esta forma se obtuvieron las siguiente
 \end{figure}
 
 Para la tensión que provoca la máxima corriente de salida se obtuvieron los siguientes gráficos:
+Aqui se puede ver la tensión de salida con un ripple inferior al 2.3\%
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{ImagenesParteII/ Vo.png}
 	\label{fig:vo}
 	\caption{Tensión de salida.}
 \end{figure}
-Aqui se puede ver la tensión de salida con un ripple inferior al 2.3\%
+La corriente del diodo coincide con la corriente en (\ref{fig:secundario}) dado a que es la misma.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{ImagenesParteII/Idiodo.png}
 	\label{fig:idiodo}
 	\caption{Corriente del diodo de salida.}
 \end{figure}
-La corriente del diodo coincide con la corriente en (\ref{fig:secundario}) dado a que es la misma.
+Se observa en esta imagen que la corriente antes de comenzar tiene una oscilación, esto se debe a que el convertidor está trabajando en modo discontinuo, es mucho mas visible en la tensión del primario.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Primario.png}
 	\label{fig:primario}
 	\caption{Tensión y corriente del primario.}
 \end{figure}
-Se observa en esta imagen que la corriente antes de comenzar tiene una oscilación, esto se debe a que el convertidor está trabajando en modo discontinuo, es mucho mas visible en la tensión del primario.
+Aqui se ve como la oscilación se ve reflejada en el secundario
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Secundario.png}
 	\label{fig:secundario}
 	\caption{Tensión y corriente del secundario.}
 \end{figure}
-Aqui se ve como la oscilación se ve reflejada en el secundario
+Aqui se ve la tensión de compensación del SG3525.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Vcom.png}
+	\label{fig:vcomii}
+	\caption{Tensión de compensación.}
+\end{figure}
+
+En esta imagen se pueden observar varias señales, la verde es la tensión del oscilador del SG3525, la cual cada 2 conmutaciones se traduce a una conmutación en la señal de control del MOS (dado que este cuenta con 2 salidas, en uno actualiza una y en el otro ciclo la otra), por lo que se puede ver como cada 2 pulsos conmuta la $V_{gs}$.\\ 
+Viendo la forma de onda de $V_{ds}$ se aparecia facilmente que el convertidor trabaja en modo discontinuo Idealmente serían 3 niveles de tensión, $V_d$ mas la reflejada, $V_d$ y 0, pero al quedarse sin energía el nucleo, el circuito comienza a oscilar de una manera característica del modo discontinuo.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=\linewidth]{ImagenesParteII/TensionesVarias1.png}
 	\label{fig:tensionesvarias}
 	\caption{Tensión de Gate y del Switch.}
 \end{figure}
-En esta imagen se pueden observar varias señales, la verde es la tensión del oscilador del SG3525, la cual cada 2 conmutaciones se traduce a una conmutación en la señal de control del MOS (dado que este cuenta con 2 salidas, en uno actualiza una y en el otro ciclo la otra), por lo que se puede ver como cada 2 pulsos conmuta la $V_{gs}$.\\ 
-Viendo la forma de onda de $V_{ds}$ se aparecia facilmente que el convertidor trabaja en modo discontinuo Idealmente serían 3 niveles de tensión, $V_d$ mas la reflejada, $V_d$ y 0, pero al quedarse sin energía el nucleo, el circuito comienza a oscilar de una manera característica del modo discontinuo.
+
+
+
+
 
 \subsection{Snubber}
 Para el circuito dado, se diseña un snubber empleando un diodo, una resistencia y un capacitor.
