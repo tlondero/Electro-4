@@ -4,19 +4,30 @@
 
 \subsection{Diseño del sistema}
 
-Para el sistema que se busca desarrollar, se emplean los siguientes valores:
+En el sistema que se busca desarrollar, se emplean los siguientes valores para la fuente Flyback:
 \begin{multicols}{2}
 \begin{itemize}
 	\item $D = 0.3$
 	\item $L_1 = 40 \ \mu H$
-	\item $R_1 = R_3 = 6.75 \ \Omega$
-	\item $C_1 = C_3 = 47 \ \mu f$
-	\item $C_2 = C_4 = 1 \ \mu f$
+	\item $R_1 = R_3 = 10 \ \Omega$
+	\item $C_1 = C_3 = 47 \ \mu F$
+	\item $C_2 = C_4 = 1 \ \mu F$
 	\item $N_1 = 3 \ \mu H$
 	\item $N_2 = N_3 = 1 \ \mu H$
 \end{itemize}
 \end{multicols}
 
+Para el circuito del SG3525 se adoptaron los siguientes valores
+\begin{multicols}{2}
+\begin{itemize}
+	\item $R_T = 2.2  \ k\Omega$
+	\item $C_T = 3.3 \ n F$
+	\item $R_D = 0 \ \Omega$
+	\item $C_{ss} = 1 \ \mu F$
+\end{itemize}
+\end{multicols}
+
+La combinación de valores de $R_T$ y $C_T$ fueron elegidas para mantener la frecuencia de switching elegida. La resistencia $R_D$ es nula para que se descargue lo mas rápido posible. Por último, el capacitor $C_{ss}$ es para que tenga un comienzo suave.
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth, page = 1]{ImagenesParteII/Flyback.pdf}
@@ -25,18 +36,25 @@ Para el sistema que se busca desarrollar, se emplean los siguientes valores:
 \end{figure}
 
 \subsection{Simulaciones}
-
 Se simuló el circuito a lazo abierto. De esta forma se obtuvieron las siguientes curvas.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteII/ Vo.png}
+	\includegraphics[width=0.9\linewidth]{ImagenesParteII/vos.png}
+	\label{fig:vos}
+	\caption{Variaciones en la $V_{out}$ al cambiar la $V_{comp}$.}
+\end{figure}
+
+Para la tensión que provoca la máxima corriente de salida se obtuvieron los siguientes gráficos:
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{ImagenesParteII/ Vo.png}
 	\label{fig:vo}
 	\caption{Tensión de salida.}
 \end{figure}
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Idiodo.png}
+	\includegraphics[width=\linewidth]{ImagenesParteII/Idiodo.png}
 	\label{fig:idiodo}
 	\caption{Corriente del diodo.}
 \end{figure}
@@ -57,11 +75,16 @@ Se simuló el circuito a lazo abierto. De esta forma se obtuvieron las siguiente
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteII/TensionesVarias1.png}
+	\includegraphics[width=\linewidth]{ImagenesParteII/TensionesVarias1.png}
 	\label{fig:tensionesvarias}
 	\caption{Tensión de Gate y del Switch.}
 \end{figure}
-
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Cap_snub.png}
+	\label{fig:tensionesvarias}
+	\caption{Tensión y corriente en el capacitor de snubber.}
+\end{figure}
 \subsection{Snubber}
 
 Para el circuito dado, se diseña un snubber empleando un diodo, una resistencia y un capacitor.
@@ -73,13 +96,19 @@ Para el circuito dado, se diseña un snubber empleando un diodo, una resistencia
 \end{figure}
 
 Se calcula el valor máximo del capacitor, planteando que la energía de este debe ser mayor a la de la inductancia. De esta forma, se llega a la expresión:
+%\begin{equation}
+%	C > L_d \left( \frac{I_{L1}}{V_{C}} \right)^2 = 1 \ \mu H \cdot \left( \frac{15 \ A}{100 \ V} \right)^2 = 33 \ nF
+%\end{equation}
 \begin{equation}
-	C > L_d \left( \frac{I_{L1}}{V_{C}} \right)^2 = 1 \ \mu H \cdot \left( \frac{15 \ A}{100 \ V} \right)^2 = 22.5 \ nF
+	C > L_d  \frac{{I_{L1}}^2}{{V_{C}}^2 - \left( V_{CC} - V_{o} \frac{N_1}{N_2} \right)^2 } = 1 \ \mu H \cdot \frac{15 \ A}{{100 \ V}^2 - \left( 12 \ V - 3 \cdot 0.8 \ V \right)^2} = 23 \ nF
 \end{equation}
 
-De esta forma, se selecciona $C = 10 \ nF$. Planteando que tres veces el tiempo característico del sistema RC debe ser menor al período de la fuente Flyback, se puede obtener una restricción similar para la resistencia. Operando, se llega a:
+De esta forma, se selecciona $C = 35 \ nF$. Planteando que tres veces el tiempo característico del sistema RC debe ser menor al período de la fuente Flyback, se puede obtener una restricción similar para la resistencia. Operando, se llega a:
+%\begin{equation}
+%	R < \left. \frac{DT_S}{3C} \right|_{C = 10 \ nF} = \frac{0.5}{150 \ kHz} \cdot \frac{1}{3 \cdot 10 \ nF} = 111.11 \ \Omega
+%\end{equation}
 \begin{equation}
-	R < \left. \frac{DT_S}{3C} \right|_{C = 10 \ nF} = \frac{0.5}{150 \ kHz} \cdot \frac{1}{3 \cdot 10 \ nF} = 111.11 \ \Omega
+	R < \left. \frac{DT_S}{3C} \right|_{C = 10 \ nF} = \frac{0.5}{100 \ kHz} \cdot \frac{1}{3 \cdot 35 \ nF} = 71 \ \Omega
 \end{equation}
 
 Finalmente se selecciona $R = 47 \ \Omega$.
@@ -91,4 +120,26 @@ Finalmente se selecciona $R = 47 \ \Omega$.
 	\caption{Circuito Flyback con snubber.}
 \end{figure}
 
+\subsection{Potencias}
+Las potencias teóricas calculadas son:
+\begin{itemize}
+\item $ P_{MOS} =\frac{f_{sw}}{2}\cdot V_{sw}I_{N1-min} t_{sw2}\ =\frac{88K}{2}\cdot 21 400m 300n = 110\ mW$
+\item $ R_{Snubber} = \frac{CV_C^2 F_{sw}}{2}\ = 679 \ mW$
+\end{itemize}
+Las medidas en la simulación son:
+\begin{itemize}
+\item $ P_{MOS} = 45 \ mW $
+\item $ R_{Snubber} = 388.6 \ mW$
+\end{itemize}
+
+\subsection{Eficiencia}
+Se calculó la eficiencia del circuito de la siguiente manera:
+\begin{equation}
+\eta =\frac{P_{Load}}{P_{d}}= 77\%
+\end{equation}
+
+mientras que la simulada corresponde a:
+\begin{equation}
+\eta = 87\%
+\end{equation}
 %\end{document}

@@ -2,6 +2,66 @@
 %
 %\begin{document}
 
-\subsection{XXX}
+\subsection{Diseño de placa}
+Se diseño la placa en multiperforada, teniendo la posibilidad de medir la tensión en los pines de compensación, drain, gate, primario, secundario y en el pin no inversor. Tambíen es posible cambiar la carga del circuito, y la tensión de salida.
+
+Se colocaron a la salida varios capacitores en paralelo, teniendo distintas tecnologías (electrolíticos, multicapa, mica) para bajar la ESR, al igual que para subir la capacidad de salida. 
+
+%Se tuvo en cuenta no unir islas con estaño sino siempre con cables. 
+El sistema, si bien fue diseñado en modo continuo, trabaja en modo discontinuo debido a la baja corriente de salida que es pedida por la carga. Aún si se quisiese, no podría trabajar en modo continuo debido a que la corriente necesaria para que este trabaje en modo continua resultaría en la saturación del transformador lo cual no es deseable.
+
+\subsection{Mediciones}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vcom.png}
+	\label{fig:vcom_4}
+	\caption{Tensión de compensación.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vcsnubber.png}
+	\label{fig:vcsnubb_4}
+	\caption{Tensión de capacitor de snubber.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vds.png}
+	\label{fig:vds_4}
+	\caption{Tensión de drain.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vgs.png}
+	\label{fig:vgs_4}
+	\caption{Tensión de gate.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vni.png}
+	\label{fig:vni_4}
+	\caption{Tensión no inversora.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vout.png}
+	\label{fig:vout_4}
+	\caption{Tensión de salida.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vds.png}
+	\label{fig:vds_4}
+	\caption{Tensión de drain.}
+\end{figure}
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vsec.png}
+	\label{fig:vsec_4}
+	\caption{Tensión de secundario.}
+\end{figure}
 
 %\end{document}
