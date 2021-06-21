@@ -11,9 +11,9 @@ En el sistema que se busca desarrollar, se emplean los siguientes valores para l
 	\item $L_1 = 40 \ \mu H$
 	\item $R_1 = R_3 = 10 \ \Omega$
 	\item $C_1 = C_3 = 47 \ \mu F$
-	\item $C_2 = C_4 = 1 \ \mu F$
-	\item $N_1 = 3 \ \mu H$
-	\item $N_2 = N_3 = 1 \ \mu H$
+	\item $C_2 = C_4 = 2 \ \mu F$
+	\item $\frac{N_1}{N_2} = 3 $
+	\item $N_2 = N_3 $
 \end{itemize}
 \end{multicols}
 
@@ -34,12 +34,14 @@ calculando el ripple a la salida se obtiene
 \end{equation}
 
 \begin{equation}
-C = \frac{DT_sV_o}{R_oC\Delta V_o} = 80 \mu F
+C = \frac{DT_sV_o}{R_oC\Delta V_o} = 8.8 \mu F
 \end{equation}
 
-por lo que se seleccionó una combinación de capacitores con una capacitancia total de \note{PONER QUE USAMOS ACA Y CAMBIARLO ARRIBA}.
+por lo que se seleccionó una combinación de capacitores con una capacitancia total de $\approx$ 48$\mu F$ siendo el paralelo de 1 capacitor electrolítico,3 cerámicos (2 de 1$\mu$F y uno de 68pF). Esta combinación se realiza con la intención de no solo aumentar la capacidad de salida, sino que tambien reducir la ESR neta de salida.  
+
 
 La combinación de valores de $R_T$ y $C_T$ fueron elegidas para mantener la frecuencia de switching elegida. La resistencia $R_D$ es nula para que se descargue lo mas rápido posible. Por último, el capacitor $C_{ss}$ es para que tenga un comienzo suave.
+Para la salida se utilizarón los diodos MUR160 y para el snubber se utilizó el diodo Schottky.  
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.7\linewidth, page = 1]{ImagenesParteII/Flyback.pdf}
@@ -127,7 +129,7 @@ Finalmente se selecciona $R = 47 \ \Omega$.
 	\label{fig:fly_snubber}
 	\caption{Circuito Flyback con snubber.}
 \end{figure}
-
+Para el diodod el snubber se optó por el diodo 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Cap_snub.png}
@@ -153,18 +155,20 @@ Las medidas en la simulación son:
 
 \subsection{Eficiencia}
 Se calculó la eficiencia del circuito de la siguiente manera:
-\note{PONER EN FUNCION DE LA CARGA Y DESDE LAMINIMA POTENCIA A LA SALIDA A LAMAXIMA}
+%\note{PONER EN FUNCION DE LA CARGA Y DESDE LAMINIMA POTENCIA A LA SALIDA A LAMAXIMA}
 \begin{equation}
 \eta =\frac{P_{Load}}{P_{d}} = \frac{2 \cdot V_o^2 / R_L}{2 \cdot V_o^2 / R_L + \frac{CV_C^2 F_{sw}}{2} + \frac{f_{sw}}{2} \cdot V_{sw} \left( \frac{V_o / R_L}{1-D} \cdot \frac{N_2}{N_1} - \frac{V_o}{2L_2 \cdot f_{sw}} \cdot (1-D) \frac{N_1}{N_2}  \right) t_{sw2} } \Big\rvert_{V_o=3 V\ \& \ R_L=6.25 \Omega } = 70.35\%
 \end{equation}
-Para el gráfico se tomó una resistencia de 0.71 $\Omega$ dado que con este valor satura el transformador.
+Para el gráfico se tomó una resistencia mínima de 0.71 $\Omega$ dado que con este valor satura el transformador y una máxima de 50$\Omega$.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteII/Eff.png}
+	\includegraphics[width=0.5\linewidth]{ImagenesParteII/Eff.png}
 	\label{fig:etar}
-	\caption{Eficiencia en función de la carga.}
+	\caption{Eficiencia en función de la carga y tensión.}
 \end{figure}
-mientras que la simulada corresponde a:
+Se observa que la combinación que da la mayor eficiencia tiende 
+mientras que la simulada corresponde a baja carga y alta tensión.\\
+Luego se obtuvo la eficiencia en la simulación.
 \begin{equation}
 \eta = 87\%
 \end{equation}
