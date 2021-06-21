@@ -74,6 +74,11 @@ Con esos valores, el compensador queda:
 	H(s) = \frac{0.0001 s + 1}{ 1 \cdot 10^{-7} s^2 + 0.00101 s }
 \end{equation}
 
+De esta forma, la ganancia de lazo queda de la forma:
+\begin{equation}
+	T(s) = G(s) \cdot H(s) = \frac{-0.001575 s^2 + 3.35 \cdot 10^4 s + 3.351 \cdot 10^8}{ 1 \cdot 10^{-7} s^4 + 0.00131 s^3 + 237.6 s→^2 + 2.369 \cdot 10^6 s }
+\end{equation}
+
 Con el sistema realimentado, se grafican los diagramas de Bode para la transferencia y para la ganancia de lazo T, algiual que el diagrama de polos y ceros del sistema.
 \begin{figure}[H]
 	\centering

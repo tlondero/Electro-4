@@ -33,11 +33,9 @@ Cc2 = 1e-6;
 
 Cnum = [Rc1*Cc1, 1];
 Cden = [Rf*Rc1*Cc1*Cc2, Rf*(Cc1 + Cc2), 0];
-Cden2 = [Rf*Rc1*Cc1*Cc2, Rf*Cc1, 0];
-
 C = tf(Cnum, Cden);
-C2 = tf(Cnum, Cden2);
 
-sisotool
-
- h = bodeplot(IOTransfer_r2y); setoptions(h,'FreqUnits','Hz');
+%sisotool
+%h = bodeplot(IOTransfer_r2y); setoptions(h,'FreqUnits','Hz');
+ 
+T = G*C
