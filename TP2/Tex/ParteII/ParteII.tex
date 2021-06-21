@@ -139,16 +139,19 @@ Finalmente se selecciona $R = 47 \ \Omega$.
 Las potencias teóricas calculadas son:
 \begin{itemize}
 \item $ P_{MOS} =\frac{f_{sw}}{2}\cdot V_{sw}I_{N1-min} t_{sw2}\ =\frac{88 \ kHz}{2}\cdot (21 \ V) \cdot (400 \ mA) \cdot (300 \ ns) = 110\ mW$
-\item $ P_{RSnubber} = \frac{C{V_C}^2 F_{sw}}{2}\ = 679 \ mW$
-\item $P_{diodo} = (I_o{R_d}^2 + I_oV_D)DT_sF_{sw} + P_{Irr} = saludos$ 
+\item $ P_{RSnubber} = \frac{C{V_C}^2 F_{sw}}{2} = 679 \ mW$
+\item $P_{diodo} = (I_oR_{d}^2 + I_oV_D)D = 444.44mA (0.038\Omega )^2 + 444.44mA 1.25V 0.3 + P_{Irr} = 167.31mW$
+
 
 \end{itemize}
+despreciando la corriente de reverse recovery y utilizando datos del MUR160.
 Las medidas en la simulación son:
 \begin{itemize}
 \item $ P_{MOS} = 45 \ mW $
 \item $ P_{RSnubber} = 388.6 \ mW$
 \item $ P_{diodo} = 258.35 \ mW$
 \end{itemize}
+donde para el diodo se utilizó un MUR460.
 
 \subsection{Eficiencia}
 Se calculó la eficiencia del circuito de la siguiente manera:
