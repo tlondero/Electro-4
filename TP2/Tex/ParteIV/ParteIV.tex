@@ -47,15 +47,17 @@ Se puede observar que la tensión en el capacitor de snubber efectivamente no se
 	\label{fig:vgs_4}
 	\caption{Tensión de gate.}
 \end{figure}
+Aquí se ve el terminal no inversor, la variación en la forma de onda se debe a la incapacidad del analog en mantener una tensión constante de 2V.
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vni.png}
+	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vni.png}
 	\label{fig:vni_4}
 	\caption{Tensión no inversora.}
 \end{figure}
+
+En la siguiente figura se ve  la tensión de salida, la cual se mantiene en el rango de tensiones permitido, teniendo un ripple de salida de aproximadamente el 5\%.  Aunque tiene unos picos de alta frecuencia que se dan en 4 ocaciones especificas que van a a ser explicadas luego.
+
 \begin{figure}[H]
-	\centering
-	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vout.png}
+	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vout.png}
 	\label{fig:vout_4}
 	\caption{Tensión de salida.}
 \end{figure}
@@ -71,5 +73,5 @@ Se puede observar que la tensión en el capacitor de snubber efectivamente no se
 	\label{fig:vsec_4}
 	\caption{Tensión de secundario.}
 \end{figure}
-Se pueden observar cuatro oscilaciones distintivas en las mediciones de la mayoría de las tensiones del circuito, estas suceden al momento de apagar la llave, inmediatamente después de apagar la llave (sobrepico del diodo de potencia), al quedarse sin energía el núcleo del transformador por las mismas razones explicadas anteriormente, y finalmente al encender la llave.
+Se pueden observar cuatro oscilaciones distintivas en las mediciones de la mayoría de las tensiones del circuito, estas suceden al momento de apagar la llave, debido a los efectos de la $L_d$, inmediatamente después de apagar la llave provocado por el sobrepico del diodo de potencia. Al quedarse sin energía el núcleo del transformador por las mismas razones explicadas anteriormente. Y finalmente al encender la llave, aqui suceden 2 cosas el capacitor del snubber se descarga sobre el MOS al igual que se comienza a cargar la inductancia del primario.
 %\end{document}
