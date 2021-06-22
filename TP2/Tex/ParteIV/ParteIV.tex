@@ -49,18 +49,26 @@ Se puede observar que la tensión en el capacitor de snubber efectivamente no se
 \end{figure}
 Aquí se ve el terminal no inversor, la variación en la forma de onda se debe a la incapacidad del analog en mantener una tensión constante de 2V.
 \begin{figure}[H]
-	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vni.png}
+	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vref.png}
 	\label{fig:vni_4}
 	\caption{Tensión no inversora.}
 \end{figure}
 
-En la siguiente figura se ve  la tensión de salida, la cual se mantiene en el rango de tensiones permitido, teniendo un ripple de salida de aproximadamente el 5\%.  Aunque tiene unos picos de alta frecuencia que se dan en 4 ocaciones especificas que van a a ser explicadas luego.
+En la siguiente figura se ve  la tensión de salida,en la primera figura se observa que no cumple el rango pedido, esto se debe a la ESR de los capacitores.
+\begin{figure}[H]
+	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vout_vieja.png}
+	\label{fig:vout_4}
+	\caption{Tensión de salida con pocos capacitores.}
+\end{figure}
+
+Luego se agregó capacitores en paralelo para mitigar el efecto de la ESR. Finalmente se observa que la salida se mantiene en el rango de tensiones permitido, teniendo un ripple de salida de aproximadamente el 4\%.  Aunque tiene unos picos de alta frecuencia que se dan en 4 ocaciones especificas que van a a ser explicadas luego.
 
 \begin{figure}[H]
 	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vout.png}
 	\label{fig:vout_4}
 	\caption{Tensión de salida.}
 \end{figure}
+
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vosc.png}

@@ -72,7 +72,7 @@ plt.xlim(0, 50)
 plt.savefig('..\Tex\ParteIV\ImagenesParteIV\Vds.png')
 plt.show()
 #TENSIÓN DE drain
-df = pnd.read_csv('../Mediciones/1127/Vgs-Vref1127V.csv', sep=',')
+df = pnd.read_csv('../Mediciones/1127/Vgate-Vref1127V.csv', sep=',')
 t = np.asarray(df["Time (s)"])
 t = (t - t[0])*(1E6)
 pin9 = np.asarray(df["Channel 1 (V)"])
