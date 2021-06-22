@@ -50,13 +50,11 @@ plt.ylabel("Tensión [V]")
 plt.xlabel("Tiempo $[\mu s]$")
 plt.minorticks_on()
 plt.grid(which='major')
-
 plt.plot(t,pin9, label="Tensión de capacitor snubber")
 plt.legend()
 plt.xlim(0, 50)
 plt.savefig('..\Tex\ParteIV\ImagenesParteIV\Vcsnubber.png')
 plt.show()
-
 #TENSIÓN DE drain
 df = pnd.read_csv('../Mediciones/1127/Vds-Vref1127V.csv', sep=',')
 t = np.asarray(df["Time (s)"])
@@ -78,15 +76,15 @@ plt.show()
 df = pnd.read_csv('../Mediciones/1127/Vo-Vref1127V.csv', sep=',')
 t = np.asarray(df["Time (s)"])
 t = (t - t[0])*(1E6)
-pin9 = np.asarray(df["Channel 1 (V)"])*0.88+0.39
+pin9 = np.asarray(df["Channel 1 (V)"])*0.7+0.915
 #pin9 = np.asarray(df["Channel 1 (V)"])#+0.014
 plt.figure(num=4, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 plt.ylabel("Tensión [V]")
 plt.xlabel("Tiempo $[\mu s]$")
 plt.minorticks_on()
 plt.grid(which='major')
-vline1=t*0+2.85
-vline2=t*0+3.15
+vline1=t*0+3.075
+vline2=t*0+2.925
 plt.plot(t,pin9, label="Tensión de salida   ")
 plt.plot(t,vline2,'--' )
 plt.plot(t,vline1,'--')
@@ -100,7 +98,6 @@ df = pnd.read_csv('../Mediciones/1127/Vref-Vref1127V.csv', sep=',')
 t = np.asarray(df["Time (s)"])
 t = (t - t[0])*(1E6)
 pin9 = np.asarray(df["Channel 1 (V)"])
-
 plt.figure(num=4, figsize=(15, 5), dpi=80, facecolor='w', edgecolor='k')
 plt.ylabel("Tensión [V]")
 plt.xlabel("Tiempo $[\mu s]$")
@@ -123,7 +120,6 @@ plt.ylabel("Tensión [V]")
 plt.xlabel("Tiempo $[\mu s]$")
 plt.minorticks_on()
 plt.grid(which='major')
-
 plt.plot(t,pin9, label="Tensión de secundario")
 plt.legend()
 plt.xlim(0, 50)
