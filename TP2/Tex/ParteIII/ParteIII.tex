@@ -102,7 +102,7 @@ Con el sistema realimentado, se grafican los diagramas de Bode para la transfere
 Una particualridad de la topología Flyback es la existencia de un cero en el semiplano derecho.\\
 En lineas generales, si 
 \begin{equation}
-|T| >> 1 \implies \ \frac{V_o}{V_{ref}} \approx \frac{1}{\beta} =  0.5 \ \implies V_o\approx 0.5 \cdot V_{ref} 
+|T| >> 1 \implies \ \frac{V_o}{V_{ref}} \approx \frac{1}{\beta} = 2 \ \implies V_o\approx 2\cdot V_{ref} 
 \end{equation}
 
 En el diseño del realimentador se tuvieron en cuenta diversos lugares para colocar una resistencia variable. Esta podría ser en $R_{f1}$, $R_{f2}$ o simplemente se podría variar la $V_{ref}$.
@@ -124,7 +124,7 @@ Al igual se midieron todas las curvas relevantes del sistema:
 En el caso de la tensión de salida, se observa un ripple del 2\%.
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=\linewidth]{ImagenesParteIII/ Vo.png}
+	\includegraphics[width=\linewidth]{ImagenesParteIII/Vo.png}
 	\label{fig:vo}
 	\caption{Tensión de salida.}
 \end{figure}
@@ -171,5 +171,15 @@ Aqui se ve la tensión de compensación del SG3525 realimentado.
 	\label{fig:tensionesvarias}
 	\caption{Tensión y corriente en el capacitor de snubber.}
 \end{figure}
+También se colocó en la simulación varios capacitores en paralelo con varias ESR distintas ($10m\Omega \sim 1 \Omega$). Se observa el efecto característico de la ESR sobre la tensión de salida provocando "saltos" de tensión sobre la misma como se ve a continuación.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIII/Vout_esr.png}
+	\label{fig:tensionESR}
+	\caption{Tensión de salida con ESR.}
+\end{figure}
+Esto se puede subsanar al agregar aun mas capacitores en paralelo que reduzcan la ESR.
+
 Finalmente vale la pena mencionar la desaparición casi completa de las grandes oscilaciones que se observaban en la sección anterior, esto se debe a la introducción del circuito de snubber.
+
 %\end{document}

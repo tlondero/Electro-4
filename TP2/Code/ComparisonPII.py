@@ -18,7 +18,7 @@ Isec = np.asarray(LTR.get_trace("I(L2)").data)
 Vcom=np.asarray(LTR.get_trace("V(v_comp)").data)
 Idio = np.asarray(LTR.get_trace("I(D1)").data)
 
-Vo = np.asarray(LTR.get_trace("V(vout1)").data)
+Vo = np.asarray(LTR.get_trace("V(vout1)").data)-0.04
 Vg = np.asarray(LTR.get_trace("V(vg)").data)
 
 Icap=np.asarray(LTR.get_trace("I(C7)").data)
@@ -48,7 +48,7 @@ plt.grid(which='major')
 #plt.grid(which='minor')
 plt.plot(t,Vo)
 plt.xlim(0, 50)
-plt.savefig('..\Tex\ParteIII\ImagenesParteIII\ Vo.png')
+plt.savefig('..\Tex\ParteIII\ImagenesParteIII\Vo.png')
 plt.show()
 
 
