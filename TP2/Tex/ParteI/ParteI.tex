@@ -1,7 +1,57 @@
-\input{../Informe/Header.tex}
+%\input{../Informe/Header.tex}
+%
+%\begin{document}
 
-\begin{document}
+\subsection{SG3525A}
 
-\Subsection{XXX}
+\subsubsection{Debajo de la tensión de operación}
 
-\end{document}
+Este dispositivo cuenta con un pin de control llamado \quotes{Shutdown}. Este pin controla tanto el circuito de Soft-Start como las etapas de salida, apagando la salida automáticamente a través de pulsos de shutdown.
+
+Al haber una tensión inferior al mínimo ($8 \ V$) en la entrada, este sistema de shutdown se activa, inhabilitando las salidas y los cambios en el capacitor de Soft-Start.
+
+Esto protege al circuito conectado a la salida de la flyback, asumiendo que es mejor cortar la alimentación que proveer un valor indeterminado de tensión.
+
+\subsubsection{Señal a la salida}
+
+Para seleccionar la frecuencia de la señal a la salida del integrado, se deben conectar dos resistencias y un capacitor en los pines $C_T$ y $R_T$. El criterio de selección viene dado por las siguientes limitaciones:
+
+\begin{equation}
+	f_s = \frac{1}{C_T \left( 0.7 R_T + 3 R_D \right)}
+\end{equation}
+
+\begin{equation*}
+\begin{gathered}
+2.0 \ k\Omega \leqslant R_T \leqslant 150 \ k\Omega \\
+0 \ \Omega \leqslant R_D \leqslant 550 \ \Omega \\
+1 \ nf \leqslant C_T \leqslant 200 \ nf \\
+\end{gathered}
+\end{equation*}
+Existe una relación entre la frecuencia del oscilador y la de salida.
+ Sucede que la frecuencia del oscilador es el doble que la frecuencia de salida, dado que en un ciclo acciona una salida y en el siguiente la otra.\\
+
+Para conseguir una frecuencia de $100 \ kHz$ a la salida ($\sim$ 200 kHz en el oscilador), basta con tomar:
+\begin{equation}
+\begin{gathered}
+R_T = 2.2 \ k\Omega \\
+R_D = 0 \ \Omega \\
+C_T = 3.3 \ nf \\
+\end{gathered}
+\end{equation}
+
+Para conseguir un Duty deseado, lo que se debe hacer es colocar la salida del amplificador de error a $0 \ V$ (pin no inversor a masa y pin inversor a $V_{ref}$), luego aplicando una tensión en el pin de compensación (9), es posible manejar el duty de salida. 
+
+\subsubsection{Soft-Start}
+
+El pin de Soft-Start cumple con la función de limitar el duty cicle en el arranque, hasta que el capacitor de SS esté cargado. %Una vez que esto ocurre (...)
+
+Cuando se está empleando una fuente realimentada se busca que en el arranque no se produzca un duty cycle tal que se llegue a la tensión deseada, sino a una menor hasta que se cargue el capacitor SS. De esta forma se evita que se sobredimensione y se pase del valor que se necesita, disminuyendo así las oscilaciones iniciales.
+
+%Limita el duty al principio hasta que el capacitor de SS esté cargado -> pin 9 (COM) va al comparador PWM, dependiendo esa tensión tenemos el duty.
+%SS -> Cuando tengo una fuente realimentada, que a la salida es 0 al principio, el circuito no produzca un duty tal para que llegue  a la tensión que quiere y se pasa.
+
+\subsubsection{Shutdown}
+
+Es posible implementar un circuito limitador de corriente utilizando el pin de Shutdown con una resistencia de shunt y un BJT. Se coloca la resistencia de shunt en el camino de la corriente a sensar y en paralelo a la juntura base emisor del bipolar, y se calcula la resistencia de manera tal que cuando haya una corriente mayor a la permitida, la caída de potencial en la resistencia sea mayor que la tensión necesaria para polarizar la juntura del transistor, el cual en consecuencia coloca una señal alta en el pin de shutdown.
+
+%\end{document}

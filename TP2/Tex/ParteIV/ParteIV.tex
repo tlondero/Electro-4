@@ -1,7 +1,86 @@
-\input{../Informe/Header.tex}
+%\input{../Informe/Header.tex}
+%
+%\begin{document}
 
-\begin{document}
+\subsection{Diseño de placa}
+Se diseño la placa en multiperforada, teniendo la posibilidad de medir la tensión en los pines de compensación, drain, gate, primario, secundario y en el pin no inversor. Tambíen es posible cambiar la carga del circuito, y la tensión de salida.
 
-\Subsection{XXX}
+Se colocaron a la salida varios capacitores en paralelo, teniendo distintas tecnologías (electrolíticos, cerámicos) para bajar la ESR, al igual que para subir la capacidad de salida. 
 
-\end{document}
+%Se tuvo en cuenta no unir islas con estaño sino siempre con cables. 
+El sistema, si bien fue diseñado en modo continuo, trabaja en modo discontinuo debido a la baja corriente de salida que es pedida por la carga. Aún si se quisiese, no podría trabajar en modo continuo debido a que la corriente necesaria para que este trabaje en modo continua resultaría en la saturación del transformador lo cual no es deseable.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.7\linewidth]{ImagenesParteIV/placa_facha.png}
+	\label{fig:placa}
+	\caption{Tensión de compensación.}
+\end{figure}
+
+
+\subsection{Mediciones}
+Lo primero que vemos en la tensión de compensación que a diferencia de (\ref{fig:com3}) este cuenta con un valor menor debido a que se tiene una $V_{ref}$ distinta para obtener la salida deseada.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vcom.png}
+	\label{fig:vcom_4}
+	\caption{Tensión de compensación.}
+\end{figure}
+Se puede observar que la tensión en el capacitor de snubber efectivamente no se llega a descargar por completo debido a la selección de la resistencia de snubber limitado a la disponibilidad de componentes.
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vcsnubber.png}
+	\label{fig:vcsnubb_4}
+	\caption{Tensión de capacitor de snubber.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vds.png}
+	\label{fig:vds_4}
+	\caption{Tensión de drain.}
+\end{figure}
+La curva de $V{GS}$ característica del MOS. 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vgs.png}
+	\label{fig:vgs_4}
+	\caption{Tensión de gate.}
+\end{figure}
+Aquí se ve el terminal no inversor, la variación en la forma de onda se debe a la incapacidad del analog en mantener una tensión constante de 2V.
+\begin{figure}[H]
+	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vref.png}
+	\label{fig:vni_4}
+	\caption{Tensión no inversora.}
+\end{figure}
+
+En la siguiente figura se ve  la tensión de salida,en la primera figura se observa que no cumple el rango pedido, esto se debe a la ESR de los capacitores.
+\begin{figure}[H]
+	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vout_vieja.png}
+	\label{fig:vout_4_v}
+	\caption{Tensión de salida con pocos capacitores.}
+\end{figure}
+
+Luego se agregó capacitores en paralelo para mitigar el efecto de la ESR. Finalmente se observa que la salida se mantiene en el rango de tensiones permitido, teniendo un ripple de salida de aproximadamente el 4\%.  Aunque tiene unos picos de alta frecuencia que se dan en 4 ocaciones especificas que van a a ser explicadas luego.
+
+\begin{figure}[H]
+	\centering	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vout.png}
+	\label{fig:vout_4}
+	\caption{Tensión de salida.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vosc.png}
+	\label{fig:vosc4}
+	\caption{Tensión de oscilador.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.9\linewidth]{ImagenesParteIV/Vsec.png}
+	\label{fig:vsec_4}
+	\caption{Tensión de secundario.}
+\end{figure}
+Se pueden observar cuatro oscilaciones distintivas en las mediciones de la mayoría de las tensiones del circuito, estas suceden al momento de apagar la llave, debido a los efectos de la $L_d$, inmediatamente después de apagar la llave provocado por el sobrepico del diodo de potencia. Al quedarse sin energía el núcleo del transformador por las mismas razones explicadas anteriormente. Y finalmente al encender la llave, aqui suceden 2 cosas el capacitor del snubber se descarga sobre el MOS al igual que se comienza a cargar la inductancia del primario.
+%\end{document}
